@@ -1,0 +1,47 @@
+{
+  "project_info": {
+    "project_number": "789536021240",
+    "project_id": "besportive-2is70",
+    "storage_bucket": "besportive-2is70.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:789536021240:android:e3ae99210b05c1443c790d",
+        "android_client_info": {
+          "package_name": "nl.tue.besportive"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "789536021240-eoevg2spgnhiagrvifb87hu3mbbajea5.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "nl.tue.besportive",
+            "certificate_hash": "d06487e7601f221507ef424a68c98e9b4a807c8f"
+          }
+        },
+        {
+          "client_id": "789536021240-ohsjgak3r7mq5km9n8qiqg0eolqq3fnp.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyAnFV8AKkjwiiYY0WbMuUZzJQgl50xnNJY"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "789536021240-ohsjgak3r7mq5km9n8qiqg0eolqq3fnp.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
