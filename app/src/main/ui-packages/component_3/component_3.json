@@ -1,0 +1,292 @@
+{
+  "name": "component_3",
+  "version": 32,
+  "source-key": {
+    "type": "figma",
+    "file": "O4sHBSshv6uI1KosnzQ5cz",
+    "node": "101:125",
+    "version": "3122138510",
+    "component-id": "8da770fa3badad32a4d207cc5df2dff0bf80b16d"
+  },
+  "default": "Component 3",
+  "design": {
+    "atoms": [
+      {
+        "type": "group",
+        "id": "top_level",
+        "root": "true"
+      },
+      {
+        "type": "image",
+        "id": "logo 3"
+      },
+      {
+        "type": "text",
+        "id": "Create Group"
+      },
+      {
+        "type": "text",
+        "id": "Enter a name to create a group so you can start competing with your friends and family"
+      },
+      {
+        "type": "group",
+        "id": "Group 8"
+      },
+      {
+        "type": "group",
+        "id": "Group 9"
+      },
+      {
+        "type": "vector",
+        "id": "Rectangle 2"
+      },
+      {
+        "type": "text",
+        "id": "Name..."
+      },
+      {
+        "type": "vector",
+        "id": "Vector"
+      },
+      {
+        "type": "text",
+        "id": "Create Group1"
+      }
+    ],
+    "modes": {
+      "Component 3": {
+        "rules": [
+          {
+            "id": "top_level",
+            "is-structured": "false",
+            "children": [
+              "logo 3",
+              "Create Group",
+              "Enter a name to create a group so you can start competing with your friends and family",
+              "Group 8",
+              "Group 9"
+            ],
+            "clip-content": "false"
+          },
+          {
+            "id": "logo 3",
+            "margin": {
+              "left": "78.0",
+              "right": "78.1290283203125",
+              "bottom": "450.0"
+            },
+            "size-constraints": {
+              "width-constraints": {
+                "sizing-mode": "proportional",
+                "value": "1.0"
+              },
+              "height-constraints": {
+                "sizing-mode": "proportional",
+                "value": "1.0"
+              }
+            },
+            "image-content": "logo_3.png",
+            "scale": "cover"
+          },
+          {
+            "id": "Create Group",
+            "margin": {
+              "left": "30.0",
+              "top": "155.0",
+              "right": "30.1290283203125",
+              "bottom": "282.0"
+            },
+            "size-constraints": {
+              "width-constraints": {
+                "sizing-mode": "proportional",
+                "value": "1.0"
+              },
+              "height-constraints": {
+                "sizing-mode": "proportional",
+                "value": "1.0"
+              }
+            },
+            "font-weight": "700.0",
+            "color": {
+              "alpha": "1.0",
+              "hue": "0.0",
+              "saturation": "0.0",
+              "value": "0.24313725490196078"
+            },
+            "text-content": "Create Group",
+            "overflow": "visible",
+            "text-align": "left",
+            "text-size": "36.0",
+            "line-height": "1.2102272245619032",
+            "typeface": "Inter"
+          },
+          {
+            "id": "Enter a name to create a group so you can start competing with your friends and family",
+            "margin": {
+              "left": "4.0",
+              "top": "212.0",
+              "right": "4.1290283203125",
+              "bottom": "243.0"
+            },
+            "size-constraints": {
+              "width-constraints": {
+                "sizing-mode": "proportional",
+                "value": "1.0"
+              },
+              "height-constraints": {
+                "sizing-mode": "proportional",
+                "value": "1.0"
+              }
+            },
+            "color": {
+              "alpha": "1.0",
+              "hue": "0.0",
+              "saturation": "0.0",
+              "value": "0.4"
+            },
+            "text-content": "Enter a name to create a group so you can start competing with your friends and family",
+            "overflow": "visible",
+            "max-lines": "-1",
+            "text-size": "11.0",
+            "line-height": "1.2102272727272727",
+            "typeface": "Inter"
+          },
+          {
+            "id": "Group 8",
+            "margin": {
+              "top": "305.0",
+              "bottom": "122.0"
+            },
+            "border-radius": "20.0",
+            "is-structured": "false",
+            "children": [
+              "Rectangle 2",
+              "Name..."
+            ],
+            "clip-content": "false"
+          },
+          {
+            "id": "Group 9",
+            "margin": {
+              "left": "21.0",
+              "top": "426.0",
+              "right": "20.9910888671875"
+            },
+            "is-structured": "false",
+            "children": [
+              "Vector",
+              "Create Group1"
+            ],
+            "clip-content": "false"
+          },
+          {
+            "id": "Rectangle 2",
+            "border-radius": "20.0",
+            "size-constraints": {
+              "width-constraints": {
+                "sizing-mode": "proportional",
+                "value": "1.0"
+              },
+              "height-constraints": {
+                "sizing-mode": "proportional",
+                "value": "1.0"
+              }
+            },
+            "vector-content": "rectangle_2.svg"
+          },
+          {
+            "id": "Name...",
+            "margin": {
+              "left": "13.93548583984375",
+              "top": "6.9677734375",
+              "right": "12.19354248046875",
+              "bottom": "6.96771240234375"
+            },
+            "size-constraints": {
+              "width-constraints": {
+                "sizing-mode": "proportional",
+                "value": "1.0"
+              },
+              "height-constraints": {
+                "sizing-mode": "proportional",
+                "value": "1.0"
+              }
+            },
+            "color": {
+              "alpha": "0.8470588235294118",
+              "hue": "0.0",
+              "saturation": "0.0",
+              "value": "0.5098039215686274"
+            },
+            "text-content": "Name...",
+            "overflow": "visible",
+            "max-lines": "-1",
+            "text-align": "left",
+            "text-align-vertical": "center",
+            "text-size": "20.0",
+            "line-height": "1.2102272033691406",
+            "typeface": "Inter"
+          },
+          {
+            "id": "Vector",
+            "size-constraints": {
+              "width-constraints": {
+                "sizing-mode": "proportional",
+                "value": "1.0"
+              },
+              "height-constraints": {
+                "sizing-mode": "proportional",
+                "value": "1.0"
+              }
+            },
+            "vector-content": "vector.svg"
+          },
+          {
+            "id": "Create Group1",
+            "margin": {
+              "left": "24.6551513671875",
+              "top": "9.4827880859375",
+              "right": "28.21917724609375",
+              "bottom": "11.80755615234375"
+            },
+            "size-constraints": {
+              "width-constraints": {
+                "sizing-mode": "proportional",
+                "value": "1.0"
+              },
+              "height-constraints": {
+                "sizing-mode": "proportional",
+                "value": "1.0"
+              }
+            },
+            "color": {
+              "alpha": "1.0",
+              "hue": "0.0",
+              "saturation": "0.0",
+              "value": "1.0"
+            },
+            "text-content": "Create Group",
+            "overflow": "visible",
+            "max-lines": "-1",
+            "text-align-vertical": "center",
+            "text-size": "20.0",
+            "line-height": "1.2102272033691406",
+            "typeface": "Inter"
+          }
+        ]
+      }
+    }
+  },
+  "previews": [
+    {
+      "design": "Component 3",
+      "size": {
+        "width": 296.1290283203125,
+        "height": 481.0
+      }
+    }
+  ],
+  "adin-component-search-paths": [],
+  "image-search-paths": [],
+  "vector-search-paths": []
+}
