@@ -1,0 +1,328 @@
+{
+  "name": "component_11",
+  "version": 32,
+  "source-key": {
+    "type": "figma",
+    "file": "knsA6gRCysCuUCz1aMSZEZ",
+    "node": "102:134",
+    "version": "3134442840",
+    "component-id": "6c620e0462988a5223a040e97d76a65af5085d41"
+  },
+  "default": "Component 11",
+  "documentation": "active challenge",
+  "design": {
+    "atoms": [
+      {
+        "type": "group",
+        "id": "top_level",
+        "root": "true"
+      },
+      {
+        "type": "image",
+        "id": "logo 3"
+      },
+      {
+        "type": "text",
+        "id": "100 Push Ups"
+      },
+      {
+        "type": "text",
+        "id": "09:41"
+      },
+      {
+        "type": "text",
+        "id": "Easy"
+      },
+      {
+        "type": "group",
+        "id": "Group 10"
+      },
+      {
+        "type": "group",
+        "id": "Group 11"
+      },
+      {
+        "type": "vector",
+        "id": "Vector"
+      },
+      {
+        "type": "text",
+        "id": "Complete"
+      },
+      {
+        "type": "vector",
+        "id": "Vector1"
+      },
+      {
+        "type": "text",
+        "id": "Cancel the challenge"
+      }
+    ],
+    "modes": {
+      "Component 11": {
+        "rules": [
+          {
+            "id": "top_level",
+            "is-structured": "false",
+            "children": [
+              "logo 3",
+              "100 Push Ups",
+              "09:41",
+              "Easy",
+              "Group 10",
+              "Group 11"
+            ],
+            "clip-content": "false"
+          },
+          {
+            "id": "logo 3",
+            "margin": {
+              "left": "51.0",
+              "right": "51.0",
+              "bottom": "503.0"
+            },
+            "size-constraints": {
+              "width-constraints": {
+                "sizing-mode": "proportional",
+                "value": "1.0"
+              },
+              "height-constraints": {
+                "sizing-mode": "proportional",
+                "value": "1.0"
+              }
+            },
+            "image-content": "logo_3.png",
+            "scale": "cover"
+          },
+          {
+            "id": "100 Push Ups",
+            "margin": {
+              "top": "93.0",
+              "bottom": "397.0"
+            },
+            "size-constraints": {
+              "width-constraints": {
+                "sizing-mode": "proportional",
+                "value": "1.0"
+              },
+              "height-constraints": {
+                "sizing-mode": "proportional",
+                "value": "1.0"
+              }
+            },
+            "font-weight": "700.0",
+            "color": {
+              "alpha": "1.0",
+              "hue": "0.0",
+              "saturation": "0.0",
+              "value": "0.24313725490196078"
+            },
+            "text-content": "100 Push Ups",
+            "overflow": "visible",
+            "text-align": "left",
+            "text-size": "36.0",
+            "line-height": "1.2102272245619032",
+            "typeface": "Inter"
+          },
+          {
+            "id": "09:41",
+            "margin": {
+              "left": "20.0",
+              "top": "257.0",
+              "right": "20.0",
+              "bottom": "190.0"
+            },
+            "size-constraints": {
+              "width-constraints": {
+                "sizing-mode": "proportional",
+                "value": "1.0"
+              },
+              "height-constraints": {
+                "sizing-mode": "proportional",
+                "value": "1.0"
+              }
+            },
+            "font-weight": "700.0",
+            "color": {
+              "alpha": "1.0",
+              "hue": "0.0",
+              "saturation": "0.0",
+              "value": "0.24313725490196078"
+            },
+            "text-content": "09:41",
+            "overflow": "visible",
+            "text-align": "left",
+            "text-size": "72.0",
+            "line-height": "1.2102272245619032",
+            "typeface": "Inter"
+          },
+          {
+            "id": "Easy",
+            "margin": {
+              "left": "92.0",
+              "top": "57.0",
+              "right": "93.0",
+              "bottom": "460.0"
+            },
+            "size-constraints": {
+              "width-constraints": {
+                "sizing-mode": "proportional",
+                "value": "1.0"
+              },
+              "height-constraints": {
+                "sizing-mode": "proportional",
+                "value": "1.0"
+              }
+            },
+            "font-weight": "700.0",
+            "color": {
+              "alpha": "1.0",
+              "hue": "148.35616438356163",
+              "saturation": "1.0",
+              "value": "0.5725490196078431"
+            },
+            "text-content": "Easy",
+            "overflow": "visible",
+            "max-lines": "-1",
+            "text-align": "left",
+            "text-size": "24.0",
+            "line-height": "1.2102272510528564",
+            "typeface": "Inter"
+          },
+          {
+            "id": "Group 10",
+            "margin": {
+              "left": "13.0",
+              "top": "443.0",
+              "right": "13.0",
+              "bottom": "55.0"
+            },
+            "is-structured": "false",
+            "children": [
+              "Vector",
+              "Complete"
+            ],
+            "clip-content": "false"
+          },
+          {
+            "id": "Group 11",
+            "margin": {
+              "left": "13.0",
+              "top": "498.0",
+              "right": "13.0"
+            },
+            "is-structured": "false",
+            "children": [
+              "Vector1",
+              "Cancel the challenge"
+            ],
+            "clip-content": "false"
+          },
+          {
+            "id": "Vector",
+            "size-constraints": {
+              "width-constraints": {
+                "sizing-mode": "proportional",
+                "value": "1.0"
+              },
+              "height-constraints": {
+                "sizing-mode": "proportional",
+                "value": "1.0"
+              }
+            },
+            "vector-content": "vector.svg"
+          },
+          {
+            "id": "Complete",
+            "margin": {
+              "left": "24.0",
+              "top": "9.0",
+              "right": "20.9395751953125",
+              "bottom": "4.93548583984375"
+            },
+            "size-constraints": {
+              "width-constraints": {
+                "sizing-mode": "proportional",
+                "value": "1.0"
+              },
+              "height-constraints": {
+                "sizing-mode": "proportional",
+                "value": "1.0"
+              }
+            },
+            "color": {
+              "alpha": "1.0",
+              "hue": "0.0",
+              "saturation": "0.0",
+              "value": "1.0"
+            },
+            "text-content": "Complete ",
+            "overflow": "visible",
+            "max-lines": "-1",
+            "text-size": "13.0",
+            "line-height": "1.2102272327129657",
+            "typeface": "Inter"
+          },
+          {
+            "id": "Vector1",
+            "size-constraints": {
+              "width-constraints": {
+                "sizing-mode": "proportional",
+                "value": "1.0"
+              },
+              "height-constraints": {
+                "sizing-mode": "proportional",
+                "value": "1.0"
+              }
+            },
+            "vector-content": "vector1.svg"
+          },
+          {
+            "id": "Cancel the challenge",
+            "margin": {
+              "left": "24.0",
+              "top": "7.0",
+              "right": "20.9395751953125",
+              "bottom": "6.93548583984375"
+            },
+            "size-constraints": {
+              "width-constraints": {
+                "sizing-mode": "proportional",
+                "value": "1.0"
+              },
+              "height-constraints": {
+                "sizing-mode": "proportional",
+                "value": "1.0"
+              }
+            },
+            "color": {
+              "alpha": "1.0",
+              "hue": "0.0",
+              "saturation": "0.0",
+              "value": "0.24313725490196078"
+            },
+            "text-content": "Cancel the challenge",
+            "overflow": "visible",
+            "max-lines": "-1",
+            "text-align-vertical": "center",
+            "text-size": "13.0",
+            "line-height": "1.2102272327129657",
+            "typeface": "Inter"
+          }
+        ]
+      }
+    }
+  },
+  "previews": [
+    {
+      "design": "Component 11",
+      "size": {
+        "width": 242.0,
+        "height": 534.0
+      }
+    }
+  ],
+  "adin-component-search-paths": [],
+  "image-search-paths": [],
+  "vector-search-paths": []
+}

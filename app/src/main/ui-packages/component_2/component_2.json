@@ -1,0 +1,467 @@
+{
+  "name": "component_2",
+  "version": 32,
+  "source-key": {
+    "type": "figma",
+    "file": "knsA6gRCysCuUCz1aMSZEZ",
+    "node": "102:113",
+    "version": "3134779875",
+    "component-id": "521133fe797747174f648d63f5cb6f1841083dbc"
+  },
+  "default": "Component 2",
+  "documentation": "Onboarding\n",
+  "design": {
+    "atoms": [
+      {
+        "type": "group",
+        "id": "top_level",
+        "root": "true"
+      },
+      {
+        "type": "vector",
+        "id": "Rectangle 9"
+      },
+      {
+        "type": "text",
+        "id": "Text"
+      },
+      {
+        "type": "image",
+        "id": "logo 1"
+      },
+      {
+        "type": "image",
+        "id": "afbeelding onboarding 1"
+      },
+      {
+        "type": "text",
+        "id": "Welcome to BeSportive!"
+      },
+      {
+        "type": "vector",
+        "id": "Vector"
+      },
+      {
+        "type": "vector",
+        "id": "Vector1"
+      },
+      {
+        "type": "vector",
+        "id": "Vector2"
+      },
+      {
+        "type": "vector",
+        "id": "Vector3"
+      },
+      {
+        "type": "vector",
+        "id": "Vector4"
+      },
+      {
+        "type": "text",
+        "id": "Next"
+      },
+      {
+        "type": "text",
+        "id": "Skip"
+      },
+      {
+        "type": "text",
+        "id": "The platform for social interactions with friends or family based on sport related challenges"
+      },
+      {
+        "type": "text",
+        "id": "The platform for social interactions with friends or family based on sport related challenges1"
+      }
+    ],
+    "modes": {
+      "Component 2": {
+        "rules": [
+          {
+            "id": "top_level",
+            "is-structured": "false",
+            "children": [
+              "Rectangle 9",
+              "Text",
+              "logo 1",
+              "afbeelding onboarding 1",
+              "Welcome to BeSportive!",
+              "Vector",
+              "Vector1",
+              "Vector2",
+              "Vector3",
+              "Vector4",
+              "Next",
+              "Skip",
+              "The platform for social interactions with friends or family based on sport related challenges",
+              "The platform for social interactions with friends or family based on sport related challenges1"
+            ],
+            "clip-content": "false"
+          },
+          {
+            "id": "Rectangle 9",
+            "alignment": {
+              "horizontal": {
+                "attachment": "start",
+                "offset": "-43.84722900390625"
+              },
+              "vertical": {
+                "attachment": "start",
+                "offset": "-30.0"
+              }
+            },
+            "size-constraints": {
+              "width-constraints": {
+                "sizing-mode": "fixed",
+                "value": "385.0"
+              },
+              "height-constraints": {
+                "sizing-mode": "fixed",
+                "value": "640.0"
+              }
+            },
+            "vector-content": "rectangle_9.svg"
+          },
+          {
+            "id": "Text",
+            "margin": {
+              "left": "70.15277099609375",
+              "top": "116.0",
+              "right": "237.84722900390625",
+              "bottom": "428.0"
+            },
+            "size-constraints": {
+              "width-constraints": {
+                "sizing-mode": "proportional",
+                "value": "1.0"
+              },
+              "height-constraints": {
+                "sizing-mode": "proportional",
+                "value": "1.0"
+              }
+            },
+            "color": {
+              "alpha": "1.0",
+              "hue": "0.0",
+              "saturation": "0.0",
+              "value": "0.0"
+            },
+            "text-content": "",
+            "overflow": "visible",
+            "text-align": "left",
+            "text-size": "12.0",
+            "line-height": "1.2102272510528564",
+            "typeface": "Inter"
+          },
+          {
+            "id": "logo 1",
+            "margin": {
+              "left": "66.15277099609375",
+              "right": "101.84722900390625",
+              "bottom": "528.0"
+            },
+            "size-constraints": {
+              "width-constraints": {
+                "sizing-mode": "proportional",
+                "value": "1.0"
+              },
+              "height-constraints": {
+                "sizing-mode": "proportional",
+                "value": "1.0"
+              }
+            },
+            "image-content": "logo_1.png",
+            "scale": "cover"
+          },
+          {
+            "id": "afbeelding onboarding 1",
+            "margin": {
+              "left": "11.76385498046875",
+              "top": "131.0",
+              "right": "22.4583740234375",
+              "bottom": "269.0"
+            },
+            "size-constraints": {
+              "width-constraints": {
+                "sizing-mode": "proportional",
+                "value": "1.0"
+              },
+              "height-constraints": {
+                "sizing-mode": "proportional",
+                "value": "1.0"
+              }
+            },
+            "image-content": "afbeelding_onboarding_1.png",
+            "scale": "cover"
+          },
+          {
+            "id": "Welcome to BeSportive!",
+            "margin": {
+              "left": "28.15277099609375",
+              "top": "309.0",
+              "right": "37.84722900390625",
+              "bottom": "185.0"
+            },
+            "size-constraints": {
+              "width-constraints": {
+                "sizing-mode": "proportional",
+                "value": "1.0"
+              },
+              "height-constraints": {
+                "sizing-mode": "proportional",
+                "value": "1.0"
+              }
+            },
+            "font-weight": "700.0",
+            "color": {
+              "alpha": "1.0",
+              "hue": "0.0",
+              "saturation": "0.0",
+              "value": "0.24313725490196078"
+            },
+            "text-content": "Welcome to BeSportive!",
+            "overflow": "visible",
+            "max-lines": "-1",
+            "text-align-vertical": "center",
+            "text-size": "20.0",
+            "line-height": "1.2102272033691406",
+            "typeface": "Inter"
+          },
+          {
+            "id": "Vector",
+            "margin": {
+              "left": "109.08331298828125",
+              "top": "466.0",
+              "right": "187.15277099609375",
+              "bottom": "82.0"
+            },
+            "size-constraints": {
+              "width-constraints": {
+                "sizing-mode": "proportional",
+                "value": "1.0"
+              },
+              "height-constraints": {
+                "sizing-mode": "proportional",
+                "value": "1.0"
+              }
+            },
+            "vector-content": "vector.svg"
+          },
+          {
+            "id": "Vector1",
+            "margin": {
+              "left": "132.611083984375",
+              "top": "466.0",
+              "right": "164.6944580078125",
+              "bottom": "82.0"
+            },
+            "size-constraints": {
+              "width-constraints": {
+                "sizing-mode": "proportional",
+                "value": "1.0"
+              },
+              "height-constraints": {
+                "sizing-mode": "proportional",
+                "value": "1.0"
+              }
+            },
+            "vector-content": "vector1.svg"
+          },
+          {
+            "id": "Vector2",
+            "margin": {
+              "left": "155.0694580078125",
+              "top": "466.0",
+              "right": "141.1666259765625",
+              "bottom": "82.0"
+            },
+            "size-constraints": {
+              "width-constraints": {
+                "sizing-mode": "proportional",
+                "value": "1.0"
+              },
+              "height-constraints": {
+                "sizing-mode": "proportional",
+                "value": "1.0"
+              }
+            },
+            "vector-content": "vector2.svg"
+          },
+          {
+            "id": "Vector3",
+            "margin": {
+              "left": "176.45831298828125",
+              "top": "466.0",
+              "right": "119.77777099609375",
+              "bottom": "82.0"
+            },
+            "size-constraints": {
+              "width-constraints": {
+                "sizing-mode": "proportional",
+                "value": "1.0"
+              },
+              "height-constraints": {
+                "sizing-mode": "proportional",
+                "value": "1.0"
+              }
+            },
+            "vector-content": "vector3.svg"
+          },
+          {
+            "id": "Vector4",
+            "margin": {
+              "left": "188.22222900390625",
+              "top": "524.0",
+              "right": "22.45831298828125"
+            },
+            "size-constraints": {
+              "width-constraints": {
+                "sizing-mode": "proportional",
+                "value": "1.0"
+              },
+              "height-constraints": {
+                "sizing-mode": "proportional",
+                "value": "1.0"
+              }
+            },
+            "vector-content": "vector4.svg"
+          },
+          {
+            "id": "Next",
+            "margin": {
+              "left": "220.3055419921875",
+              "top": "532.0",
+              "right": "49.1944580078125",
+              "bottom": "8.0"
+            },
+            "size-constraints": {
+              "width-constraints": {
+                "sizing-mode": "proportional",
+                "value": "1.0"
+              },
+              "height-constraints": {
+                "sizing-mode": "proportional",
+                "value": "1.0"
+              }
+            },
+            "color": {
+              "alpha": "1.0",
+              "hue": "0.0",
+              "saturation": "0.0",
+              "value": "0.9490196078431372"
+            },
+            "text-content": "Next",
+            "overflow": "visible",
+            "max-lines": "-1",
+            "text-align": "left",
+            "text-size": "13.0",
+            "line-height": "1.2102272327129657",
+            "typeface": "Inter"
+          },
+          {
+            "id": "Skip",
+            "margin": {
+              "left": "25.66668701171875",
+              "top": "531.0",
+              "right": "247.0416259765625",
+              "bottom": "10.0"
+            },
+            "size-constraints": {
+              "width-constraints": {
+                "sizing-mode": "proportional",
+                "value": "1.0"
+              },
+              "height-constraints": {
+                "sizing-mode": "proportional",
+                "value": "1.0"
+              }
+            },
+            "color": {
+              "alpha": "1.0",
+              "hue": "0.0",
+              "saturation": "0.0",
+              "value": "0.24313725490196078"
+            },
+            "text-content": "Skip",
+            "overflow": "visible",
+            "max-lines": "-1",
+            "text-align": "left",
+            "text-size": "15.0",
+            "line-height": "1.2102272033691406",
+            "typeface": "Inter"
+          },
+          {
+            "id": "The platform for social interactions with friends or family based on sport related challenges",
+            "margin": {
+              "top": "365.0",
+              "bottom": "168.0"
+            },
+            "size-constraints": {
+              "width-constraints": {
+                "sizing-mode": "proportional",
+                "value": "1.0"
+              },
+              "height-constraints": {
+                "sizing-mode": "proportional",
+                "value": "1.0"
+              }
+            },
+            "color": {
+              "alpha": "1.0",
+              "hue": "0.0",
+              "saturation": "0.0",
+              "value": "0.4"
+            },
+            "text-content": "The platform for social interactions with friends or \nfamily based on sport related challenges",
+            "overflow": "visible",
+            "max-lines": "-1",
+            "text-size": "11.0",
+            "line-height": "1.2102272727272727",
+            "typeface": "Inter"
+          },
+          {
+            "id": "The platform for social interactions with friends or family based on sport related challenges1",
+            "margin": {
+              "top": "365.0",
+              "bottom": "168.0"
+            },
+            "size-constraints": {
+              "width-constraints": {
+                "sizing-mode": "proportional",
+                "value": "1.0"
+              },
+              "height-constraints": {
+                "sizing-mode": "proportional",
+                "value": "1.0"
+              }
+            },
+            "color": {
+              "alpha": "1.0",
+              "hue": "0.0",
+              "saturation": "0.0",
+              "value": "0.4"
+            },
+            "text-content": "The platform for social interactions with friends or \nfamily based on sport related challenges",
+            "overflow": "visible",
+            "max-lines": "-1",
+            "text-size": "11.0",
+            "line-height": "1.2102272727272727",
+            "typeface": "Inter"
+          }
+        ]
+      }
+    }
+  },
+  "previews": [
+    {
+      "design": "Component 2",
+      "size": {
+        "width": 308.0,
+        "height": 559.0
+      }
+    }
+  ],
+  "adin-component-search-paths": [],
+  "image-search-paths": [],
+  "vector-search-paths": []
+}
