@@ -28,4 +28,5 @@
     <string name="profile_statistics_text">Number of challenges you have done so far: %d</string>
     <string name="profile_statistics_time_spent_text">Total time spent on challenges: %d</string>
     <string name="Leaderboard_placement">1.</string>
+    <string name="invite_members_code">3NAB0</string>
 </resources>
