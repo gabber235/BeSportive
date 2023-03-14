@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="utf-8"?>
+<menu xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:android="http://schemas.android.com/apk/res/android">
+
+    <item android:title="Home"
+        android:icon="@drawable/baseline_home_24"
+        android:id="@+id/home"/>
+
+    <item android:title="Challenges"
+        android:icon="@drawable/baseline_fitness_center_24"
+        android:id="@+id/challenges"/>
+    <item android:title="Leaderboard"
+        android:icon="@drawable/baseline_leaderboard_24"
+        android:id="@+id/leaderboard"/>
+</menu>
