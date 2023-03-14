@@ -127,9 +127,9 @@
     <LinearLayout
         android:layout_width="423dp"
         android:layout_height="326dp"
-        android:layout_marginStart="32dp"
+        android:layout_marginStart="66dp"
         android:layout_marginTop="28dp"
-        android:layout_marginEnd="32dp"
+        android:layout_marginEnd="66dp"
         android:orientation="vertical"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
@@ -152,4 +152,12 @@
             android:textColor="#A3FFFFFF" />
 
     </LinearLayout>
+
+    <View
+        android:id="@+id/divider2"
+        android:layout_width="409dp"
+        android:layout_height="1dp"
+        android:background="?android:attr/listDivider"
+        tools:layout_editor_absoluteX="1dp"
+        tools:layout_editor_absoluteY="413dp" />
 </androidx.constraintlayout.widget.ConstraintLayout>
