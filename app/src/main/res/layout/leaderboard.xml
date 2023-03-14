@@ -46,7 +46,7 @@
         android:layout_marginStart="120dp"
         android:layout_marginTop="43dp"
         android:layout_marginEnd="121dp"
-        android:text="Leaderboard"
+        android:text="@string/leaderboard_header"
         android:textColor="#000000"
         android:textSize="34sp"
         android:textStyle="bold"
@@ -81,7 +81,7 @@
                     android:id="@+id/textView17"
                     android:layout_width="wrap_content"
                     android:layout_height="44dp"
-                    android:text="1."
+                    android:text="@string/Leaderboard_placement"
                     android:textStyle="bold" />
 
                 <ImageView
@@ -117,7 +117,7 @@
 
             <TableRow
                 android:layout_width="match_parent"
-                android:layout_height="match_parent">
+                android:layout_height="51dp">
 
                 <TextView
                     android:id="@+id/textView20"
@@ -180,4 +180,5 @@
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:menu="@menu/bottom_nav_menu"/>
+
 </androidx.constraintlayout.widget.ConstraintLayout>
