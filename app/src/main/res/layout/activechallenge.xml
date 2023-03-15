@@ -96,7 +96,7 @@
         app:layout_constraintStart_toStartOf="parent" />
 
     <Button
-        android:id="@+id/button11"
+        android:id="@+id/cancel_challenge_button"
         android:layout_width="228dp"
         android:layout_height="45dp"
         android:layout_marginStart="159dp"

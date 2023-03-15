@@ -2,7 +2,9 @@ package nl.tue.besportive;
 
 import android.os.Bundle;
 
+import androidx.annotation.NonNull;
 import androidx.fragment.app.Fragment;
+import androidx.navigation.fragment.NavHostFragment;
 
 import android.view.LayoutInflater;
 import android.view.View;
@@ -10,10 +12,10 @@ import android.view.ViewGroup;
 
 /**
  * A simple {@link Fragment} subclass.
- * Use the {@link LeaderboardFragment#newInstance} factory method to
+ * Use the {@link createJoinGroup#newInstance} factory method to
  * create an instance of this fragment.
  */
-public class LeaderboardFragment extends Fragment {
+public class createJoinGroup extends Fragment {
 
     // TODO: Rename parameter arguments, choose names that match
     // the fragment initialization parameters, e.g. ARG_ITEM_NUMBER
@@ -24,7 +26,7 @@ public class LeaderboardFragment extends Fragment {
     private String mParam1;
     private String mParam2;
 
-    public LeaderboardFragment() {
+    public createJoinGroup() {
         // Required empty public constructor
     }
 
@@ -34,11 +36,11 @@ public class LeaderboardFragment extends Fragment {
      *
      * @param param1 Parameter 1.
      * @param param2 Parameter 2.
-     * @return A new instance of fragment LeaderboardFragment.
+     * @return A new instance of fragment mainFragment.
      */
     // TODO: Rename and change types and number of parameters
-    public static LeaderboardFragment newInstance(String param1, String param2) {
-        LeaderboardFragment fragment = new LeaderboardFragment();
+    public static createJoinGroup newInstance(String param1, String param2) {
+        createJoinGroup fragment = new createJoinGroup();
         Bundle args = new Bundle();
         args.putString(ARG_PARAM1, param1);
         args.putString(ARG_PARAM2, param2);
@@ -59,6 +61,26 @@ public class LeaderboardFragment extends Fragment {
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
         // Inflate the layout for this fragment
-        return inflater.inflate(R.layout.fragment_leaderboard, container, false);
+        return inflater.inflate(R.layout.fragment_create_join_group, container, false);
     }
+    public void onViewCreated(@NonNull View view, Bundle savedInstanceState) {
+        super.onViewCreated(view, savedInstanceState);
+
+        view.findViewById(R.id.Create_Group_Button).setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                NavHostFragment.findNavController(createJoinGroup.this)
+                        .navigate(R.id.Create_Join_To_Create);
+            }
+        });
+        view.findViewById(R.id.join_group_button).setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                NavHostFragment.findNavController(createJoinGroup.this)
+                        .navigate(R.id.action_mainFragment_to_feed);
+            }
+        });
+    }
+
+
 }

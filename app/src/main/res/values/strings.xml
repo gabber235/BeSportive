@@ -2,4 +2,27 @@
     <string name="app_name">BeSportive</string>
     <!-- TODO: Remove or change this placeholder text -->
     <string name="hello_blank_fragment">Hello blank fragment</string>
+    <string name="title_activity_invitemembers">invitemembers</string>
+    <!-- Strings used for fragments for navigation -->
+    <string name="first_fragment_label">First Fragment</string>
+    <string name="second_fragment_label">Second Fragment</string>
+    <string name="next">Next</string>
+    <string name="previous">Previous</string>
+
+    <string name="hello_first_fragment">Hello first fragment</string>
+    <string name="hello_second_fragment">Hello second fragment. Arg: %1$s</string>
+    <string name="invite_members">Invite Members</string>
+    <string name="code">Code</string>
+    <string name="done">Done</string>
+    <string name="give_this_code_to_your_friends_and_family_to_challenge_them">Give this code to your friends and family to challenge them.</string>
+    <string name="next_page">Next Page</string>
+    <string name="get_started_button">Get started</string>
+    <string name="challenges_button_text">Challenges</string>
+    <string name="profile_button_text">Profile</string>
+    <string name="leaderboard_button_text">leaderboard</string>
+    <string name="feed_header">Feed</string>
+    <string name="leaderboard_header">leaderboard</string>
+    <string name="member_overview_button_text">Member Overview</string>
+    <string name="active_challenge_button">active_challenge</string>
+    <string name="challenges_header">challenges</string>
 </resources>

@@ -1,0 +1,143 @@
+<?xml version="1.0" encoding="utf-8"?>
+<navigation xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/nav_graph"
+    app:startDestination="@id/mainFragment">
+
+    <fragment
+        android:id="@+id/mainFragment"
+        android:name="nl.tue.besportive.createJoinGroup"
+        android:label="fragment_main"
+        tools:layout="@layout/fragment_create_join_group" >
+        <action
+            android:id="@+id/Create_Join_To_Create"
+            app:destination="@id/secondFragment" />
+        <action
+            android:id="@+id/action_mainFragment_to_feed"
+            app:destination="@id/feed" />
+        <action
+            android:id="@+id/action_mainFragment_to_profile"
+            app:destination="@id/profile" />
+    </fragment>
+    <fragment
+        android:id="@+id/secondFragment"
+        android:name="nl.tue.besportive.createGroup"
+        android:label="fragment_second"
+        tools:layout="@layout/fragment_create_group" >
+        <action
+            android:id="@+id/action_secondFragment_to_mainFragment"
+            app:destination="@id/mainFragment" />
+        <action
+            android:id="@+id/action_createGroup_to_configureChallenges"
+            app:destination="@id/configureChallenges" />
+        <action
+            android:id="@+id/action_secondFragment_to_feed"
+            app:destination="@id/feed" />
+    </fragment>
+    <fragment
+        android:id="@+id/configureChallenges"
+        android:name="nl.tue.besportive.configureChallenges"
+        android:label="fragment_configure_challenges"
+        tools:layout="@layout/fragment_configure_challenges" >
+        <action
+            android:id="@+id/action_configureChallenges_to_inviteMembers"
+            app:destination="@id/inviteMembers" />
+        <action
+            android:id="@+id/action_configureChallenges_to_feed"
+            app:destination="@id/feed" />
+    </fragment>
+    <fragment
+        android:id="@+id/inviteMembers"
+        android:name="nl.tue.besportive.inviteMembers"
+        android:label="fragment_invite_members"
+        tools:layout="@layout/fragment_invite_members" >
+        <action
+            android:id="@+id/action_inviteMembers_to_configureChallenges"
+            app:destination="@id/configureChallenges" />
+        <action
+            android:id="@+id/action_inviteMembers_to_feed"
+            app:destination="@id/feed" />
+    </fragment>
+    <fragment
+        android:id="@+id/feed"
+        android:name="nl.tue.besportive.Feed"
+        android:label="fragment_feed"
+        tools:layout="@layout/fragment_feed" >
+        <action
+            android:id="@+id/action_feed_to_secondFragment"
+            app:destination="@id/secondFragment" />
+        <action
+            android:id="@+id/action_feed_to_configureChallenges"
+            app:destination="@id/configureChallenges" />
+        <action
+            android:id="@+id/action_feed_to_profile"
+            app:destination="@id/profile" />
+        <action
+            android:id="@+id/action_feed_to_challenges2"
+            app:destination="@id/challenges2" />
+        <action
+            android:id="@+id/action_feed_to_leaderboard2"
+            app:destination="@id/leaderboard2" />
+    </fragment>
+    <fragment
+        android:id="@+id/profile"
+        android:name="nl.tue.besportive.profile"
+        android:label="fragment_profile"
+        tools:layout="@layout/fragment_profile" >
+        <action
+            android:id="@+id/action_profile_to_mainFragment"
+            app:destination="@id/mainFragment" />
+        <action
+            android:id="@+id/action_profile_to_feed"
+            app:destination="@id/feed" />
+    </fragment>
+    <fragment
+        android:id="@+id/challenges2"
+        android:name="nl.tue.besportive.challenges"
+        android:label="fragment_challenges2"
+        tools:layout="@layout/fragment_challenges" >
+        <action
+            android:id="@+id/action_challenges2_to_feed"
+            app:destination="@id/feed" />
+        <action
+            android:id="@+id/action_challenges2_to_active_challenge"
+            app:destination="@id/active_challenge" />
+        <action
+            android:id="@+id/action_challenges2_to_leaderboard2"
+            app:destination="@id/leaderboard2" />
+    </fragment>
+    <fragment
+        android:id="@+id/leaderboard2"
+        android:name="nl.tue.besportive.leaderboard"
+        android:label="fragment_leaderboard"
+        tools:layout="@layout/fragment_leaderboard" >
+        <action
+            android:id="@+id/action_leaderboard2_to_memberOverview"
+            app:destination="@id/memberOverview" />
+        <action
+            android:id="@+id/action_leaderboard2_to_challenges2"
+            app:destination="@id/challenges2" />
+        <action
+            android:id="@+id/action_leaderboard2_to_feed"
+            app:destination="@id/feed" />
+    </fragment>
+    <fragment
+        android:id="@+id/memberOverview"
+        android:name="nl.tue.besportive.memberOverview"
+        android:label="fragment_member_overview"
+        tools:layout="@layout/fragment_member_overview" >
+        <action
+            android:id="@+id/action_memberOverview_to_leaderboard2"
+            app:destination="@id/leaderboard2" />
+    </fragment>
+    <fragment
+        android:id="@+id/active_challenge"
+        android:name="nl.tue.besportive.Active_challenge"
+        android:label="fragment_active_challenge"
+        tools:layout="@layout/fragment_active_challenge" >
+        <action
+            android:id="@+id/action_active_challenge_to_leaderboard2"
+            app:destination="@id/leaderboard2" />
+    </fragment>
+</navigation>
