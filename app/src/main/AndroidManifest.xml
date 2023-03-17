@@ -12,6 +12,33 @@
         android:theme="@style/Theme.BeSportive"
         tools:targetApi="31">
         <activity
+            android:name=".ProfileActivity"
+            android:exported="false" />
+        <activity
+            android:name=".MemberOverviewActivity"
+            android:exported="false" />
+        <activity
+            android:name=".JoinCreateGroupActivity"
+            android:exported="false" />
+        <activity
+            android:name=".InviteMembersActivity"
+            android:exported="false" />
+        <activity
+            android:name=".CreateGroupActivity"
+            android:exported="false" />
+        <activity
+            android:name=".ConfigureChallengesActivity"
+            android:exported="false" />
+        <activity
+            android:name=".ChallengesActivity"
+            android:exported="false" />
+        <activity
+            android:name=".ActiveChallengeActivity"
+            android:exported="false" />
+        <activity
+            android:name=".OnboardingActivity"
+            android:exported="false" />
+        <activity
             android:name=".MainActivity"
             android:exported="true">
             <intent-filter>
