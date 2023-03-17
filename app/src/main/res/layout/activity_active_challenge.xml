@@ -5,7 +5,7 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:outlineAmbientShadowColor="#FFFFFF"
-    tools:context=".MainActivity">
+    tools:context=".ActiveChallengeActivity">
 
     <ImageView
         android:id="@+id/imageView3"
@@ -96,20 +96,7 @@
         app:layout_constraintStart_toStartOf="parent" />
 
     <Button
-        android:id="@+id/button11"
-        android:layout_width="228dp"
-        android:layout_height="45dp"
-        android:layout_marginStart="159dp"
-        android:layout_marginEnd="159dp"
-        android:backgroundTint="#FF9800"
-        android:text="Cancel the Challenge"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.489"
-        app:layout_constraintStart_toStartOf="parent"
-        tools:layout_editor_absoluteY="547dp" />
-
-    <Button
-        android:id="@+id/button12"
+        android:id="@+id/completeButton"
         android:layout_width="228dp"
         android:layout_height="45dp"
         android:layout_marginStart="159dp"
@@ -118,8 +105,20 @@
         android:backgroundTint="#FF9800"
         android:text="Complete"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.504"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/textView15" />
+
+    <Button
+        android:id="@+id/cancelChallengeButton"
+        android:layout_width="228dp"
+        android:layout_height="45dp"
+        android:layout_marginStart="159dp"
+        android:layout_marginEnd="159dp"
+        android:backgroundTint="#FF9800"
+        android:text="Cancel the Challenge"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/completeButton" />
+
 
 </androidx.constraintlayout.widget.ConstraintLayout>

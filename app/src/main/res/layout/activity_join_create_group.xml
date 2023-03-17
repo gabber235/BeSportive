@@ -4,7 +4,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".MainActivity">
+    tools:context=".JoinCreateGroupActivity">
 
     <TextView
         android:id="@+id/textView3"
@@ -46,7 +46,7 @@
         android:textSize="30sp"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/button" />
+        app:layout_constraintTop_toBottomOf="@+id/joinButton" />
 
     <ImageView
         android:id="@+id/imageView2"
@@ -60,17 +60,14 @@
         app:srcCompat="@drawable/logo_2" />
 
     <Button
-        android:id="@+id/button"
+        android:id="@+id/joinButton"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginTop="25dp"
-        android:backgroundTint="#FF9800"
         android:text="Join"
-        app:iconTint="@color/teal_200"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.495"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/textInputLayout" />
+        app:layout_constraintTop_toBottomOf="@+id/nameInputLayout" />
 
     <TextView
         android:id="@+id/textView5"
@@ -78,13 +75,13 @@
         android:layout_height="42dp"
         android:text="@string/joincreategroup_create_info_text"
         android:textAlignment="center"
-        app:layout_constraintBottom_toTopOf="@+id/button3"
+        app:layout_constraintBottom_toTopOf="@+id/createGroupButton"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/textView4" />
 
     <Button
-        android:id="@+id/button3"
+        android:id="@+id/createGroupButton"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginStart="131dp"
@@ -105,10 +102,10 @@
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/imageView2"
         app:layout_constraintVertical_bias="1.0"
-        app:srcCompat="@drawable/frame" />
+        app:srcCompat="@drawable/join_cartoon" />
 
     <com.google.android.material.textfield.TextInputLayout
-        android:id="@+id/textInputLayout"
+        android:id="@+id/nameInputLayout"
         style="@style/Widget.Material3.TextInputEditText.OutlinedBox"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
@@ -118,13 +115,13 @@
         app:counterEnabled="true"
         app:counterMaxLength="6"
         app:helperText="Required*"
-        app:layout_constraintBottom_toTopOf="@+id/button"
+        app:layout_constraintBottom_toTopOf="@+id/joinButton"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/textView3">
 
         <com.google.android.material.textfield.TextInputEditText
-            android:id="@+id/textInputEditText"
+            android:id="@+id/nameInputText"
             android:layout_width="196dp"
             android:layout_height="wrap_content" />
     </com.google.android.material.textfield.TextInputLayout>
@@ -141,7 +138,7 @@
         app:layout_constraintBottom_toTopOf="@+id/textView4"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/button" />
+        app:layout_constraintTop_toBottomOf="@+id/joinButton" />
 
 
 </androidx.constraintlayout.widget.ConstraintLayout>
