@@ -1,6 +1,8 @@
 package nl.tue.besportive;
 
+import android.content.Intent;
 import android.os.Bundle;
+import android.view.View;
 
 import androidx.appcompat.app.AppCompatActivity;
 
@@ -14,5 +16,17 @@ public class CreateGroupActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         binding = ActivityCreateGroupBinding.inflate(getLayoutInflater());
         setContentView(binding.getRoot());
+
+        binding.createGroupButton.setOnClickListener(this::createGroup);
+    }
+
+    public void createGroup(View view) {
+        startConfigureChallengesActivity();
+    }
+
+    public void startConfigureChallengesActivity() {
+        Intent intent = new Intent(this, ConfigureChallengesActivity.class);
+        startActivity(intent);
+        finish();
     }
 }

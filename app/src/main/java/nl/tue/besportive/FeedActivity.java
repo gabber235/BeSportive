@@ -5,16 +5,22 @@ import android.os.Bundle;
 
 import androidx.appcompat.app.AppCompatActivity;
 
-import nl.tue.besportive.databinding.ActivityConfigureChallengesBinding;
+import nl.tue.besportive.databinding.ActivityFeedBinding;
 
-public class ConfigureChallengesActivity extends AppCompatActivity {
-    private ActivityConfigureChallengesBinding binding;
+public class FeedActivity extends AppCompatActivity {
+    private ActivityFeedBinding binding;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        binding = ActivityConfigureChallengesBinding.inflate(getLayoutInflater());
+        binding = ActivityFeedBinding.inflate(getLayoutInflater());
         setContentView(binding.getRoot());
+    }
+
+    private void startConfigureChallengesActivity() {
+        Intent intent = new Intent(this, ConfigureChallengesActivity.class);
+        startActivity(intent);
+        finish();
     }
 
     private void startInviteMembersActivity() {
@@ -23,8 +29,8 @@ public class ConfigureChallengesActivity extends AppCompatActivity {
         finish();
     }
 
-    private void startFeedActivity() {
-        Intent intent = new Intent(this, FeedActivity.class);
+    private void startLeaderboardActivity() {
+        Intent intent = new Intent(this, LeaderboardActivity.class);
         startActivity(intent);
         finish();
     }
