@@ -2,6 +2,7 @@ package nl.tue.besportive;
 
 import android.content.Intent;
 import android.os.Bundle;
+import android.view.View;
 
 import androidx.appcompat.app.AppCompatActivity;
 
@@ -16,9 +17,49 @@ public class FeedActivity extends AppCompatActivity {
         binding = ActivityFeedBinding.inflate(getLayoutInflater());
         setContentView(binding.getRoot());
     }
+    private void leaderboard(View view) {
+        startLeaderboardActivity();
+    }
 
+    private void challengesOverview(View view) {
+        startChallengesOverviewActivity();
+    }
+
+    private void createJoinGroup(View view) {
+        startCreateJoinGroupActivity();
+    }
+
+    private void configureChallenges(View view) {
+        startConfigureChallengesActivity();
+    }
+
+    private void inviteMembers(View view) {
+        startInviteMembersActivity();
+    }
+
+    private void Profile(View view) {
+        startProfileActivity();
+    }
     private void startConfigureChallengesActivity() {
         Intent intent = new Intent(this, ConfigureChallengesActivity.class);
+        startActivity(intent);
+        finish();
+    }
+
+    private void startChallengesOverviewActivity() {
+        Intent intent = new Intent(this, ActiveChallengeActivity.class);
+        startActivity(intent);
+        finish();
+    }
+
+    private void startCreateJoinGroupActivity() {
+        Intent intent = new Intent(this, CreateGroupActivity.class);
+        startActivity(intent);
+        finish();
+    }
+
+    private void startProfileActivity() {
+        Intent intent = new Intent(this, ProfileActivity.class);
         startActivity(intent);
         finish();
     }
