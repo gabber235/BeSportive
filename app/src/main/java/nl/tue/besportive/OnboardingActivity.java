@@ -46,6 +46,8 @@ public class OnboardingActivity extends AppCompatActivity {
         Intent signInIntent = AuthUI.getInstance()
                 .createSignInIntentBuilder()
                 .setAvailableProviders(providers)
+                .setTheme(R.style.Theme_BeSportive)
+                .setLogo(R.drawable.login_cartoon)
                 .build();
         signInLauncher.launch(signInIntent);
     }
@@ -57,8 +59,7 @@ public class OnboardingActivity extends AppCompatActivity {
             // Successfully signed in
             FirebaseUser user = FirebaseAuth.getInstance().getCurrentUser();
             assert user != null;
-            Log.d("OnboardingActivity", "Signed in as " + user.getDisplayName());
-            Toast.makeText(this, "Signed in as " + user.getDisplayName(), Toast.LENGTH_SHORT).show();
+            Toast.makeText(this, "Successfully Signed in", Toast.LENGTH_SHORT).show();
             startJoinCreateGroupActivity();
         } else {
             Log.e("OnboardingActivity", "Sign in failed: " + response.getError());
