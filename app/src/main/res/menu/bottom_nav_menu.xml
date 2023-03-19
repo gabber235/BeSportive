@@ -2,14 +2,14 @@
 <menu xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:android="http://schemas.android.com/apk/res/android">
 
-    <item android:title="Home"
+    <item android:title="@string/home_navigation"
         android:icon="@drawable/baseline_home_24"
         android:id="@+id/home"/>
 
-    <item android:title="Challenges"
+    <item android:title="@string/challenges_navigation"
         android:icon="@drawable/baseline_fitness_center_24"
         android:id="@+id/challenges"/>
-    <item android:title="Leaderboard"
+    <item android:title="@string/leaderboard_navigation"
         android:icon="@drawable/baseline_leaderboard_24"
         android:id="@+id/leaderboard"/>
 </menu>

@@ -29,6 +29,9 @@
     <string name="profile_statistics_time_spent_text">Total time spent on challenges: %d</string>
     <string name="Leaderboard_placement">1.</string>
     <string name="invite_members_code">3NAB0</string>
+    <string name="home_navigation">Home</string>
+    <string name="challenges_navigation">Challenges</string>
+    <string name="leaderboard_navigation">Leaderboard</string>
 
 
     <string name="feed_header">Recent</string>
