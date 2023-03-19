@@ -3,6 +3,7 @@ package nl.tue.besportive;
 import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
+import androidx.appcompat.widget.Toolbar;
 
 import androidx.appcompat.app.AppCompatActivity;
 
@@ -19,6 +20,12 @@ public class JoinCreateGroupActivity extends AppCompatActivity {
 
         binding.createGroupButton.setOnClickListener(this::createGroup);
         binding.joinButton.setOnClickListener(this::joinGroup);
+
+        Toolbar mToolbar = (Toolbar) findViewById(R.id.toolbar);
+        setSupportActionBar(mToolbar);
+        //getSupportActionBar().setDisplayHomeAsUpEnabled(true);
+        //getSupportActionBar().setDisplayShowHomeEnabled(true);
+        //getSupportActionBar().setTitle("MyTitle");
     }
 
     public void createGroup(View view) {

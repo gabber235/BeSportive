@@ -48,7 +48,22 @@
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/textView13" />
 
+    <Button
+        android:id="@+id/doneButton"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="150dp"
+        android:layout_marginEnd="150dp"
+        android:text="@string/done_button_text"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.498"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/linearLayout2"
+        app:layout_constraintVertical_bias="0.521" />
+
     <com.google.android.material.textfield.TextInputLayout
+        android:id="@+id/textInputLayout"
         android:layout_width="match_parent"
         android:layout_height="0dp"
         android:layout_marginBottom="11dp"
@@ -60,8 +75,6 @@
         android:id="@+id/linearLayout"
         android:layout_width="408dp"
         android:layout_height="143dp"
-        android:layout_marginStart="50dp"
-        android:layout_marginEnd="50dp"
         android:orientation="vertical"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
@@ -94,9 +107,8 @@
 
     <LinearLayout
         android:id="@+id/linearLayout2"
-        android:layout_width="423dp"
-        android:layout_height="326dp"
-        android:layout_marginStart="66dp"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
         android:layout_marginTop="28dp"
         android:layout_marginEnd="66dp"
         android:orientation="vertical"
@@ -120,6 +132,12 @@
             android:text="HARD - RUN 15 KM"
             android:textColor="#A3FFFFFF" />
 
+        <Button
+            android:id="@+id/button6"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="Button" />
+
     </LinearLayout>
 
     <View
@@ -135,4 +153,5 @@
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/linearLayout" />
+
 </androidx.constraintlayout.widget.ConstraintLayout>

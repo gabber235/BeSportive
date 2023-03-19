@@ -16,6 +16,8 @@ public class InviteMembersActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         binding = ActivityInviteMembersBinding.inflate(getLayoutInflater());
         setContentView(binding.getRoot());
+
+        binding.doneButton.setOnClickListener(this::feed);
     }
     private void feed(View view) {
         startFeedActivity();
