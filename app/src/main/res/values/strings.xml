@@ -15,7 +15,7 @@
     <string name="invite_members_info_text">Give this code to your friends and family to challenge them.</string>
     <string name="invite_members_header">Invite Members</string>
     <string name="invite_members_subheader">Code</string>
-    <string name="joincreategroup_join_info_text">Write down the code you have recieved and start doing challenges!</string>
+    <string name="joincreategroup_join_info_text">Write down the code you have received and start doing challenges!</string>
     <string name="joincreategroup_create_info_text">Create a group to do challenges together and start your 2 week journey!</string>
     <string name="leaderboard_header">Leaderboard</string>
     <string name="memberoverview_email">john.doe@gmail.com</string>
@@ -29,4 +29,8 @@
     <string name="profile_statistics_time_spent_text">Total time spent on challenges: %d</string>
     <string name="Leaderboard_placement">1.</string>
     <string name="invite_members_code">3NAB0</string>
+
+
+    <string name="feed_header">Recent</string>
+    <!--<string name="">Recent</string> -->
 </resources>
