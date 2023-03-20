@@ -6,29 +6,27 @@
     android:layout_height="match_parent"
     tools:context=".MemberOverviewActivity">
 
-    <ImageView
-        android:id="@+id/profile_picture"
-        android:layout_width="wrap_content"
+    <include
+        android:id="@+id/toolbar_member_overview"
+        layout="@layout/toolbar_feed"
+        android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.498"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.203"
-        tools:srcCompat="@drawable/a" />
+        app:layout_constraintTop_toTopOf="parent" />
 
     <ImageView
-        android:id="@+id/logo"
+        android:id="@+id/profile_picture"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginTop="32dp"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.498"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.0"
-        app:srcCompat="@drawable/logo_2" />
+        app:layout_constraintTop_toBottomOf="@+id/toolbar_member_overview"
+        app:layout_constraintVertical_bias="0.203"
+        tools:srcCompat="@drawable/a" />
 
     <TextView
         android:id="@+id/email"
