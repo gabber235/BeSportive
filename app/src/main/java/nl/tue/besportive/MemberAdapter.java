@@ -29,6 +29,7 @@ public class MemberAdapter extends RecyclerView.Adapter<MyViewHolder>{
         holder.nameView.setText(items.get(position).getName());
         holder.emailView.setText(items.get(position).getEmail());
         holder.imageView.setImageResource(items.get(position).getImage());
+        holder.pointsView.setText(String.valueOf(items.get(position).getPoints()));
     }
 
     @Override

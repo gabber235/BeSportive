@@ -5,13 +5,21 @@ public class Member {
     String email;
     int image;
 
+    int points;
 
-    public Member(String name, String email, int image) {
+
+    public Member(String name, String email, int image, int points) {
         this.name = name;
         this.email = email;
         this.image = image;
+        this.points = points;
     }
-
+    public int getPoints(){
+        return points;
+    }
+    public void setPoints(int points){
+        this.points = points;
+    }
     public String getName() {
         return name;
     }

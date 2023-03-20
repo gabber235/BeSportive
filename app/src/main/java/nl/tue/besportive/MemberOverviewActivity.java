@@ -23,29 +23,19 @@ public class MemberOverviewActivity extends AppCompatActivity {
         //Recyclerview in order to make a list of members
         RecyclerView recyclerView = findViewById(R.id.recyclerview);
         // Hardcoding Data to be pulled
-        List<Member> items = new ArrayList<Member>();
-        items.add(new Member("John wick","john.wick@email.com",R.drawable.a));
-        items.add(new Member("Robert j","robert.j@email.com",R.drawable.b));
-        items.add(new Member("James Gunn","james.gunn@email.com",R.drawable.a));
-        items.add(new Member("Ricky tales","rickey.tales@email.com",R.drawable.b));
-        items.add(new Member("Micky mose","mickey.mouse@email.com",R.drawable.a));
-        items.add(new Member("Pick War","pick.war@email.com",R.drawable.b));
-        items.add(new Member("Leg piece","leg.piece@email.com",R.drawable.a));
-        items.add(new Member("Apple Mac","apple.mac@email.com",R.drawable.b));
-        items.add(new Member("John wick","john.wick@email.com",R.drawable.a));
-        items.add(new Member("Robert j","robert.j@email.com",R.drawable.b));
-        items.add(new Member("James Gunn","james.gunn@email.com",R.drawable.a));
-        items.add(new Member("Ricky tales","rickey.tales@email.com",R.drawable.b));
-        items.add(new Member("Micky mose","mickey.mouse@email.com",R.drawable.a));
-        items.add(new Member("Pick War","pick.war@email.com",R.drawable.b));
-        items.add(new Member("Leg piece","leg.piece@email.com",R.drawable.a));
-        items.add(new Member("Apple Mac","apple.mac@email.com",R.drawable.b));
-
-
-
+        List<CompletedChallengesClass> items = new ArrayList<CompletedChallengesClass>();
+        items.add(new CompletedChallengesClass("John Wick", "Run 5km challenge", R.drawable.a, "18:17", "Medium"));
+        items.add(new CompletedChallengesClass("John Wick", "Run 5km challenge", R.drawable.a, "18:17", "Medium"));
+        items.add(new CompletedChallengesClass("John Wick", "Run 5km challenge", R.drawable.a, "18:17", "Medium"));
+        items.add(new CompletedChallengesClass("John Wick", "Run 5km challenge", R.drawable.a, "18:17", "Medium"));
+        items.add(new CompletedChallengesClass("John Wick", "Run 5km challenge", R.drawable.a, "18:17", "Medium"));
+        items.add(new CompletedChallengesClass("John Wick", "Run 5km challenge", R.drawable.a, "18:17", "Medium"));
+        items.add(new CompletedChallengesClass("John Wick", "Run 5km challenge", R.drawable.a, "18:17", "Medium"));
+        items.add(new CompletedChallengesClass("John Wick", "Run 5km challenge", R.drawable.a, "18:17", "Medium"));
+        items.add(new CompletedChallengesClass("John Wick", "Run 5km challenge", R.drawable.a, "18:17", "Medium"));
 
         recyclerView.setLayoutManager(new LinearLayoutManager(this));
-        recyclerView.setAdapter(new MemberAdapter(getApplicationContext(),items));
+        recyclerView.setAdapter(new CompletedChallengesAdapter(getApplicationContext(),items));
     }
     private void leaderboard(View view) {
         startLeaderboardActivity();

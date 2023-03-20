@@ -23,13 +23,15 @@
         tools:text="Name"/>
 
     <TextView
+        android:id="@+id/email"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:id="@+id/email"
-        android:layout_toEndOf="@id/imageview"
         android:layout_below="@id/name"
+        android:layout_marginStart="9dp"
+        android:layout_marginTop="2dp"
+        android:layout_toEndOf="@id/imageview"
         android:textColor="@color/black"
-        tools:text="emial@email.com"/>
+        tools:text="email@email.com" />
 
     <LinearLayout
         android:layout_width="match_parent"
@@ -37,6 +39,19 @@
         android:layout_below="@id/imageview"
         android:layout_marginTop="10dp"
         android:background="#DAD8D8"/>
+
+    <TextView
+        android:id="@+id/Points"
+        android:layout_width="86dp"
+        android:layout_height="wrap_content"
+        android:layout_alignStart="@+id/email"
+        android:layout_alignParentEnd="true"
+        android:layout_centerVertical="true"
+        android:layout_marginStart="201dp"
+        android:layout_marginEnd="57dp"
+        android:layout_marginBottom="0dp"
+        android:text="10"
+        android:textSize="24sp" />
 
 
 </RelativeLayout>
