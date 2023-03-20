@@ -19,6 +19,9 @@ public class LeaderboardActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         binding = ActivityLeaderboardBinding.inflate(getLayoutInflater());
         setContentView(binding.getRoot());
+        //setting onclicklistener on memberButton
+        binding.memberOverviewButton.setOnClickListener(this::memberOverview);
+
         // Initialize and assign variable
         BottomNavigationView bottomNavigationView=findViewById(R.id.bottom_navigation);
 

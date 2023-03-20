@@ -6,20 +6,6 @@
     android:layout_height="match_parent"
     tools:context=".MemberOverviewActivity">
 
-    <ImageButton
-        android:id="@+id/imageButton2"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginStart="27dp"
-        android:layout_marginTop="25dp"
-        android:layout_marginEnd="60dp"
-        android:layout_marginBottom="155dp"
-        app:layout_constraintBottom_toTopOf="@+id/textView8"
-        app:layout_constraintEnd_toStartOf="@+id/imageView3"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
-        app:srcCompat="?attr/actionModeCloseDrawable" />
-
     <ImageView
         android:id="@+id/imageView"
         android:layout_width="164dp"
@@ -86,47 +72,17 @@
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/textView6" />
 
-    <LinearLayout
+    <RelativeLayout
         android:layout_width="409dp"
         android:layout_height="320dp"
-        android:layout_marginStart="1dp"
-        android:layout_marginTop="1dp"
-        android:layout_marginEnd="1dp"
-        android:orientation="vertical"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/textView9">
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent">
 
-        <Button
-            android:id="@+id/button13"
-            android:layout_width="match_parent"
-            android:layout_height="68dp"
-            android:backgroundTint="#4CAF50"
-            android:text="Easy - 100 Push ups" />
-
-        <Space
+        <androidx.recyclerview.widget.RecyclerView
+            android:id="@+id/recyclerview"
             android:layout_width="match_parent"
             android:layout_height="wrap_content" />
+    </RelativeLayout>
 
-        <Button
-            android:id="@+id/button16"
-            android:layout_width="match_parent"
-            android:layout_height="68dp"
-            android:backgroundTint="#FF9800"
-            android:text="Medium - Run 5 KM"
-            app:iconTint="#FFFFFF" />
-
-        <Space
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content" />
-
-        <Button
-            android:id="@+id/button17"
-            android:layout_width="match_parent"
-            android:layout_height="68dp"
-            android:backgroundTint="#F44336"
-            android:text="HARD- 200 Chin ups"
-            android:textAlignment="center" />
-    </LinearLayout>
 
 </androidx.constraintlayout.widget.ConstraintLayout>
