@@ -1,0 +1,40 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:background="@color/orange_500">
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:padding="16dp">
+
+        <!--NOT SURE HOW TO ADD THE CLICKABLE PROFILE PICTURE TO THE TOOLBAR YET -->
+
+        <ImageButton
+            android:layout_width="55dp"
+            android:layout_height="55dp"
+            android:src="@drawable/img" />
+
+
+        <!--NOT SURE HOW TO ADD OUR LOGO TO THE TOOLBAR -->
+        <ImageView
+            android:id="@+id/imageView3"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_centerInParent="true"
+            android:layout_marginTop="32dp"
+            android:scr="@drawable/logo_2"/>
+
+
+        <ImageView
+            android:id="@+id/right_icon"
+            android:layout_width="52dp"
+            android:layout_height="52dp"
+            android:layout_alignParentEnd="true"
+            android:layout_centerVerticle="true"
+            android:layout_marginEnd="13dp"
+            android:src="@drawable/baseline_settings_24" />
+
+    </RelativeLayout>
+
+</RelativeLayout>
