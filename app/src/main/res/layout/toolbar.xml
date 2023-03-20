@@ -16,16 +16,6 @@
             android:src="@drawable/img" />
 
 
-        <!--NOT SURE HOW TO ADD OUR LOGO TO THE TOOLBAR -->
-        <ImageView
-            android:id="@+id/imageView3"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_centerInParent="true"
-            android:layout_marginTop="32dp"
-            android:scr="@drawable/logo_2"/>
-
-
         <ImageView
             android:id="@+id/right_icon"
             android:layout_width="52dp"
