@@ -1,5 +1,7 @@
 package nl.tue.besportive;
 
+import java.util.HashMap;
+
 public class Member {
     String name;
     String email;

@@ -16,8 +16,10 @@ import androidx.appcompat.app.AppCompatActivity;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
+import com.google.android.gms.tasks.OnCompleteListener;
 import com.google.android.gms.tasks.OnFailureListener;
 import com.google.android.gms.tasks.OnSuccessListener;
+import com.google.android.gms.tasks.Task;
 import com.google.android.material.bottomnavigation.BottomNavigationView;
 import com.google.firebase.firestore.CollectionReference;
 import com.google.firebase.firestore.DocumentReference;
@@ -28,6 +30,7 @@ import com.google.firebase.firestore.QuerySnapshot;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Map;
+import androidx.annotation.NonNull;
 
 import nl.tue.besportive.databinding.ActivityLeaderboardBinding;
 
@@ -78,66 +81,55 @@ public class LeaderboardActivity extends AppCompatActivity {
         // Hardcoding Data to be pulled
         List<Member> items = new ArrayList<Member>();
         items.add(new Member("John wick","john.wick@email.com",R.drawable.a, 10));
-        items.add(new Member("Robert j","robert.j@email.com",R.drawable.b, 15));
-        items.add(new Member("James Gunn","james.gunn@email.com",R.drawable.a, 100 ));
-        items.add(new Member("Ricky tales","rickey.tales@email.com",R.drawable.b, 200));
-        items.add(new Member("Micky mose","mickey.mouse@email.com",R.drawable.a, 10));
-        items.add(new Member("Pick War","pick.war@email.com",R.drawable.b, 10));
-        items.add(new Member("Leg piece","leg.piece@email.com",R.drawable.a, 10 ));
-        items.add(new Member("Apple Mac","apple.mac@email.com",R.drawable.b, 10 ));
-        items.add(new Member("John wick","john.wick@email.com",R.drawable.a, 10 ));
-        items.add(new Member("Robert j","robert.j@email.com",R.drawable.b, 10));
-        items.add(new Member("James Gunn","james.gunn@email.com",R.drawable.a, 10));
-        items.add(new Member("Ricky tales","rickey.tales@email.com",R.drawable.b, 10));
-        items.add(new Member("Micky mose","mickey.mouse@email.com",R.drawable.a, 10));
-        items.add(new Member("Pick War","pick.war@email.com",R.drawable.b, 10));
-        items.add(new Member("Leg piece","leg.piece@email.com",R.drawable.a, 10));
-        items.add(new Member("Apple Mac","apple.mac@email.com",R.drawable.b, 10));
+
 
         //Fetching data from firestore
         String groupID = "TResVKvwgVKs7rLgOcmL";
-        db = FirebaseFirestore.getInstance();
-        // below line is use to get the data from Firebase Firestore.
-        // previously we were saving data on a reference of Courses
-        // now we will be getting the data from the same reference.
-        db.collection("groups").get()
-                .addOnSuccessListener(new OnSuccessListener<QuerySnapshot>() {
-                    @Override
-                    public void onSuccess(QuerySnapshot queryDocumentSnapshots) {
-                        // after getting the data we are calling on success method
-                        // and inside this method we are checking if the received
-                        // query snapshot is empty or not.
-                        if (!queryDocumentSnapshots.isEmpty()) {
-                            // if the snapshot is not empty we are
-                            // adding our data in a list
-                            List<DocumentSnapshot> list = queryDocumentSnapshots.getDocuments();
-                            for (DocumentSnapshot d : list) {
-                                // after getting this list we are passing
-                                // that list to our object class.
-                                //Courses c = d.toObject(Courses.class);
-                                System.out.println(d);
-                                // and we will pass this object class
-                                // inside our arraylist which we have
-                                // created for recycler view.
-                                //coursesArrayList.add(c);
+        FirebaseFirestore.getInstance().collection("groups").document(groupID).get().addOnCompleteListener(new OnCompleteListener<DocumentSnapshot>() {
+            @Override
+            public void onComplete(@NonNull Task<DocumentSnapshot> task) {
+                if (task.isSuccessful()) {
+                    DocumentSnapshot document = task.getResult();
+                    if (document.exists()) {
+                        // Pull all data
+                        Map<String, Object> groupMap = document.getData();
+                        //System.out.println(groupMap);
+                            for (Map.Entry<String, Object> entry : groupMap.entrySet()) {
+                                //System.out.println(entry);
+                                //System.out.println(entry.getKey());
+                                // Get the members map
+                                if (entry.getKey().equals("members")) {
+                                    // Store the value in a seperate map
+                                    Map<String, Object> membersMap = (Map<String, Object>) entry.getValue();
+                                    //System.out.println(membersMap);
+                                    //Log.d("TAG", "These are members");
+                                    // loop through the members map to get the indivdual members
+                                    for (Map.Entry<String, Object> member : membersMap.entrySet()) {
+                                        //Log.d("TAG", "Memberinfo");
+                                        //.out.println(member);
+                                        //System.out.println(member.getValue());
+                                        //System.out.println(member.getValue().getClass());
+                                        Map<String, Object> memberAttributes = (Map<String, Object>) member.getValue();
+                                        //System.out.println(memberAttributes.get("points").getClass());
+                                        String name = (String) memberAttributes.get("name");
+                                        //int points = (int) memberAttributes.get("points");
+                                        String email = (String) memberAttributes.get("email");
+                                        String photoUrl = (String) memberAttributes.get("photoUrl");
+                                        System.out.println(items);
+                                        items.add(new Member(name,email,R.drawable.a, 10));
+                                    }
+                                }
                             }
-                            // after adding the data to recycler view.
-                            // we are calling recycler view notifyDataSetChanged
-                            // method to notify that data has been changed in recycler view.
-                            //courseRVAdapter.notifyDataSetChanged();
-                        } else {
-                            // if the snapshot is empty we are displaying a toast message.
-                            Toast.makeText(LeaderboardActivity.this, "No data found in Database", Toast.LENGTH_SHORT).show();
-                        }
+                    } else {
+                        Log.d("TAG", "No such document");
                     }
-                }).addOnFailureListener(new OnFailureListener() {
-                    @Override
-                    public void onFailure(Exception e) {
-                        // if we do not get any data or any error we are displaying
-                        // a toast message that we do not get any data
-                        Toast.makeText(LeaderboardActivity.this, "Fail to get the data.", Toast.LENGTH_SHORT).show();
-                    }
-                });
+                } else {
+                    Log.d("TAG", "get failed with ", task.getException());
+                }
+            }
+        });
+        Log.d("TAG", "Memberinfo");
+        System.out.println(items);
 
 
 

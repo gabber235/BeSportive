@@ -54,6 +54,7 @@
         android:layout_height="wrap_content"
         android:layout_marginStart="150dp"
         android:layout_marginEnd="150dp"
+        android:layout_marginBottom="100dp"
         android:text="@string/done_button_text"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
