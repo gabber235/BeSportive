@@ -1,13 +1,8 @@
 import * as functions from "firebase-functions";
 import * as admin from "firebase-admin";
+import {FieldValue} from "@google-cloud/firestore";
 
-// // Start writing functions
-// // https://firebase.google.com/docs/functions/typescript
-//
-// export const helloWorld = functions.https.onRequest((request, response) => {
-//   functions.logger.info("Hello logs!", {structuredData: true});
-//   response.send("Hello from Firebase!");
-// });
+admin.initializeApp();
 
 export const onUserCreate = functions.auth.user().onCreate(async (user) => {
   const userRef = admin.firestore().collection("users").doc(user.uid);
@@ -48,7 +43,7 @@ export const createGroup = functions.https.onCall(async (data, context) => {
   const groupRef = admin.firestore().collection("groups").doc();
   await groupRef.set({
     name,
-    creationDate: admin.firestore.FieldValue.serverTimestamp(),
+    creationDate: FieldValue.serverTimestamp(),
     admin: uid,
     members: {
       [uid]: {
