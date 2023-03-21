@@ -2,26 +2,38 @@ package nl.tue.besportive;
 
 import android.content.Intent;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.Menu;
 import android.view.MenuInflater;
 import android.view.MenuItem;
 import android.view.View;
 import android.widget.TextView;
+import android.widget.Toast;
+
 import androidx.appcompat.widget.Toolbar;
 
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
+import com.google.android.gms.tasks.OnFailureListener;
+import com.google.android.gms.tasks.OnSuccessListener;
 import com.google.android.material.bottomnavigation.BottomNavigationView;
+import com.google.firebase.firestore.CollectionReference;
+import com.google.firebase.firestore.DocumentReference;
+import com.google.firebase.firestore.DocumentSnapshot;
+import com.google.firebase.firestore.FirebaseFirestore;
+import com.google.firebase.firestore.QuerySnapshot;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Map;
 
 import nl.tue.besportive.databinding.ActivityLeaderboardBinding;
 
 public class LeaderboardActivity extends AppCompatActivity {
     private ActivityLeaderboardBinding binding;
+    FirebaseFirestore db;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -81,6 +93,52 @@ public class LeaderboardActivity extends AppCompatActivity {
         items.add(new Member("Pick War","pick.war@email.com",R.drawable.b, 10));
         items.add(new Member("Leg piece","leg.piece@email.com",R.drawable.a, 10));
         items.add(new Member("Apple Mac","apple.mac@email.com",R.drawable.b, 10));
+
+        //Fetching data from firestore
+        String groupID = "TResVKvwgVKs7rLgOcmL";
+        db = FirebaseFirestore.getInstance();
+        // below line is use to get the data from Firebase Firestore.
+        // previously we were saving data on a reference of Courses
+        // now we will be getting the data from the same reference.
+        db.collection("groups").get()
+                .addOnSuccessListener(new OnSuccessListener<QuerySnapshot>() {
+                    @Override
+                    public void onSuccess(QuerySnapshot queryDocumentSnapshots) {
+                        // after getting the data we are calling on success method
+                        // and inside this method we are checking if the received
+                        // query snapshot is empty or not.
+                        if (!queryDocumentSnapshots.isEmpty()) {
+                            // if the snapshot is not empty we are
+                            // adding our data in a list
+                            List<DocumentSnapshot> list = queryDocumentSnapshots.getDocuments();
+                            for (DocumentSnapshot d : list) {
+                                // after getting this list we are passing
+                                // that list to our object class.
+                                //Courses c = d.toObject(Courses.class);
+                                System.out.println(d);
+                                // and we will pass this object class
+                                // inside our arraylist which we have
+                                // created for recycler view.
+                                //coursesArrayList.add(c);
+                            }
+                            // after adding the data to recycler view.
+                            // we are calling recycler view notifyDataSetChanged
+                            // method to notify that data has been changed in recycler view.
+                            //courseRVAdapter.notifyDataSetChanged();
+                        } else {
+                            // if the snapshot is empty we are displaying a toast message.
+                            Toast.makeText(LeaderboardActivity.this, "No data found in Database", Toast.LENGTH_SHORT).show();
+                        }
+                    }
+                }).addOnFailureListener(new OnFailureListener() {
+                    @Override
+                    public void onFailure(Exception e) {
+                        // if we do not get any data or any error we are displaying
+                        // a toast message that we do not get any data
+                        Toast.makeText(LeaderboardActivity.this, "Fail to get the data.", Toast.LENGTH_SHORT).show();
+                    }
+                });
+
 
 
 
