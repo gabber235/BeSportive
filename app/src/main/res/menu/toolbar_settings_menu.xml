@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="utf-8"?>
+<menu xmlns:android="http://schemas.android.com/apk/res/android">
+    <ImageButton
+        android:layout_width="55dp"
+        android:layout_height="55dp"
+        android:src="@drawable/img" />
+
+    <item android:id="@+id/item1"
+        android:icon="@drawable/baseline_settings_24"
+        android:title="@string/item_1_toolbar_settings"
+        android:actionLayout="@layout/toolbar"/>
+
+    <item android:id="@+id/configure_challenges"
+        android:title="@string/item_2_toolbar_settings"
+        android:actionLayout="@layout/toolbar"/>
+
+    <item
+        android:id="@+id/leave_group"
+        android:title="@string/item_3_toolbar_settings"
+        android:actionLayout="layout/toolbar"/>
+</menu>

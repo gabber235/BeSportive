@@ -16,14 +16,14 @@
             android:src="@drawable/img" />
 
 
-        <ImageView
+      <!--  <ImageView
             android:id="@+id/right_icon"
             android:layout_width="52dp"
             android:layout_height="52dp"
             android:layout_alignParentEnd="true"
             android:layout_centerVerticle="true"
             android:layout_marginEnd="13dp"
-            android:src="@drawable/baseline_settings_24" />
+            android:src="@drawable/baseline_settings_24" /> -->
 
     </RelativeLayout>
 

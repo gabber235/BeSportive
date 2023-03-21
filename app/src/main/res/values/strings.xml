@@ -32,4 +32,8 @@
     <string name="done_button_text">Done</string>
     <string name="feed_header">Recent</string>
     <string name="go_to_member_text">Go to member</string>
+    <string name="settings_icon">Settings</string>
+    <string name="item_1_toolbar_settings">Configure challenges</string>
+    <string name="item_2_toolbar_settings">Create group</string>
+    <string name="item_3_toolbar_settings">Leave group</string>
 </resources>
