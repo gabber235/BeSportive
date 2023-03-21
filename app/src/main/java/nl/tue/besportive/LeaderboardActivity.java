@@ -80,8 +80,9 @@ public class LeaderboardActivity extends AppCompatActivity {
         RecyclerView recyclerView = findViewById(R.id.recyclerview);
         // Hardcoding Data to be pulled
         List<Member> items = new ArrayList<Member>();
-        items.add(new Member("John wick","john.wick@email.com",R.drawable.a, 10));
-
+        recyclerView.setLayoutManager(new LinearLayoutManager(this));
+        MemberAdapter memberAdapter = new MemberAdapter(getApplicationContext(),items);
+        recyclerView.setAdapter(memberAdapter);
 
         //Fetching data from firestore
         String groupID = "TResVKvwgVKs7rLgOcmL";
@@ -115,10 +116,12 @@ public class LeaderboardActivity extends AppCompatActivity {
                                         //int points = (int) memberAttributes.get("points");
                                         String email = (String) memberAttributes.get("email");
                                         String photoUrl = (String) memberAttributes.get("photoUrl");
-                                        System.out.println(items);
                                         items.add(new Member(name,email,R.drawable.a, 10));
+                                        System.out.println(items);
+
                                     }
                                 }
+                                memberAdapter.notifyDataSetChanged();
                             }
                     } else {
                         Log.d("TAG", "No such document");
@@ -128,15 +131,12 @@ public class LeaderboardActivity extends AppCompatActivity {
                 }
             }
         });
-        Log.d("TAG", "Memberinfo");
-        System.out.println(items);
 
 
 
 
 
-        recyclerView.setLayoutManager(new LinearLayoutManager(this));
-        recyclerView.setAdapter(new MemberAdapter(getApplicationContext(),items));
+
         // This function is from this https://www.littlerobots.nl/blog/Handle-Android-RecyclerView-Clicks/, this makes it easy to access a row in the list
         // and add a onclick handler
         ItemClickSupport.addTo(recyclerView).setOnItemClickListener(new ItemClickSupport.OnItemClickListener() {
