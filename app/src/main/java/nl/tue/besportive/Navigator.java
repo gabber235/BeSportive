@@ -30,4 +30,10 @@ public class Navigator {
         Intent intent = new Intent(context, InviteMembersActivity.class);
         context.startActivity(intent);
     }
+
+    public static void navigateToFeedActivity(Context context) {
+        Log.i(TAG, "navigateToFeedActivity");
+        Intent intent = new Intent(context, FeedActivity.class);
+        context.startActivity(intent);
+    }
 }

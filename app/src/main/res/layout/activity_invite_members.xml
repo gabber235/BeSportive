@@ -77,7 +77,8 @@
             android:text="Done"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/textView14" />
+            app:layout_constraintTop_toBottomOf="@+id/textView14"
+            android:onClick="@{() -> viewModel.done(context)}" />
 
     </androidx.constraintlayout.widget.ConstraintLayout>
 </layout>

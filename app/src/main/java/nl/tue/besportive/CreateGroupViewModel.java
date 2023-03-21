@@ -4,8 +4,8 @@ import android.content.Context;
 import android.util.Log;
 import android.widget.Toast;
 
-import androidx.databinding.BaseObservable;
-import androidx.databinding.Bindable;
+import androidx.lifecycle.MutableLiveData;
+import androidx.lifecycle.ViewModel;
 
 import com.google.android.gms.tasks.Task;
 import com.google.firebase.functions.FirebaseFunctions;
@@ -14,36 +14,29 @@ import com.google.firebase.functions.HttpsCallableResult;
 import java.util.Objects;
 import java.util.concurrent.TimeUnit;
 
-public class CreateGroupModel extends BaseObservable {
-    private String name;
-    private boolean loading;
+public class CreateGroupViewModel extends ViewModel {
+    private final MutableLiveData<String> name;
+    private final MutableLiveData<Boolean> loading;
 
+    public CreateGroupViewModel() {
+        name = new MutableLiveData<>();
+        loading = new MutableLiveData<>();
+        loading.setValue(false);
+    }
 
-    @Bindable
-    public String getName() {
+    public MutableLiveData<String> getName() {
         return name;
     }
 
-    public void setName(String name) {
-        this.name = name;
-        notifyPropertyChanged(BR.name);
-    }
-
-    @Bindable
-    public boolean isLoading() {
+    public MutableLiveData<Boolean> getLoading() {
         return loading;
     }
 
-    public void setLoading(boolean loading) {
-        this.loading = loading;
-        notifyPropertyChanged(BR.loading);
-    }
-
     public void createGroup(Context context) {
-        setLoading(true);
+        loading.setValue(true);
         FirebaseFunctions.getInstance().getHttpsCallable("createGroup")
                 .withTimeout(10, TimeUnit.SECONDS)
-                .call(name)
+                .call(name.getValue())
                 .addOnCompleteListener(task -> onGroupCreated(context, task));
     }
 
@@ -51,7 +44,7 @@ public class CreateGroupModel extends BaseObservable {
         if (task.isSuccessful()) {
             Navigator.navigateToInviteMembersActivity(context);
         } else {
-            setLoading(false);
+            loading.setValue(false);
             Log.e("CreateGroupModel", "Failed to create group", task.getException());
             Toast.makeText(context, "Failed to create group: " + Objects.requireNonNull(task.getException()).getMessage(), Toast.LENGTH_LONG).show();
         }

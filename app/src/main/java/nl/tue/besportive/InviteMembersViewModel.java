@@ -1,5 +1,7 @@
 package nl.tue.besportive;
 
+import android.content.Context;
+
 import androidx.lifecycle.MutableLiveData;
 import androidx.lifecycle.ViewModel;
 
@@ -14,5 +16,9 @@ public class InviteMembersViewModel extends ViewModel {
 
     public MutableLiveData<Group> getGroup() {
         return group;
+    }
+
+    public void done(Context context) {
+        Navigator.navigateToFeedActivity(context);
     }
 }

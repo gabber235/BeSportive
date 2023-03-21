@@ -8,8 +8,8 @@
         <import type="android.view.View" />
 
         <variable
-            name="model"
-            type="nl.tue.besportive.CreateGroupModel" />
+            name="viewModel"
+            type="nl.tue.besportive.CreateGroupViewModel" />
     </data>
 
     <androidx.constraintlayout.widget.ConstraintLayout
@@ -70,13 +70,13 @@
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@+id/textView2"
-            android:enabled="@{!model.loading}">
+            android:enabled="@{!viewModel.loading}">
 
             <com.google.android.material.textfield.TextInputEditText
                 android:id="@+id/nameInputText"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:text="@={model.name}"
+                android:text="@={viewModel.name}"
                 android:inputType="text"
                 android:maxLines="1" />
         </com.google.android.material.textfield.TextInputLayout>
@@ -91,19 +91,19 @@
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@+id/nameInputLayout"
-            android:visibility="@{model.loading ? View.GONE : View.VISIBLE}"
-            android:enabled="@{model.name.length() > 0}"
-            android:onClick="@{() -> model.createGroup(context)}" />
+            android:visibility="@{viewModel.loading ? View.GONE : View.VISIBLE}"
+            android:enabled="@{viewModel.name.length() > 0}"
+            android:onClick="@{() -> viewModel.createGroup(context)}" />
 
         <ProgressBar
-            android:id="@+id/progressBar"
+            android:id="@+id/createGroupProgressBar"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginTop="20dp"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@+id/nameInputLayout"
-            android:visibility="@{model.loading ? View.VISIBLE : View.GONE}" />
+            android:visibility="@{viewModel.loading ? View.VISIBLE : View.GONE}" />
 
         <ImageButton
             android:id="@+id/imageButton"
