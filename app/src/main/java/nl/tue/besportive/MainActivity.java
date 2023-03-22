@@ -12,6 +12,8 @@ import com.google.firebase.firestore.FirebaseFirestoreSettings;
 import com.google.firebase.firestore.QuerySnapshot;
 import com.google.firebase.functions.FirebaseFunctions;
 
+import java.util.Objects;
+
 public class MainActivity extends AppCompatActivity {
 
     FirebaseFirestoreSettings developSettings = new FirebaseFirestoreSettings.Builder()
@@ -38,13 +40,28 @@ public class MainActivity extends AppCompatActivity {
             FirebaseFirestore.getInstance().setFirestoreSettings(productionSettings);
         }
 
+        checkIfUserIsStillLoggedIn();
+    }
 
+    private void checkIfUserIsStillLoggedIn() {
         FirebaseUser user = FirebaseAuth.getInstance().getCurrentUser();
         if (user == null) {
             Navigator.navigateToOnboardingActivity(this, true);
             return;
         }
 
+        user.reload().addOnCompleteListener(this::onUserReloaded);
+    }
+
+    private void onUserReloaded(Task<Void> task) {
+        if (task.isSuccessful()) {
+            checkIfUserHasGroup(Objects.requireNonNull(FirebaseAuth.getInstance().getCurrentUser()));
+        } else {
+            Navigator.navigateToOnboardingActivity(this, true);
+        }
+    }
+
+    private void checkIfUserHasGroup(FirebaseUser user) {
         FirebaseFirestore.getInstance().collection("groups")
                 .whereNotEqualTo("members." + user.getUid(), null)
                 .get()
