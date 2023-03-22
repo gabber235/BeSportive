@@ -36,4 +36,10 @@ public class Navigator {
         Intent intent = new Intent(context, FeedActivity.class);
         context.startActivity(intent);
     }
+
+    public static void navigateToOnboardingActivity(Context context) {
+        Log.i(TAG, "navigateToOnboardingActivity");
+        Intent intent = new Intent(context, OnboardingActivity.class);
+        context.startActivity(intent);
+    }
 }

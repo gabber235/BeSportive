@@ -1,11 +1,11 @@
 package nl.tue.besportive;
 
-import android.content.Intent;
 import android.os.Bundle;
 
 import androidx.appcompat.app.AppCompatActivity;
 
 import com.google.firebase.auth.FirebaseAuth;
+import com.google.firebase.auth.FirebaseUser;
 import com.google.firebase.firestore.FirebaseFirestore;
 import com.google.firebase.firestore.FirebaseFirestoreSettings;
 import com.google.firebase.functions.FirebaseFunctions;
@@ -26,6 +26,7 @@ public class MainActivity extends AppCompatActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+        setContentView(R.layout.activity_main);
 
         if (BuildConfig.DEBUG) {
             FirebaseFunctions.getInstance().useEmulator("10.0.2.2", 5001);
@@ -35,15 +36,21 @@ public class MainActivity extends AppCompatActivity {
             FirebaseFirestore.getInstance().setFirestoreSettings(productionSettings);
         }
 
-        Intent activityIntent;
 
-        if (FirebaseAuth.getInstance().getCurrentUser() == null) {
-            activityIntent = new Intent(this, OnboardingActivity.class);
-        } else {
-            activityIntent = new Intent(this, JoinCreateGroupActivity.class);
+        FirebaseUser user = FirebaseAuth.getInstance().getCurrentUser();
+        if (user == null) {
+            Navigator.navigateToOnboardingActivity(this);
+            finish();
+            return;
         }
 
-        startActivity(activityIntent);
-        finish();
+        FirebaseFirestore.getInstance().collection("groups").whereNotEqualTo("members." + user.getUid(), null).get().addOnCompleteListener(task -> {
+            if (task.isSuccessful() && !task.getResult().isEmpty()) {
+                Navigator.navigateToFeedActivity(this);
+            } else {
+                Navigator.navigateToJoinCreateGroupActivity(this);
+            }
+            finish();
+        });
     }
 }
