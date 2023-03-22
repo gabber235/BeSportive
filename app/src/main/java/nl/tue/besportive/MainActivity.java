@@ -4,10 +4,12 @@ import android.os.Bundle;
 
 import androidx.appcompat.app.AppCompatActivity;
 
+import com.google.android.gms.tasks.Task;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
 import com.google.firebase.firestore.FirebaseFirestore;
 import com.google.firebase.firestore.FirebaseFirestoreSettings;
+import com.google.firebase.firestore.QuerySnapshot;
 import com.google.firebase.functions.FirebaseFunctions;
 
 public class MainActivity extends AppCompatActivity {
@@ -44,13 +46,18 @@ public class MainActivity extends AppCompatActivity {
             return;
         }
 
-        FirebaseFirestore.getInstance().collection("groups").whereNotEqualTo("members." + user.getUid(), null).get().addOnCompleteListener(task -> {
-            if (task.isSuccessful() && !task.getResult().isEmpty()) {
-                Navigator.navigateToFeedActivity(this);
-            } else {
-                Navigator.navigateToJoinCreateGroupActivity(this);
-            }
-            finish();
-        });
+        FirebaseFirestore.getInstance().collection("groups")
+                .whereNotEqualTo("members." + user.getUid(), null)
+                .get()
+                .addOnCompleteListener(this::onGroupQueryComplete);
+    }
+
+    private void onGroupQueryComplete(Task<QuerySnapshot> task) {
+        if (task.isSuccessful() && !task.getResult().isEmpty()) {
+            Navigator.navigateToFeedActivity(this);
+        } else {
+            Navigator.navigateToJoinCreateGroupActivity(this);
+        }
+        finish();
     }
 }
