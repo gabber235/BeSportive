@@ -41,8 +41,7 @@ public class MainActivity extends AppCompatActivity {
 
         FirebaseUser user = FirebaseAuth.getInstance().getCurrentUser();
         if (user == null) {
-            Navigator.navigateToOnboardingActivity(this);
-            finish();
+            Navigator.navigateToOnboardingActivity(this, true);
             return;
         }
 
@@ -54,10 +53,9 @@ public class MainActivity extends AppCompatActivity {
 
     private void onGroupQueryComplete(Task<QuerySnapshot> task) {
         if (task.isSuccessful() && !task.getResult().isEmpty()) {
-            Navigator.navigateToFeedActivity(this);
+            Navigator.navigateToFeedActivity(this, true);
         } else {
-            Navigator.navigateToJoinCreateGroupActivity(this);
+            Navigator.navigateToJoinCreateGroupActivity(this, true);
         }
-        finish();
     }
 }

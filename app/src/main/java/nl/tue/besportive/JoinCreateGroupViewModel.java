@@ -41,7 +41,7 @@ public class JoinCreateGroupViewModel extends ViewModel {
 
     private void onGroupJoined(Context context, Task<HttpsCallableResult> task) {
         if (task.isSuccessful()) {
-            Navigator.navigateToFeedActivity(context);
+            Navigator.navigateToFeedActivity(context, true);
         } else {
             loading.setValue(false);
             Log.e("JoinGroupModel", "Failed to join group", task.getException());

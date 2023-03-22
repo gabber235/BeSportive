@@ -42,7 +42,7 @@ public class CreateGroupViewModel extends ViewModel {
 
     private void onGroupCreated(Context context, Task<HttpsCallableResult> task) {
         if (task.isSuccessful()) {
-            Navigator.navigateToInviteMembersActivity(context);
+            Navigator.navigateToInviteMembersActivity(context, true);
         } else {
             loading.setValue(false);
             Log.e("CreateGroupModel", "Failed to create group", task.getException());
