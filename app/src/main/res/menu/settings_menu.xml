@@ -24,9 +24,9 @@
         android:title="@string/item_2_menu_settings"
         app:showAsAction="never"/>
 
-    <item
+ <!--   <item
         android:id="@+id/leave_group"
         android:title="@string/item_3_menu_settings"
-        app:showAsAction="never"/>
+        app:showAsAction="never"/> -->
 
 </menu>

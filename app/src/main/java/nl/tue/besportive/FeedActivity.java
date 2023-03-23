@@ -2,6 +2,7 @@ package nl.tue.besportive;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.appcompat.widget.Toolbar;
 import android.os.Bundle;
+import android.view.MenuInflater;
 import android.view.View;
 import android.widget.TextView;
 import android.app.Activity;
@@ -36,7 +37,28 @@ public class FeedActivity extends AppCompatActivity {
         // Initialize and assign variable
         AppBarLayout appBarLayout=findViewById(R.id.settings_menu);
 
-        
+        @Override
+        public boolean onCreateOptionsMenu(Menu menu) {
+            MenuInflater inflater = getMenuInflater();
+            inflater.inflate(R.menu.settings_menu, menu);
+            return true;
+
+        }
+
+        @Override
+        public boolean onOptionsItemSelected(MenuItem item) {
+            switch(item.getItemId()) {
+                case R.id.create_group:
+                    startActivity(new Intent(getApplicationContext(),CreateGroupActivity.class));
+                    overridePendingTransition(0,0);
+                    return true;
+                case R.id.configure_challenges:
+                    startActivity(new Intent(getApplicationContext(),ConfigureChallengesActivity.class));
+                    overridePendingTransition(0,0);
+                    return true;
+
+            }
+        }
 
 
 
