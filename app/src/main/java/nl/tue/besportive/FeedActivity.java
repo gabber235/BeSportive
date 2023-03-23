@@ -32,6 +32,20 @@ public class FeedActivity extends AppCompatActivity {
         // using toolbar as ActionBar
         setSupportActionBar(toolbar);
 
+        @Override
+        public boolean onCreateOptionsMenu(Menu menu) {
+            getMenutInflater().inflate(R.menu.settings_menu, menu);
+            return true;
+        }
+
+        Override
+        public boolean onOptionsItemSelected(MenuItem item) {
+
+            switch (item.getItemId()) {
+                case android.R.id.profile_button:
+            }
+        }
+
         // Initialize and assign variable
         BottomNavigationView bottomNavigationView=findViewById(R.id.bottom_navigation);
 
