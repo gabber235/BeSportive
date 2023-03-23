@@ -36,13 +36,7 @@ public class FeedActivity extends AppCompatActivity {
         // Initialize and assign variable
         AppBarLayout appBarLayout=findViewById(R.id.settings_menu);
 
-        // Set Home selected
-        appBarLayout.setSelectedItemId(R.id.feed);
-
-        // Perform item selected listener
-        appBarLayout.setOnItemSelectedListener(new AppBarLayout().OnItemSelectedListener() {
-
-        }
+        
 
 
 
