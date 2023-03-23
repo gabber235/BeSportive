@@ -3,19 +3,25 @@ package nl.tue.besportive;
 import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
-import android.widget.ImageView;
 
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.lifecycle.ViewModelProvider;
 
 import nl.tue.besportive.databinding.ActivityProfileBinding;
+import nl.tue.besportive.models.ProfileViewModel;
 
 public class ProfileActivity extends AppCompatActivity {
-    private nl.tue.besportive.databinding.ActivityProfileBinding binding;
+    private ActivityProfileBinding binding;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        binding = nl.tue.besportive.databinding.ActivityProfileBinding.inflate(getLayoutInflater());
+        binding = ActivityProfileBinding.inflate(getLayoutInflater());
+
+        ProfileViewModel viewModel = new ViewModelProvider(this).get(ProfileViewModel.class);
+        binding.setViewModel(viewModel);
+        binding.setLifecycleOwner(this);
+        
         setContentView(binding.getRoot());
 //returnButton?????
         binding.returnButton.setOnClickListener(this::feed);
@@ -26,7 +32,7 @@ public class ProfileActivity extends AppCompatActivity {
         startFeedActivity();
     }
 
-//    I used public and you used private .....???
+    //    I used public and you used private .....???
     public void startFeedActivity() {
         Intent intent = new Intent(this, FeedActivity.class);
         startActivity(intent);
