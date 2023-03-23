@@ -26,8 +26,6 @@ public class FeedActivity extends AppCompatActivity {
         binding = ActivityFeedBinding.inflate(getLayoutInflater());
         setContentView(binding.getRoot());
 
-    }
-
         // assigning ID of the toolbar to a variable
         Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
 
@@ -64,3 +62,5 @@ public class FeedActivity extends AppCompatActivity {
     }
 
 }
+
+
