@@ -17,7 +17,7 @@ public class ProfileActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         binding = nl.tue.besportive.databinding.ActivityProfileBinding.inflate(getLayoutInflater());
         setContentView(binding.getRoot());
-
+//returnButton?????
         binding.returnButton.setOnClickListener(this::feed);
 
     }
@@ -25,26 +25,10 @@ public class ProfileActivity extends AppCompatActivity {
     public void feed(View view) {
         startFeedActivity();
     }
+
 //    I used public and you used private .....???
     public void startFeedActivity() {
         Intent intent = new Intent(this, FeedActivity.class);
-        startActivity(intent);
-        finish();
-    }
-
-    private void feed(View view) {
-        startFeedActivity();
-    }
-    private void createJoinGroup(View view) {
-        startCreateJoinGroupActivity();
-    }
-    private void startFeedActivity() {
-        Intent intent = new Intent(this, FeedActivity.class);
-        startActivity(intent);
-        finish();
-    }
-    private void startCreateJoinGroupActivity() {
-        Intent intent = new Intent(this, CreateGroupActivity.class);
         startActivity(intent);
         finish();
     }
