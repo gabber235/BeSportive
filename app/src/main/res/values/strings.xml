@@ -21,8 +21,8 @@
     <string name="memberoverview_email">john.doe@gmail.com</string>
     <string name="memberoverview_name">Emre Altan</string>
     <string name="memberoverview_completedchallenge">Completed Challenges</string>
-    <string name="profile_email">john.doe@gmail.com</string>
-    <string name="profile_name">Emre Altan</string>
+    <string name="profile_email">john.do@gmail.com</string>
+    <string name="profile_name">John Do</string>
     <string name="profile_name_header">Name</string>
     <string name="profile_statistics_header">Statistics</string>
     <string name="profile_statistics_text">Number of challenges you have done so far:</string>
