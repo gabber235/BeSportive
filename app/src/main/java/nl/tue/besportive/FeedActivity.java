@@ -39,9 +39,9 @@ public class FeedActivity extends AppCompatActivity {
         }
 
         Override
-        public boolean onOptionsItemSelected(MenuItem item) {
+        public boolean onOptionsItemSelected(MenuItem item_feed) {
 
-            switch (item.getItemId()) {
+            switch (item_feed.getItemId()) {
                 case android.R.id.profile_button:
             }
         }
