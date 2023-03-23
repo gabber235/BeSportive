@@ -12,6 +12,7 @@ import android.view.View;
 
 import androidx.appcompat.app.AppCompatActivity;
 
+import com.google.android.material.appbar.AppBarLayout;
 import com.google.android.material.bottomnavigation.BottomNavigationView;
 
 import nl.tue.besportive.databinding.ActivityFeedBinding;
@@ -27,23 +28,41 @@ public class FeedActivity extends AppCompatActivity {
         setContentView(binding.getRoot());
 
         // assigning ID of the toolbar to a variable
-        Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
+    //    Toolbar toolbar = findViewById(R.id.toolbar);
 
         // using toolbar as ActionBar
-        setSupportActionBar(toolbar);
+        //  setSupportActionBar(toolbar);
+
+        // Initialize and assign variable
+        AppBarLayout appBarLayout=findViewById(R.id.settings_menu);
+
+        // Set Home selected
+        appBarLayout.setSelectedItemId(R.id.feed);
+
+        // Perform item selected listener
+        appBarLayout.setOnItemSelectedListener(new AppBarLayout().OnItemSelectedListener() {
+
+        }
+
+
 
         @Override
         public boolean onCreateOptionsMenu(Menu menu) {
-            getMenutInflater().inflate(R.menu.settings_menu, menu);
+            MenuInflater inflater = getMenuInflater();
+            inflater.inflate(R.menu.settings_menu, menu);
             return true;
         }
 
         Override
-        public boolean onOptionsItemSelected(MenuItem item_feed) {
+        public boolean onOptionsItemSelected(MenuItem item) {
 
-            switch (item_feed.getItemId()) {
-                case android.R.id.profile_button:
+            switch (item.getItemId()) {
+                case R.id.profile_button:
+                    startActivity(new Intent(getApplicationContext(),ProfileActivity.class));
+                    overridePendingTransition(0,0);
+                    return true;
             }
+            return false;
         }
 
         // Initialize and assign variable

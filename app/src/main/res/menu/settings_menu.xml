@@ -1,13 +1,19 @@
 <?xml version="1.0" encoding="utf-8"?>
 <menu xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:app="http://schemas.android.com/apk/res-auto"
-    xmlns:tools="http://schemas.android.com/tools">
+    xmlns:app="http://schemas.android.com/apk/res-auto">
 
     <item
         android:id="@+id/profile_button"
         android:icon="@drawable/img"
         android:title="@string/item_1_actionbar"
         app:showAsAction="always"/>
+
+    <item
+        android:id="@+id/logo"
+        android:icon="@drawable/logo_2"
+        android:title="@string/item_2_actionbar"
+        app:showAsAction="always"/>
+
     <item
         android:id="@+id/create_group"
         android:title="@string/item_1_menu_settings"
