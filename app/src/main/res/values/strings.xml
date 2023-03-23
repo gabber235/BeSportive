@@ -39,5 +39,5 @@
 
     <string name="item_1_menu_settings">Create Group</string>
     <string name="item_2_menu_settings">Configure Challenges</string>
-    <string name="item_3_menu_settings">Leave Group</string>
+  <!--  <string name="item_3_menu_settings">Leave Group</string> -->
 </resources>

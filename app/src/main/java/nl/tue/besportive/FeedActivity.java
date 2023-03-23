@@ -37,13 +37,19 @@ public class FeedActivity extends AppCompatActivity {
         // Initialize and assign variable
         AppBarLayout appBarLayout=findViewById(R.id.settings_menu);
 
-        @Override
-        public boolean onCreateOptionsMenu(Menu menu) {
-            MenuInflater inflater = getMenuInflater();
-            inflater.inflate(R.menu.settings_menu, menu);
-            return true;
+        // Set Home selected
+        appBarLayout.setSelectedItemId(R.id.feed);
 
-        }
+        // Perform item selected listener
+        appBarLayout.setOnItemSelectedListener(new BottomNavigationView.OnItemSelectedListener()
+
+   //     @Override
+    //    public boolean onCreateOptionsMenu(Menu menu) {
+  //          MenuInflater inflater = getMenuInflater();
+   //         inflater.inflate(R.menu.settings_menu, menu);
+   //         return true;
+
+   //     }
 
         @Override
         public boolean onOptionsItemSelected(MenuItem item) {
@@ -56,8 +62,12 @@ public class FeedActivity extends AppCompatActivity {
                     startActivity(new Intent(getApplicationContext(),ConfigureChallengesActivity.class));
                     overridePendingTransition(0,0);
                     return true;
-
+                case R.id.profile_button:
+                    startActivity(new Intent(getApplicationContext(),ProfileActivity.class));
+                    overridePendingTransition(0,0);
+                    return true;
             }
+            return false;
         }
 
 
