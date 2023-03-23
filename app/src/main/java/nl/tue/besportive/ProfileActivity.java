@@ -10,17 +10,28 @@ import androidx.appcompat.app.AppCompatActivity;
 import nl.tue.besportive.databinding.ActivityProfileBinding;
 
 public class ProfileActivity extends AppCompatActivity {
-    private ActivityProfileBinding binding;
+    private nl.tue.besportive.databinding.ActivityProfileBinding binding;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        binding = ActivityProfileBinding.inflate(getLayoutInflater());
+        binding = nl.tue.besportive.databinding.ActivityProfileBinding.inflate(getLayoutInflater());
         setContentView(binding.getRoot());
 
-        ImageView returnButton = findViewById(R.id.retu)
+        binding.returnButton.setOnClickListener(this::feed);
 
     }
+
+    public void feed(View view) {
+        startFeedActivity();
+    }
+//    I used public and you used private .....???
+    public void startFeedActivity() {
+        Intent intent = new Intent(this, FeedActivity.class);
+        startActivity(intent);
+        finish();
+    }
+
     private void feed(View view) {
         startFeedActivity();
     }
@@ -39,3 +50,7 @@ public class ProfileActivity extends AppCompatActivity {
     }
 
 }
+
+
+
+
