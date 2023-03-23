@@ -3,27 +3,39 @@
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
     android:background="@color/orange_500">
+
     <RelativeLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:padding="16dp">
 
-        <!--NOT SURE HOW TO ADD THE CLICKABLE PROFILE PICTURE TO THE TOOLBAR YET -->
-
-        <ImageButton
-            android:layout_width="55dp"
-            android:layout_height="55dp"
+        <ImageView
+            android:id="@+id/left_icon"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_centerVertical="true"
             android:src="@drawable/img" />
 
+        <ImageView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignParentTop="true"
+            android:layout_centerVertical="true"
+            android:layout_marginStart="60dp"
+            android:layout_marginTop="33dp"
+            android:layout_marginEnd="69dp"
+            android:layout_toStartOf="@+id/right_icon"
+            android:layout_toEndOf="@+id/left_icon"
+            android:src="@drawable/logo_2" />
 
-      <!--  <ImageView
+        <ImageView
             android:id="@+id/right_icon"
-            android:layout_width="52dp"
-            android:layout_height="52dp"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
             android:layout_alignParentEnd="true"
-            android:layout_centerVerticle="true"
-            android:layout_marginEnd="13dp"
-            android:src="@drawable/baseline_settings_24" /> -->
+            android:layout_centerVertical="true"
+            android:src="@drawable/baseline_settings_24" />
+
 
     </RelativeLayout>
 
