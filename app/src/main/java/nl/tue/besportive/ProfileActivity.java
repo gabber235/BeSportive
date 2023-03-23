@@ -3,6 +3,7 @@ package nl.tue.besportive;
 import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
+import android.widget.ImageView;
 
 import androidx.appcompat.app.AppCompatActivity;
 
@@ -16,6 +17,9 @@ public class ProfileActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         binding = ActivityProfileBinding.inflate(getLayoutInflater());
         setContentView(binding.getRoot());
+
+        ImageView returnButton = findViewById(R.id.retu)
+
     }
     private void feed(View view) {
         startFeedActivity();
