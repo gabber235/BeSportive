@@ -21,7 +21,7 @@ public class ProfileActivity extends AppCompatActivity {
         ProfileViewModel viewModel = new ViewModelProvider(this).get(ProfileViewModel.class);
         binding.setViewModel(viewModel);
         binding.setLifecycleOwner(this);
-        
+
         setContentView(binding.getRoot());
 //returnButton?????
         binding.returnButton.setOnClickListener(this::feed);
@@ -38,7 +38,6 @@ public class ProfileActivity extends AppCompatActivity {
         startActivity(intent);
         finish();
     }
-
 }
 
 
