@@ -70,7 +70,7 @@
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
 
-        <!-- changed app:layout_constraintBottom_toTopOf="@string/logo_2"
+        <!-- changed app:layout_constraintBottom_toTopOf="@string/logo_2" -->
 
         <TextView
             android:id="@+id/textView8"
