@@ -32,29 +32,34 @@ public class FeedActivity extends AppCompatActivity {
         binding = ActivityFeedBinding.inflate(getLayoutInflater());
         setContentView(binding.getRoot());
 
-        // assigning ID of the toolbar to a variable
-        //    Toolbar toolbar = findViewById(R.id.toolbar);
 
-        // using toolbar as ActionBar
-        //  setSupportActionBar(toolbar);
-
-        // Initialize and assign variable
-        //  AppBarLayout appBarLayout=findViewById(R.id.settings_menu);
-
-        // Set Home selected
-        //       appBarLayout.setSelectedItemId(R.id.feed);
-
-        // Perform item selected listener
-        //     appBarLayout.setOnItemSelectedListener(new BottomNavigationView.OnItemSelectedListener()
-
-        //     @Override
-        //    public boolean onCreateOptionsMenu(Menu menu) {
-        //          MenuInflater inflater = getMenuInflater();
-        //         inflater.inflate(R.menu.settings_menu, menu);
-        //         return true;
 
     }
+    // Initialize and assign variable
+    BottomNavigationView bottomNavigationView=findViewById(R.id.bottom_navigation);
 
+    // Set Home selected
+            bottomNavigationView.setSelectedItemId(R.id.feed);
+
+    // Perform item selected listener
+            bottomNavigationView.setOnItemSelectedListener(new BottomNavigationView.OnItemSelectedListener() {
+        @Override
+        public boolean onNavigationItemSelected(MenuItem item) {
+            switch(item.getItemId()) {
+                case R.id.challenges:
+                    startActivity(new Intent(getApplicationContext(),ChallengesActivity.class));
+                    overridePendingTransition(0,0);
+                    return true;
+                case R.id.feed:
+                    return true;
+                case R.id.leaderboard:
+                    startActivity(new Intent(getApplicationContext(),LeaderboardActivity.class));
+                    overridePendingTransition(0,0);
+                    return true;
+            }
+            return false;
+        }
+    });
 
 
         @Override
@@ -89,31 +94,7 @@ public class FeedActivity extends AppCompatActivity {
 
 
 
-        // Initialize and assign variable
-            BottomNavigationView bottomNavigationView=findViewById(R.id.bottom_navigation);
 
-        // Set Home selected
-            bottomNavigationView.setSelectedItemId(R.id.feed);
-
-        // Perform item selected listener
-            bottomNavigationView.setOnItemSelectedListener(new BottomNavigationView.OnItemSelectedListener() {
-                @Override
-                public boolean onNavigationItemSelected(MenuItem item) {
-                    switch(item.getItemId()) {
-                        case R.id.challenges:
-                            startActivity(new Intent(getApplicationContext(),ChallengesActivity.class));
-                            overridePendingTransition(0,0);
-                        return true;
-                        case R.id.feed:
-                            return true;
-                        case R.id.leaderboard:
-                            startActivity(new Intent(getApplicationContext(),LeaderboardActivity.class));
-                            overridePendingTransition(0,0);
-                            return true;
-                    }
-                    return false;
-                }
-        });
     }
 
 }
