@@ -10,10 +10,11 @@
         android:id="@+id/ib_goConfigureCh"
         android:layout_width="52dp"
         android:layout_height="46dp"
-        android:layout_marginStart="8dp"
-        android:layout_marginTop="8dp"
-        android:background="#00FFFFFF"
-        app:layout_constraintStart_toStartOf="parent"
+        android:layout_marginTop="16dp"
+        android:layout_marginEnd="16dp"
+        android:background="#44454E"
+        android:tint="#4CAF50"
+        app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintTop_toTopOf="parent"
         app:srcCompat="@android:drawable/ic_media_play" />
 
@@ -21,17 +22,21 @@
         android:id="@+id/tv_challengeName"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="TextView"
-        app:layout_constraintStart_toEndOf="@+id/ib_goConfigureCh"
+        android:layout_marginEnd="203dp"
+        android:text="Run 5km"
+        android:textSize="16sp"
+        android:textStyle="bold"
+        app:layout_constraintEnd_toStartOf="@+id/ib_goConfigureCh"
         app:layout_constraintTop_toTopOf="@+id/ib_goConfigureCh" />
 
     <TextView
         android:id="@+id/tv_challengeDifficulty"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginTop="8dp"
-        android:text="TextView"
-        app:layout_constraintStart_toEndOf="@+id/ib_goConfigureCh"
+        android:layout_marginEnd="224dp"
+        android:text="Easy"
+        android:textColor="#4CAF50"
+        app:layout_constraintEnd_toStartOf="@+id/ib_goConfigureCh"
         app:layout_constraintTop_toBottomOf="@+id/tv_challengeName" />
 
     <View
