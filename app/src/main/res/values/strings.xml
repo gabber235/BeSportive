@@ -29,7 +29,9 @@
     <string name="profile_statistics_time_spent_text">Total time spent on challenges: %d</string>
     <string name="Leaderboard_placement">1.</string>
     <string name="invite_members_code">3NAB0</string>
-    <string name="done_button_text">Done</string>
-    <string name="feedHeaderText">Feed</string>
-    <string name="go_to_member_text">Go to member</string>
+    <string name="createGroup_inputField_placeholder">Name...</string>
+    <string name="createGroup_button_text">Create Group</string>
+    <string name="joinCreateGroup_code_placeholder">Code...</string>
+    <string name="joinCreateGroup_buttons_join">Join</string>
+    <string name="joinCreateGroup_buttons_create">Create Group</string>
 </resources>
