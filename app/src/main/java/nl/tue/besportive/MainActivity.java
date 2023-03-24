@@ -1,18 +1,14 @@
 package nl.tue.besportive;
 
+import android.content.Intent;
 import android.os.Bundle;
 
 import androidx.appcompat.app.AppCompatActivity;
 
-import com.google.android.gms.tasks.Task;
 import com.google.firebase.auth.FirebaseAuth;
-import com.google.firebase.auth.FirebaseUser;
 import com.google.firebase.firestore.FirebaseFirestore;
 import com.google.firebase.firestore.FirebaseFirestoreSettings;
-import com.google.firebase.firestore.QuerySnapshot;
 import com.google.firebase.functions.FirebaseFunctions;
-
-import java.util.Objects;
 
 public class MainActivity extends AppCompatActivity {
 
@@ -30,7 +26,6 @@ public class MainActivity extends AppCompatActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_main);
 
         if (BuildConfig.DEBUG) {
             FirebaseFunctions.getInstance().useEmulator("10.0.2.2", 5001);
@@ -40,39 +35,15 @@ public class MainActivity extends AppCompatActivity {
             FirebaseFirestore.getInstance().setFirestoreSettings(productionSettings);
         }
 
-        checkIfUserIsStillLoggedIn();
-    }
+        Intent activityIntent;
 
-    private void checkIfUserIsStillLoggedIn() {
-        FirebaseUser user = FirebaseAuth.getInstance().getCurrentUser();
-        if (user == null) {
-            Navigator.navigateToOnboardingActivity(this, true);
-            return;
-        }
-
-        user.reload().addOnCompleteListener(this::onUserReloaded);
-    }
-
-    private void onUserReloaded(Task<Void> task) {
-        if (task.isSuccessful()) {
-            checkIfUserHasGroup(Objects.requireNonNull(FirebaseAuth.getInstance().getCurrentUser()));
+        if (FirebaseAuth.getInstance().getCurrentUser() == null) {
+            activityIntent = new Intent(this, OnboardingActivity.class);
         } else {
-            Navigator.navigateToOnboardingActivity(this, true);
+            activityIntent = new Intent(this, JoinCreateGroupActivity.class);
         }
-    }
 
-    private void checkIfUserHasGroup(FirebaseUser user) {
-        FirebaseFirestore.getInstance().collection("groups")
-                .whereNotEqualTo("members." + user.getUid(), null)
-                .get()
-                .addOnCompleteListener(this::onGroupQueryComplete);
-    }
-
-    private void onGroupQueryComplete(Task<QuerySnapshot> task) {
-        if (task.isSuccessful() && !task.getResult().isEmpty()) {
-            Navigator.navigateToFeedActivity(this, true);
-        } else {
-            Navigator.navigateToJoinCreateGroupActivity(this, true);
-        }
+        startActivity(activityIntent);
+        finish();
     }
 }
