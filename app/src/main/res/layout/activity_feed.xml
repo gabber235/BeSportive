@@ -18,7 +18,7 @@
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
 
-    <ImageView
+  <!--  <ImageView
         android:id="@+id/logo"
         android:layout_width="wrap_content"
         android:layout_height="0dp"
@@ -32,7 +32,7 @@
         app:layout_constraintStart_toStartOf="parent"
         android:scaleType="fitCenter"
         app:layout_constraintTop_toTopOf="@+id/settings_menu"
-        app:srcCompat="@drawable/logo_2" />
+        app:srcCompat="@drawable/logo_2" /> -->
 
     <TextView
         android:id="@+id/textView2"
@@ -47,22 +47,6 @@
         app:layout_constraintHorizontal_bias="0.497"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
-
-
-
-    <ImageView
-        android:id="@+id/imageView"
-        android:layout_width="0dp"
-        android:layout_height="0dp"
-        android:layout_marginStart="15dp"
-        android:layout_marginEnd="15dp"
-        android:layout_marginBottom="93dp"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/appBarLayout"
-        app:srcCompat="@drawable/img_1" />
-
 
 
     <!--     <androidx.constraintlayout.widget.ConstraintLayout
@@ -117,9 +101,19 @@
     </com.google.android.material.appbar.AppBarLayout> -->
 
 
-
-
-
+    <ImageView
+        android:id="@+id/imageView"
+        android:layout_width="0dp"
+        android:layout_height="0dp"
+        android:layout_marginStart="15dp"
+        android:layout_marginEnd="15dp"
+        android:layout_marginBottom="93dp"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="1.0"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/appBarLayout"
+        app:srcCompat="@drawable/img_1" />
 
     <com.google.android.material.appbar.AppBarLayout
         android:id="@+id/settings_menu"

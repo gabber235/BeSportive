@@ -22,6 +22,7 @@ import com.google.android.material.bottomnavigation.BottomNavigationView;
 import nl.tue.besportive.databinding.ActivityFeedBinding;
 
 public class FeedActivity extends AppCompatActivity {
+
     private ActivityFeedBinding binding;
 
     @Override
@@ -54,30 +55,32 @@ public class FeedActivity extends AppCompatActivity {
 
     }
 
-            @Override
-            public boolean onCreateOptionsMenu(Menu menu){
-                MenuInflater inflater = getMenuInflater();
-                inflater.inflate(R.menu.settings_menu, menu);
-                return true;
-            }
 
-            @Override
-            public boolean onOptionsItemSelected(MenuItem item) {
-                switch (item.getItemId()) {
-                    case R.id.profile_button:
-                        startActivity(new Intent(getApplicationContext(), ProfileActivity.class));
-                        overridePendingTransition(0, 0);
-                        return true;
-                    case R.id.create_group:
-                        startActivity(new Intent(getApplicationContext(), CreateGroupActivity.class));
-                        overridePendingTransition(0, 0);
-                        return true;
-                    case R.id.configure_challenges:
-                        startActivity(new Intent(getApplicationContext(), ConfigureChallengesActivity.class));
-                        overridePendingTransition(0, 0);
-                        return true;
+
+    @Override
+    public boolean onCreateOptionsMenu(Menu menu){
+        MenuInflater inflater = getMenuInflater();
+        inflater.inflate(R.menu.settings_menu, menu);
+        return true;
+    }
+
+    @Override
+    public boolean onOptionsItemSelected(MenuItem item) {
+        switch (item.getItemId()) {
+            case R.id.profile_button:
+                startActivity(new Intent(getApplicationContext(), ProfileActivity.class));
+                overridePendingTransition(0, 0);
+                return true;
+            case R.id.create_group:
+                startActivity(new Intent(getApplicationContext(), CreateGroupActivity.class));
+                overridePendingTransition(0, 0);
+                return true;
+            case R.id.configure_challenges:
+                startActivity(new Intent(getApplicationContext(), ConfigureChallengesActivity.class));
+                overridePendingTransition(0, 0);
+                return true;
                 }
-                return false;
+        return super.onOptionsItemSelected(item);
 
 
 
