@@ -25,9 +25,9 @@ public class ProfileActivity extends AppCompatActivity {
         setContentView(binding.getRoot());
 //returnButton?????
         binding.returnButton.setOnClickListener(this::feed);
-
     }
 
+    
     public void feed(View view) {
         startFeedActivity();
     }
