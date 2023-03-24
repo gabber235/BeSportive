@@ -1,23 +1,31 @@
 package nl.tue.besportive;
 
-import android.content.Intent;
 import android.os.Bundle;
+<<<<<<< HEAD
 import android.view.MenuItem;
 import android.view.View;
 import androidx.appcompat.widget.Toolbar;
+=======
+>>>>>>> main
 
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.lifecycle.ViewModelProvider;
 
 import nl.tue.besportive.databinding.ActivityCreateGroupBinding;
 
 public class CreateGroupActivity extends AppCompatActivity {
-    private ActivityCreateGroupBinding binding;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        binding = ActivityCreateGroupBinding.inflate(getLayoutInflater());
+        ActivityCreateGroupBinding binding = ActivityCreateGroupBinding.inflate(getLayoutInflater());
+        binding.setLifecycleOwner(this);
+
+        CreateGroupViewModel viewModel = new ViewModelProvider(this).get(CreateGroupViewModel.class);
+        binding.setViewModel(viewModel);
+
         setContentView(binding.getRoot());
+<<<<<<< HEAD
 
         binding.createGroupButton.setOnClickListener(this::createGroup);
 
@@ -44,16 +52,7 @@ public class CreateGroupActivity extends AppCompatActivity {
             default:
                 return super.onOptionsItemSelected(item);
         }
+=======
+>>>>>>> main
     }
-
-    public void createGroup(View view) {
-        startConfigureChallengesActivity();
-    }
-
-    public void startConfigureChallengesActivity() {
-        Intent intent = new Intent(this, ConfigureChallengesActivity.class);
-        startActivity(intent);
-        finish();
-    }
-
 }

@@ -1,22 +1,30 @@
 package nl.tue.besportive;
 
-import android.content.Intent;
 import android.os.Bundle;
+<<<<<<< HEAD
 import android.view.View;
 import androidx.appcompat.widget.Toolbar;
+=======
+>>>>>>> main
 
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.lifecycle.ViewModelProvider;
 
 import nl.tue.besportive.databinding.ActivityJoinCreateGroupBinding;
 
 public class JoinCreateGroupActivity extends AppCompatActivity {
-    private ActivityJoinCreateGroupBinding binding;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        binding = ActivityJoinCreateGroupBinding.inflate(getLayoutInflater());
+        ActivityJoinCreateGroupBinding binding = ActivityJoinCreateGroupBinding.inflate(getLayoutInflater());
+        binding.setLifecycleOwner(this);
+
+        JoinCreateGroupViewModel viewModel = new ViewModelProvider(this).get(JoinCreateGroupViewModel.class);
+        binding.setViewModel(viewModel);
+
         setContentView(binding.getRoot());
+<<<<<<< HEAD
 
         binding.createGroupButton.setOnClickListener(this::createGroup);
         binding.joinButton.setOnClickListener(this::joinGroup);
@@ -46,5 +54,7 @@ public class JoinCreateGroupActivity extends AppCompatActivity {
         Intent intent = new Intent(this, FeedActivity.class);
         startActivity(intent);
         finish();
+=======
+>>>>>>> main
     }
 }
