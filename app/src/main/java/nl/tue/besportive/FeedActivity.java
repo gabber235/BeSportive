@@ -6,6 +6,7 @@ import android.view.MenuInflater;
 import android.view.View;
 import android.widget.TextView;
 import android.app.Activity;
+import android.widget.PopupMenu;
 import android.content.Intent;
 import android.os.Bundle;
 import android.view.MenuItem;
@@ -35,13 +36,13 @@ public class FeedActivity extends AppCompatActivity {
         //  setSupportActionBar(toolbar);
 
         // Initialize and assign variable
-        AppBarLayout appBarLayout=findViewById(R.id.settings_menu);
+      //  AppBarLayout appBarLayout=findViewById(R.id.settings_menu);
 
         // Set Home selected
-        appBarLayout.setSelectedItemId(R.id.feed);
+ //       appBarLayout.setSelectedItemId(R.id.feed);
 
         // Perform item selected listener
-        appBarLayout.setOnItemSelectedListener(new BottomNavigationView.OnItemSelectedListener()
+   //     appBarLayout.setOnItemSelectedListener(new BottomNavigationView.OnItemSelectedListener()
 
    //     @Override
     //    public boolean onCreateOptionsMenu(Menu menu) {
@@ -52,23 +53,31 @@ public class FeedActivity extends AppCompatActivity {
    //     }
 
         @Override
-        public boolean onOptionsItemSelected(MenuItem item) {
-            switch(item.getItemId()) {
-                case R.id.create_group:
-                    startActivity(new Intent(getApplicationContext(),CreateGroupActivity.class));
-                    overridePendingTransition(0,0);
-                    return true;
-                case R.id.configure_challenges:
-                    startActivity(new Intent(getApplicationContext(),ConfigureChallengesActivity.class));
-                    overridePendingTransition(0,0);
-                    return true;
-                case R.id.profile_button:
-                    startActivity(new Intent(getApplicationContext(),ProfileActivity.class));
-                    overridePendingTransition(0,0);
-                    return true;
-            }
-            return false;
+        public boolean onCreateOptionsMenu(Menu menu){
+            MenuInflater inflater = getMenuInflater();
+            inflater.inflate(R.menu.settings_menu, menu);
+            return true;
         }
+
+
+
+
+     //       switch(item.getItemId()) {
+     //           case R.id.create_group:
+      //              startActivity(new Intent(getApplicationContext(),CreateGroupActivity.class));
+      //              overridePendingTransition(0,0);
+        //return true;
+      //          case R.id.configure_challenges:
+      //              startActivity(new Intent(getApplicationContext(),ConfigureChallengesActivity.class));
+      //              overridePendingTransition(0,0);
+      //              return true;
+      //          case R.id.profile_button:
+      //              startActivity(new Intent(getApplicationContext(),ProfileActivity.class));
+      //              overridePendingTransition(0,0);
+       //             return true;
+       //     }
+      //      return false;
+      //  }
 
 
 
