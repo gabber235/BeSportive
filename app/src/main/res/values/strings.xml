@@ -40,11 +40,11 @@
     <string name="item_1_menu_settings">Create Group</string>
     <string name="item_2_menu_settings">Configure Challenges</string>
   <!--  <string name="item_3_menu_settings">Leave Group</string> -->
-=======
+
     <string name="createGroup_inputField_placeholder">Name...</string>
     <string name="createGroup_button_text">Create Group</string>
     <string name="joinCreateGroup_code_placeholder">Code...</string>
     <string name="joinCreateGroup_buttons_join">Join</string>
     <string name="joinCreateGroup_buttons_create">Create Group</string>
->>>>>>> main
+
 </resources>
