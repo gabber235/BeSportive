@@ -3,12 +3,15 @@ package nl.tue.besportive;
 import android.app.Activity;
 import android.content.Intent;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.MenuItem;
 import android.view.View;
 
 import androidx.appcompat.app.AppCompatActivity;
 
 import com.google.android.material.bottomnavigation.BottomNavigationView;
+import com.google.firebase.auth.FirebaseAuth;
+import com.google.firebase.auth.FirebaseUser;
 
 import nl.tue.besportive.databinding.ActivityFeedBinding;
 
@@ -48,6 +51,16 @@ public class FeedActivity extends AppCompatActivity {
                 return false;
             }
         });
+        FirebaseUser user = FirebaseAuth.getInstance().getCurrentUser();
+        if (user != null) {
+            Log.d("TAG", "logged in");
+            // User is signed in
+            System.out.println(user.getUid());
+        } else {
+            // No user is signed in
+            Log.d("TAG", "Not logged in");
+
+        }
     }
 
 }
