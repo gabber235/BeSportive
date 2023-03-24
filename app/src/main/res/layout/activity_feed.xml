@@ -14,7 +14,7 @@
         android:layout_height="wrap_content"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent"/>
+        app:layout_constraintTop_toTopOf="parent" />
 
     <TextView
         android:id="@+id/textView2"
@@ -67,19 +67,6 @@
     <!-- Logo in the middle -->
 
 
-    <!--   <ImageView
-                android:id="@+id/logo"
-                android:layout_width="wrap_content"
-                android:layout_height="0dp"
-                android:layout_marginStart="28dp"
-                android:layout_marginTop="16dp"
-                app:layout_constraintBottom_toBottomof="parent"
-                app:layout_constraintEnd_toEndof="parent"
-                app:layout_constraintStart_toEndOf="@+id/profile_picture"
-                app:layout_constraintTop_toTopOf="parent"
-                app:srcCompat="@drawable/logo_2" />
-
-            Right most ImageView -->
     <!--     <ImageView
                 android:id="@+id/settings_icon"
                 android:layout_width="wrap_content"
@@ -94,19 +81,37 @@
         </androidx.constraintlayout.widget.ConstraintLayout>
     </com.google.android.material.appbar.AppBarLayout> -->
 
+    <ImageView
+        android:id="@+id/logo"
+        android:layout_width="wrap_content"
+        android:layout_height="0dp"
+        android:layout_marginTop="28dp"
+        android:contentDescription="@string/item_2_actionbar"
+        app:itemIconTint="@drawable/selector"
+        app:itemTextColor="@drawable/selector"
+        app:layout_constraintBottom_toBottomof="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintEnd_toEndof="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="@+id/settings_menu"
+        app:srcCompat="@drawable/logo_2" />
+
+
     <com.google.android.material.appbar.AppBarLayout
         android:id="@+id/settings_menu"
         android:layout_width="0dp"
         android:layout_height="60dp"
         android:layout_alignParentTop="true"
+        android:layout_marginBottom="564dp"
         app:itemBackground="@color/orange_500"
         app:itemIconTint="@drawable/selector"
         app:itemTextColor="@drawable/selector"
         app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.0"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="@+id/appBarLayout"
+        app:layout_constraintVertical_bias="0.0"
         app:menu="@menu/settings_menu" />
-
 
     <com.google.android.material.bottomnavigation.BottomNavigationView
         android:id="@+id/bottom_navigation"
@@ -121,7 +126,17 @@
         app:layout_constraintHorizontal_bias="0.0"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="@+id/appBarLayout"
-        app:menu="@menu/menu_navigation" />
+        app:menu="@menu/menu_navigation" >
+
+    </com.google.android.material.bottomnavigation.BottomNavigationView>
+
+    <ImageView
+        android:id="@+id/imageView"
+        android:layout_width="380dp"
+        android:layout_height="488dp"
+        app:srcCompat="@drawable/img_1"
+        tools:layout_editor_absoluteX="16dp"
+        tools:layout_editor_absoluteY="150dp" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>
 
