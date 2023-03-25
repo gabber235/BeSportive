@@ -33,6 +33,9 @@ public class RecycleViewAdapter extends RecyclerView.Adapter<RecycleViewAdapter.
 
     @Override
     public void onBindViewHolder(@NonNull MyViewHolder holder, int position) {
+        holder.tv_ChallengeName.setText(challengesList.get(position).getName());
+        holder.tv_ChDifficulty.setText(String.valueOf(challengesList.get(position).getDifficulty()));
+        holder.ib_gotoactivechallenges.setTag(String.valueOf(challengesList.get(position).getClass()));
         holder.tv_ChDifficulty.setText(challengesList.get(position).getName());
         int difficulty = challengesList.get(position).getDifficulty();
         String difficultyText = "";
