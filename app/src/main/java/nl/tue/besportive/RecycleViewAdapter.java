@@ -1,6 +1,7 @@
 package nl.tue.besportive;
 
 import android.content.Context;
+import android.graphics.Color;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -32,9 +33,26 @@ public class RecycleViewAdapter extends RecyclerView.Adapter<RecycleViewAdapter.
 
     @Override
     public void onBindViewHolder(@NonNull MyViewHolder holder, int position) {
-        holder.tv_ChallengeName.setText(challengesList.get(position).getName());
-        holder.tv_ChDifficulty.setText(String.valueOf(challengesList.get(position).getDifficulty()));
-       // holder.ib_goConfigureCh.setTag(String.valueOf(challengesList.get(position).getClass())); //not sure if this correct I try to make a holder for imagebutton
+        holder.tv_ChDifficulty.setText(challengesList.get(position).getName());
+        int difficulty = challengesList.get(position).getDifficulty();
+        String difficultyText = "";
+        int difficultyColor = 0;
+        switch(difficulty) {
+            case 0:
+                difficultyText = "Easy";
+                difficultyColor = Color.GREEN;
+                break;
+            case 1:
+                difficultyText = "Medium";
+                difficultyColor = Color.parseColor("#FFA500"); // Orange color
+                break;
+            case 2:
+                difficultyText = "Hard";
+                difficultyColor = Color.RED;
+                break;
+        }
+        holder.tv_ChDifficulty.setText(difficultyText);
+        holder.tv_ChDifficulty.setTextColor(difficultyColor);
     }
 
     @Override
@@ -43,13 +61,13 @@ public class RecycleViewAdapter extends RecyclerView.Adapter<RecycleViewAdapter.
     }
 
     public class MyViewHolder extends RecyclerView.ViewHolder {
-        ImageButton ib_goConfigureCh;
+        ImageButton ib_gotoactivechallenges;
         TextView  tv_ChallengeName;
         TextView tv_ChDifficulty;
 
         public MyViewHolder(@NonNull View itemView) {
             super(itemView);
-            ib_goConfigureCh =itemView.findViewById(R.id.ib_gotoactivechallenges);
+            ib_gotoactivechallenges =itemView.findViewById(R.id.ib_gotoactivechallenges);
             tv_ChallengeName= itemView.findViewById(R.id.tv_challengeName);
             tv_ChDifficulty=itemView.findViewById(R.id.tv_challengeDifficulty);
         }
