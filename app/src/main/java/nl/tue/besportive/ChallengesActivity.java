@@ -9,6 +9,7 @@ import android.hardware.lights.LightState;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.View;
+import android.widget.Button;
 import android.widget.Toast;
 
 import androidx.appcompat.app.AppCompatActivity;
@@ -32,6 +33,9 @@ public class ChallengesActivity extends AppCompatActivity {
     private RecyclerView.Adapter mAdapter;
     private RecyclerView.LayoutManager layoutManager;
 
+    Button bt_gotoactivech;
+
+
     private static final String TAG = "Challenges App";
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -41,6 +45,15 @@ public class ChallengesActivity extends AppCompatActivity {
         fillChallengesList();
         Log.d(TAG, "onCreate:"+ challengesList.toString());
         Toast.makeText(this,"Challenges Count =" + challengesList.size(), Toast.LENGTH_LONG).show();
+
+        bt_gotoactivech = findViewById(R.id.bt_gotoactivech);
+        bt_gotoactivech.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                Intent intent = new Intent(ChallengesActivity.this ,ActiveChallengeActivity.class);
+                startActivity(intent);
+            }
+        });
 
         RecyclerView recyclerView = findViewById(R.id.ly_challengeslist);
         if (recyclerView != null) {

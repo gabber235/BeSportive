@@ -10,8 +10,6 @@ import android.widget.TextView;
 import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
 
-import org.w3c.dom.Text;
-
 import java.util.List;
 
 public class RecycleViewAdapter extends RecyclerView.Adapter<RecycleViewAdapter.MyViewHolder> {
@@ -51,7 +49,7 @@ public class RecycleViewAdapter extends RecyclerView.Adapter<RecycleViewAdapter.
 
         public MyViewHolder(@NonNull View itemView) {
             super(itemView);
-            ib_goConfigureCh =itemView.findViewById(R.id.ib_goConfigureCh);
+            ib_goConfigureCh =itemView.findViewById(R.id.ib_gotoactivechallenges);
             tv_ChallengeName= itemView.findViewById(R.id.tv_challengeName);
             tv_ChDifficulty=itemView.findViewById(R.id.tv_challengeDifficulty);
         }
