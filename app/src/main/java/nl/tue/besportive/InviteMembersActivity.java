@@ -21,7 +21,5 @@ public class InviteMembersActivity extends AppCompatActivity {
         binding.setLifecycleOwner(this);
 
         setContentView(binding.getRoot());
-
-        binding.doneButton.setOnClickListener(this::feed);
     }
 }
