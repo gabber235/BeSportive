@@ -133,4 +133,8 @@ public class ChallengesActivity extends AppCompatActivity {
         startActivity(intent);
         finish();
     }
+    public void goToActiveChallenges(View view) {
+        Intent intent = new Intent(this, ActiveChallengeActivity.class);
+        startActivity(intent);
+    }
 }

@@ -48,6 +48,7 @@
         android:layout_marginEnd="16dp"
         android:background="#00000000"
         android:contextClickable="true"
+        android:onClick="goToActiveChallenges"
         app:tint="#F6F1F1"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintTop_toTopOf="parent"
