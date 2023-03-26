@@ -47,9 +47,9 @@ public class ActiveChallengeActivity extends AppCompatActivity {
     public void resetTapped(View view)
     {
         AlertDialog.Builder resetAlert = new AlertDialog.Builder(this);
-        resetAlert.setTitle("Reset Timer");
-        resetAlert.setMessage("Are you sure you want to reset the timer?");
-        resetAlert.setPositiveButton("Reset", new DialogInterface.OnClickListener()
+        resetAlert.setTitle("Cancel Challenge");
+        resetAlert.setMessage("Are you sure you want to cancel the challenge?");
+        resetAlert.setPositiveButton("Yes", new DialogInterface.OnClickListener()
         {
             @Override
             public void onClick(DialogInterface dialogInterface, int i)
@@ -66,7 +66,7 @@ public class ActiveChallengeActivity extends AppCompatActivity {
             }
         });
 
-        resetAlert.setNeutralButton("Cancel", new DialogInterface.OnClickListener()
+        resetAlert.setNeutralButton("No", new DialogInterface.OnClickListener()
         {
             @Override
             public void onClick(DialogInterface dialogInterface, int i)
