@@ -6,6 +6,7 @@ import androidx.lifecycle.MutableLiveData;
 
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
+import com.google.firebase.firestore.DocumentSnapshot;
 import com.google.firebase.firestore.FirebaseFirestore;
 
 import java.util.List;
@@ -30,9 +31,14 @@ public class GroupRepository {
             }
             if (value != null) {
                 Log.i("GroupRepository", "Got group: " + value);
+                DocumentSnapshot document = value.getDocuments().get(0);
+                String groupId = document.getId(); // get the ID of the group
                 List<Group> groups = value.toObjects(Group.class);
                 if (groups.size() > 0) {
-                    group.setValue(groups.get(0));
+                    // add the id of the group to the group object
+                    Group groupObject = groups.get(0);
+                    groupObject.setGroupId(groupId);
+                    group.setValue(groupObject);
                 }
             }
         });

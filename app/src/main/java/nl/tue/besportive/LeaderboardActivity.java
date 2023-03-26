@@ -2,6 +2,7 @@ package nl.tue.besportive;
 
 import android.content.Intent;
 import android.os.Bundle;
+import android.os.Handler;
 import android.util.Log;
 import android.view.Menu;
 import android.view.MenuInflater;
@@ -9,10 +10,13 @@ import android.view.MenuItem;
 import android.view.View;
 import android.widget.TextView;
 import android.widget.Toast;
+import androidx.appcompat.app.AppCompatActivity;
+import androidx.lifecycle.ViewModelProvider;
 
 import androidx.appcompat.widget.Toolbar;
 
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.lifecycle.ViewModelProvider;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
@@ -21,6 +25,7 @@ import com.google.android.gms.tasks.OnFailureListener;
 import com.google.android.gms.tasks.OnSuccessListener;
 import com.google.android.gms.tasks.Task;
 import com.google.android.material.bottomnavigation.BottomNavigationView;
+import com.google.android.material.navigation.NavigationBarView;
 import com.google.firebase.firestore.CollectionReference;
 import com.google.firebase.firestore.DocumentReference;
 import com.google.firebase.firestore.DocumentSnapshot;
@@ -36,6 +41,7 @@ import nl.tue.besportive.databinding.ActivityLeaderboardBinding;
 
 public class LeaderboardActivity extends AppCompatActivity {
     private ActivityLeaderboardBinding binding;
+    public Map<String, Group.Member> membersList;
     FirebaseFirestore db;
 
     @Override
@@ -48,7 +54,7 @@ public class LeaderboardActivity extends AppCompatActivity {
         setSupportActionBar(toolbar);
         //getSupportActionBar().setDisplayHomeAsUpEnabled(true);
 
-
+        List<Member> items = new ArrayList<Member>();
         // Initialize and assign variable
         BottomNavigationView bottomNavigationView=findViewById(R.id.bottom_navigation);
 
@@ -79,62 +85,19 @@ public class LeaderboardActivity extends AppCompatActivity {
         //Recyclerview in order to make a list of members
         RecyclerView recyclerView = findViewById(R.id.recyclerview);
         // Hardcoding Data to be pulled
-        List<Member> items = new ArrayList<Member>();
         recyclerView.setLayoutManager(new LinearLayoutManager(this));
         MemberAdapter memberAdapter = new MemberAdapter(getApplicationContext(),items);
         recyclerView.setAdapter(memberAdapter);
+        // Bindings dont work yet dont know why;
+        // binding.setViewModel(viewModel);
+        // binding.setLifecycleOwner(this);
+        LeaderboardViewModel viewModel = new ViewModelProvider(this).get(LeaderboardViewModel.class);
+        new Handler().postDelayed(() -> {
 
-        //Fetching data from firestore
-        String groupID = "TResVKvwgVKs7rLgOcmL";
-        FirebaseFirestore.getInstance().collection("groups").document(groupID).get().addOnCompleteListener(new OnCompleteListener<DocumentSnapshot>() {
-            @Override
-            public void onComplete(@NonNull Task<DocumentSnapshot> task) {
-                if (task.isSuccessful()) {
-                    DocumentSnapshot document = task.getResult();
-                    if (document.exists()) {
-                        // Pull all data
-                        Map<String, Object> groupMap = document.getData();
-                        //System.out.println(groupMap);
-                            for (Map.Entry<String, Object> entry : groupMap.entrySet()) {
-                                //System.out.println(entry);
-                                //System.out.println(entry.getKey());
-                                // Get the members map
-                                if (entry.getKey().equals("members")) {
-                                    // Store the value in a seperate map
-                                    Map<String, Object> membersMap = (Map<String, Object>) entry.getValue();
-                                    //System.out.println(membersMap);
-                                    //Log.d("TAG", "These are members");
-                                    // loop through the members map to get the indivdual members
-                                    for (Map.Entry<String, Object> member : membersMap.entrySet()) {
-                                        //Log.d("TAG", "Memberinfo");
-                                        //.out.println(member);
-                                        //System.out.println(member.getValue());
-                                        //System.out.println(member.getValue().getClass());
-                                        Map<String, Object> memberAttributes = (Map<String, Object>) member.getValue();
-                                        //System.out.println(memberAttributes.get("points").getClass());
-                                        String name = (String) memberAttributes.get("name");
-                                        //int points = (int) memberAttributes.get("points");
-                                        String email = (String) memberAttributes.get("email");
-                                        String photoUrl = (String) memberAttributes.get("photoUrl");
-                                        items.add(new Member(name,email,R.drawable.a, 10));
-                                        System.out.println(items);
-
-                                    }
-                                }
-                                memberAdapter.notifyDataSetChanged();
-                            }
-                    } else {
-                        Log.d("TAG", "No such document");
-                    }
-                } else {
-                    Log.d("TAG", "get failed with ", task.getException());
-                }
-            }
-        });
-
-
-
-
+            viewModel.getMemberItems(viewModel.getGroup()).observe(this, members -> {
+                memberAdapter.setMembers(viewModel.getMemberItems(viewModel.getGroup()).getValue());
+            });
+        }, 2000); // 2-second delay
 
 
         // This function is from this https://www.littlerobots.nl/blog/Handle-Android-RecyclerView-Clicks/, this makes it easy to access a row in the list
@@ -142,7 +105,10 @@ public class LeaderboardActivity extends AppCompatActivity {
         ItemClickSupport.addTo(recyclerView).setOnItemClickListener(new ItemClickSupport.OnItemClickListener() {
             @Override
             public void onItemClicked(RecyclerView recyclerView, int position, View view) {
+                System.out.println(viewModel.getGroup().getValue().getGroupId());
                 Intent intent = new Intent(view.getContext(), MemberOverviewActivity.class);
+                intent.putExtra("userId", memberAdapter.items.get(position).getUserId());
+                intent.putExtra("groupId", viewModel.getGroup().getValue().getGroupId());
                 startActivity(intent);
                 finish();
             }

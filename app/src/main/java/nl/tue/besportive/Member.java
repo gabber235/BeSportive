@@ -8,14 +8,24 @@ public class Member {
     int image;
 
     int points;
+    String userId;
 
-
-    public Member(String name, String email, int image, int points) {
+    public Member(String name, String email, int image, int points, String userId) {
         this.name = name;
         this.email = email;
         this.image = image;
         this.points = points;
+        this.userId = userId;
     }
+
+    public String getUserId() {
+        return userId;
+    }
+
+    public void setUserId(String userId) {
+        this.userId = userId;
+    }
+
     public int getPoints(){
         return points;
     }

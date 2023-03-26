@@ -31,6 +31,10 @@ public class MemberAdapter extends RecyclerView.Adapter<MyViewHolder>{
         holder.imageView.setImageResource(items.get(position).getImage());
         holder.pointsView.setText(String.valueOf(items.get(position).getPoints()));
     }
+    public void setMembers(List<Member> members) {
+        this.items = members;
+        notifyDataSetChanged();
+    }
 
     @Override
     public int getItemCount() {

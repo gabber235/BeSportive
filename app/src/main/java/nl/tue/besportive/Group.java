@@ -7,6 +7,7 @@ public class Group {
     private String admin;
     private String code;
     private Map<String, Member> members;
+    private String groupId;
 
     static class Member {
         private String name;
@@ -33,6 +34,14 @@ public class Group {
     }
 
     public Group() {
+    }
+
+    public String getGroupId() {
+        return groupId;
+    }
+
+    public void setGroupId(String groupId) {
+        this.groupId = groupId;
     }
 
     public String getName() {
