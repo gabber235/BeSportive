@@ -34,4 +34,5 @@
     <string name="joinCreateGroup_code_placeholder">Code...</string>
     <string name="joinCreateGroup_buttons_join">Join</string>
     <string name="joinCreateGroup_buttons_create">Create Group</string>
+    <string name="goToProfilePage">go to Profile Page</string>
 </resources>

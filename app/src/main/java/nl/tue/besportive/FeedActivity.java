@@ -16,7 +16,10 @@ public class FeedActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         binding = ActivityFeedBinding.inflate(getLayoutInflater());
         setContentView(binding.getRoot());
+
+        binding.button2.setOnClickListener(this::Profile);
     }
+
     private void leaderboard(View view) {
         startLeaderboardActivity();
     }
@@ -40,6 +43,8 @@ public class FeedActivity extends AppCompatActivity {
     private void Profile(View view) {
         startProfileActivity();
     }
+
+
     private void startConfigureChallengesActivity() {
         Intent intent = new Intent(this, ConfigureChallengesActivity.class);
         startActivity(intent);
@@ -75,4 +80,17 @@ public class FeedActivity extends AppCompatActivity {
         startActivity(intent);
         finish();
     }
+
+
+    public void feed(View view) {
+        startFeedActivity();
+    }
+
+    //    I used public and you used private .....???
+    public void startFeedActivity() {
+        Intent intent = new Intent(this, FeedActivity.class);
+        startActivity(intent);
+        finish();
+    }
+
 }
