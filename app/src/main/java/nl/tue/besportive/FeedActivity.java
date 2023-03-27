@@ -32,6 +32,9 @@ public class FeedActivity extends AppCompatActivity {
         binding = ActivityFeedBinding.inflate(getLayoutInflater());
         setContentView(binding.getRoot());
 
+        Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar_feed);
+        setSupportActionBar(toolbar);
+
         // Initialize and assign variable
         BottomNavigationView bottomNavigationView=findViewById(R.id.bottom_navigation);
 
@@ -59,13 +62,7 @@ public class FeedActivity extends AppCompatActivity {
                 return false;
             }
         });
-
-
-
-
     }
-
-
         @Override
         public boolean onCreateOptionsMenu(Menu menu){
             MenuInflater inflater = getMenuInflater();

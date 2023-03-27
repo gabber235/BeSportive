@@ -115,19 +115,12 @@
         app:layout_constraintTop_toBottomOf="@+id/appBarLayout"
         app:srcCompat="@drawable/img_1" />
 
-    <com.google.android.material.appbar.AppBarLayout
-        android:id="@+id/settings_menu"
-        android:layout_width="0dp"
-        android:layout_height="60dp"
-        android:layout_alignParentTop="true"
-        app:itemBackground="@color/orange_500"
-        app:itemIconTint="@drawable/selector"
-        app:itemTextColor="@drawable/selector"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.0"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="@+id/appBarLayout"
-        app:menu="@menu/settings_menu" />
+    <include
+        android:id="@+id/toolbar_feed"
+        layout="@layout/toolbar_feed"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        app:layout_constraintTop_toTopOf="parent" />
 
 
     <com.google.android.material.bottomnavigation.BottomNavigationView
