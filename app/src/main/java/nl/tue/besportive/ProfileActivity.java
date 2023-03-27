@@ -5,8 +5,10 @@ import android.os.Bundle;
 import android.view.View;
 
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.lifecycle.ViewModelProvider;
 
 import nl.tue.besportive.databinding.ActivityProfileBinding;
+import nl.tue.besportive.models.ProfileViewModel;
 
 public class ProfileActivity extends AppCompatActivity {
     private ActivityProfileBinding binding;
@@ -15,23 +17,29 @@ public class ProfileActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         binding = ActivityProfileBinding.inflate(getLayoutInflater());
+
+        ProfileViewModel viewModel = new ViewModelProvider(this).get(ProfileViewModel.class);
+        binding.setViewModel(viewModel);
+        binding.setLifecycleOwner(this);
+
         setContentView(binding.getRoot());
+//returnButton?????
+        binding.returnButton.setOnClickListener(this::feed);
     }
-    private void feed(View view) {
+
+    
+    public void feed(View view) {
         startFeedActivity();
     }
-    private void createJoinGroup(View view) {
-        startCreateJoinGroupActivity();
-    }
-    private void startFeedActivity() {
+
+    //    I used public and you used private .....???
+    public void startFeedActivity() {
         Intent intent = new Intent(this, FeedActivity.class);
         startActivity(intent);
         finish();
     }
-    private void startCreateJoinGroupActivity() {
-        Intent intent = new Intent(this, CreateGroupActivity.class);
-        startActivity(intent);
-        finish();
-    }
-
 }
+
+
+
+

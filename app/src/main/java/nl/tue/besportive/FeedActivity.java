@@ -1,24 +1,14 @@
 package nl.tue.besportive;
-import androidx.appcompat.app.AppCompatActivity;
-import androidx.appcompat.widget.Toolbar;
-import android.os.Bundle;
-import android.provider.ContactsContract;
-import android.view.MenuInflater;
-import android.view.View;
-import android.widget.TextView;
-import android.app.Activity;
-import android.view.Menu;
-import android.widget.PopupMenu;
-import android.content.Intent;
-import android.os.Bundle;
-import android.view.MenuItem;
-import android.view.View;
+import javax.swing.text.View;
 
-import androidx.appcompat.app.AppCompatActivity;
-
-import com.google.android.material.appbar.AppBarLayout;
 import com.google.android.material.bottomnavigation.BottomNavigationView;
 
+import android.content.Intent;
+import android.os.Bundle;
+import android.view.Menu;
+import android.view.MenuInflater;
+import android.view.MenuItem;
+import androidx.appcompat.app.AppCompatActivity;
 import nl.tue.besportive.databinding.ActivityFeedBinding;
 
 public class FeedActivity extends AppCompatActivity {
@@ -32,6 +22,11 @@ public class FeedActivity extends AppCompatActivity {
         binding = ActivityFeedBinding.inflate(getLayoutInflater());
         setContentView(binding.getRoot());
 
+        binding.button2.setOnClickListener(this::Profile);
+    }
+
+    private void leaderboard(View view) {
+        startLeaderboardActivity();
         // Initialize and assign variable
         BottomNavigationView bottomNavigationView=findViewById(R.id.bottom_navigation);
 
@@ -102,3 +97,61 @@ public class FeedActivity extends AppCompatActivity {
 }
 
 
+    private void inviteMembers(View view) {
+        startInviteMembersActivity();
+    }
+
+    private void Profile(View view) {
+        startProfileActivity();
+    }
+
+
+    private void startConfigureChallengesActivity() {
+        Intent intent = new Intent(this, ConfigureChallengesActivity.class);
+        startActivity(intent);
+        finish();
+    }
+
+    private void startChallengesOverviewActivity() {
+        Intent intent = new Intent(this, ActiveChallengeActivity.class);
+        startActivity(intent);
+        finish();
+    }
+
+    private void startCreateJoinGroupActivity() {
+        Intent intent = new Intent(this, CreateGroupActivity.class);
+        startActivity(intent);
+        finish();
+    }
+
+    private void startProfileActivity() {
+        Intent intent = new Intent(this, ProfileActivity.class);
+        startActivity(intent);
+        finish();
+    }
+
+    private void startInviteMembersActivity() {
+        Intent intent = new Intent(this, InviteMembersActivity.class);
+        startActivity(intent);
+        finish();
+    }
+
+    private void startLeaderboardActivity() {
+        Intent intent = new Intent(this, LeaderboardActivity.class);
+        startActivity(intent);
+        finish();
+    }
+
+
+    public void feed(View view) {
+        startFeedActivity();
+    }
+
+    //    I used public and you used private .....???
+    public void startFeedActivity() {
+        Intent intent = new Intent(this, FeedActivity.class);
+        startActivity(intent);
+        finish();
+    }
+
+}

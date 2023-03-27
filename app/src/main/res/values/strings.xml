@@ -21,12 +21,12 @@
     <string name="memberoverview_email">john.doe@gmail.com</string>
     <string name="memberoverview_name">Emre Altan</string>
     <string name="memberoverview_completedchallenge">Completed Challenges</string>
-    <string name="profile_email">john.doe@gmail.com</string>
-    <string name="profile_name">Emre Altan</string>
+    <string name="profile_email">john.do@gmail.com</string>
+    <string name="profile_name">John Do</string>
     <string name="profile_name_header">Name</string>
     <string name="profile_statistics_header">Statistics</string>
-    <string name="profile_statistics_text">Number of challenges you have done so far: %d</string>
-    <string name="profile_statistics_time_spent_text">Total time spent on challenges: %d</string>
+    <string name="profile_statistics_text">Number of challenges you have done so far:</string>
+    <string name="profile_statistics_time_spent_text">Total time spent on challenges:</string>
     <string name="Leaderboard_placement">1.</string>
     <string name="invite_members_code">3NAB0</string>
     <string name="done_button_text">Done</string>
@@ -46,5 +46,5 @@
     <string name="joinCreateGroup_code_placeholder">Code...</string>
     <string name="joinCreateGroup_buttons_join">Join</string>
     <string name="joinCreateGroup_buttons_create">Create Group</string>
-
+    <string name="goToProfilePage">go to Profile Page</string>
 </resources>
