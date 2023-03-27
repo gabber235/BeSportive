@@ -92,12 +92,9 @@ public class LeaderboardActivity extends AppCompatActivity {
         // binding.setViewModel(viewModel);
         // binding.setLifecycleOwner(this);
         LeaderboardViewModel viewModel = new ViewModelProvider(this).get(LeaderboardViewModel.class);
-        new Handler().postDelayed(() -> {
-
-            viewModel.getMemberItems(viewModel.getGroup()).observe(this, members -> {
-                memberAdapter.setMembers(viewModel.getMemberItems(viewModel.getGroup()).getValue());
-            });
-        }, 2000); // 2-second delay
+        viewModel.getMembersFromViewModel().observe(this, members -> {
+            memberAdapter.setMembers(viewModel.getMembersFromViewModel().getValue());
+        });
 
 
         // This function is from this https://www.littlerobots.nl/blog/Handle-Android-RecyclerView-Clicks/, this makes it easy to access a row in the list

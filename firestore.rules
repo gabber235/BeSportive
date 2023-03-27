@@ -18,6 +18,9 @@ service cloud.firestore {
                 allow read: if true
             }
       }
+      match /defaultChallenges/{defaultChallengeId}{
+        allow read: if true
+      }
     }
   }
 }

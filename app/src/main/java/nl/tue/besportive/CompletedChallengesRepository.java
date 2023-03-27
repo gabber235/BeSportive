@@ -12,6 +12,7 @@ import com.google.firebase.firestore.CollectionReference;
 import com.google.firebase.firestore.FirebaseFirestore;
 
 import java.util.List;
+import java.util.concurrent.atomic.AtomicInteger;
 
 public class CompletedChallengesRepository {
     private final MutableLiveData<List<CompletedChallenges>> completedChallenges = new MutableLiveData<>();
@@ -21,6 +22,9 @@ public class CompletedChallengesRepository {
         firestore = FirebaseFirestore.getInstance();
     }
 
+    public interface OnChallengeFetchedListener {
+        void onChallengeFetched(Challenges challenges);
+    }
     public MutableLiveData<List<CompletedChallenges>> getCompletedChallenges(String groupId, String uid) {
         Log.i("GroupRepository", "Getting CompletedChallenges");
         FirebaseUser user = FirebaseAuth.getInstance().getCurrentUser();
@@ -36,23 +40,26 @@ public class CompletedChallengesRepository {
                 System.out.println(value.getDocuments());
                 System.out.println(value.toObjects(CompletedChallenges.class));
                 List<CompletedChallenges> completedChallengesList = value.toObjects(CompletedChallenges.class);
+                AtomicInteger count = new AtomicInteger(0);
                 for (CompletedChallenges item: completedChallengesList){
-                    MutableLiveData<Challenges> SpecificChallengeObject = new MutableLiveData<Challenges>();
-                    specificChallenge = getChallengeInformation(groupId, item.getChallenge());
-                    System.out.println(specificChallenge);
-                    System.out.println("Inside handler");
-                    System.out.println(specificChallenge.getValue());
-
-                    //item.setName(specificChallenge.getValue().getName());
-
+                    getChallengeInformation(groupId, item.getChallenge(), new OnChallengeFetchedListener() {
+                        @Override
+                        public void onChallengeFetched(Challenges challenges) {
+                            System.out.println("Challenge name: " + challenges.getName());
+                            item.setName(challenges.getName());
+                            count.incrementAndGet();
+                            if (count.get() == completedChallengesList.size()) {
+                                completedChallenges.setValue(completedChallengesList);
+                            }
+                        }
+                    });
                 }
-                completedChallenges.setValue(completedChallengesList);
             }
         });
         System.out.println(completedChallenges.getValue());
         return completedChallenges;
     }
-    public MutableLiveData<Challenges> getChallengeInformation(String groupId, String challengeId){
+    public void getChallengeInformation(String groupId, String challengeId, OnChallengeFetchedListener listener){
         firestore.collection("groups").document(groupId).collection("challenges").document(challengeId).addSnapshotListener((value, error) -> {
             if (error != null) {
                 Log.e("GroupRepository", "Failed to get challenges", error);
@@ -61,12 +68,9 @@ public class CompletedChallengesRepository {
             if (value != null) {
                 Log.i("GroupRepository", "Found Challenge: " + value);
                 Challenges challenges = new Challenges(value.getLong("difficulty").intValue(), value.getBoolean("distanceBased"), value.getString("name"));
-                System.out.println("Inside of getChallengeInformation");
-                System.out.println(challenges.getName());
-                specificChallenge.setValue(challenges);
+                listener.onChallengeFetched(challenges);
             }
         });
-        return specificChallenge;
     }
 }
 
