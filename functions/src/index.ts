@@ -1,15 +1,38 @@
 import * as functions from "firebase-functions";
 import * as admin from "firebase-admin";
 import {FieldValue} from "@google-cloud/firestore";
+import {faker} from "@faker-js/faker";
 
 admin.initializeApp();
 
-export const onUserCreate = functions.auth.user().onCreate(async (user) => {
-  const userRef = admin.firestore().collection("users").doc(user.uid);
+// eslint-disable-next-line max-len
+export const onUserCreate = functions.auth.user().onCreate(async (callingUser) => {
+  const userRef = admin.firestore().collection("users").doc(callingUser.uid);
+
+  const user = await admin.auth().getUser(callingUser.uid);
+
+  const email = user.email;
+  let name = user.displayName;
+  let photoUrl = user.photoURL;
+
+
+  if (!name) {
+    name = faker.name.fullName();
+    await admin.auth().updateUser(user.uid, {
+      displayName: name,
+    });
+  }
+  if (!photoUrl) {
+    photoUrl = `https://api.multiavatar.com/${user.uid}.png`;
+    await admin.auth().updateUser(user.uid, {
+      photoURL: photoUrl,
+    });
+  }
+
   await userRef.set({
-    email: user.email,
-    name: user.displayName,
-    photoUrl: user.photoURL,
+    email: email,
+    name: name,
+    photoUrl: photoUrl,
     totalTime: 0,
     totalChallenges: 0,
   });
