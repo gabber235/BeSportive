@@ -23,6 +23,7 @@ public class FeedActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         binding = ActivityFeedBinding.inflate(getLayoutInflater());
         setContentView(binding.getRoot());
+        binding.configureChallengeButton.setOnClickListener(this::configureChallenges);
 
         // Initialize and assign variable
         BottomNavigationView bottomNavigationView=findViewById(R.id.bottom_navigation);
@@ -61,6 +62,14 @@ public class FeedActivity extends AppCompatActivity {
             Log.d("TAG", "Not logged in");
 
         }
+    }
+    private void configureChallenges(View view) {
+        startConfigureChallengesActivity();
+    }
+    private void startConfigureChallengesActivity() {
+        Intent intent = new Intent(this, ConfigureChallengesActivity.class);
+        startActivity(intent);
+        finish();
     }
 
 }
