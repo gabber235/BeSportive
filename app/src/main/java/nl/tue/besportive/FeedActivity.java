@@ -1,26 +1,34 @@
 package nl.tue.besportive;
-
+import androidx.appcompat.app.AppCompatActivity;
+import androidx.appcompat.widget.Toolbar;
+import android.os.Bundle;
+import android.provider.ContactsContract;
+import android.view.MenuInflater;
+import android.view.View;
+import android.widget.TextView;
 import android.app.Activity;
+import android.view.Menu;
+import android.widget.PopupMenu;
 import android.content.Intent;
 import android.os.Bundle;
-import android.util.Log;
 import android.view.MenuItem;
 import android.view.View;
 
 import androidx.appcompat.app.AppCompatActivity;
 
+import com.google.android.material.appbar.AppBarLayout;
 import com.google.android.material.bottomnavigation.BottomNavigationView;
-import com.google.firebase.auth.FirebaseAuth;
-import com.google.firebase.auth.FirebaseUser;
 
 import nl.tue.besportive.databinding.ActivityFeedBinding;
 
 public class FeedActivity extends AppCompatActivity {
+
     private ActivityFeedBinding binding;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+        setContentView(R.layout.activity_feed);
         binding = ActivityFeedBinding.inflate(getLayoutInflater());
         setContentView(binding.getRoot());
 
@@ -51,16 +59,48 @@ public class FeedActivity extends AppCompatActivity {
                 return false;
             }
         });
-        FirebaseUser user = FirebaseAuth.getInstance().getCurrentUser();
-        if (user != null) {
-            Log.d("TAG", "logged in");
-            // User is signed in
-            System.out.println(user.getUid());
-        } else {
-            // No user is signed in
-            Log.d("TAG", "Not logged in");
 
+
+
+
+    }
+
+
+        @Override
+        public boolean onCreateOptionsMenu(Menu menu){
+            MenuInflater inflater = getMenuInflater();
+            inflater.inflate(R.menu.settings_menu, menu);
+            return true;
         }
+
+        @Override
+        public boolean onOptionsItemSelected(MenuItem item) {
+            switch (item.getItemId()) {
+                case R.id.profile_button:
+                    startActivity(new Intent(getApplicationContext(), ProfileActivity.class));
+                    overridePendingTransition(0, 0);
+                    return true;
+                case R.id.create_group:
+                    startActivity(new Intent(getApplicationContext(), CreateGroupActivity.class));
+                    overridePendingTransition(0, 0);
+                    return true;
+                case R.id.configure_challenges:
+                    startActivity(new Intent(getApplicationContext(), ConfigureChallengesActivity.class));
+                    overridePendingTransition(0, 0);
+                    return true;
+            }
+            return super.onOptionsItemSelected(item);
+
+
+
+
+
+
+
+
+
     }
 
 }
+
+
