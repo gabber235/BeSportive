@@ -16,6 +16,8 @@ public class ConfigureChallengesActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         binding = ActivityConfigureChallengesBinding.inflate(getLayoutInflater());
         setContentView(binding.getRoot());
+
+        binding.doneButton.setOnClickListener(this::inviteMembers);
     }
     private void inviteMembers(View view) {
         startInviteMembersActivity();
