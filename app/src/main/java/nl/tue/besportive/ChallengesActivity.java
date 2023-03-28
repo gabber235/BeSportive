@@ -1,5 +1,7 @@
 package nl.tue.besportive;
 
+import android.annotation.SuppressLint;
+import android.app.ProgressDialog;
 import android.content.Intent;
 import android.os.Bundle;
 import android.view.MenuItem;
@@ -12,6 +14,7 @@ import android.view.View;
 import android.widget.Button;
 import android.widget.Toast;
 
+import androidx.annotation.Nullable;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
@@ -22,6 +25,12 @@ import java.util.List;
 import androidx.appcompat.app.AppCompatActivity;
 
 import com.google.android.material.bottomnavigation.BottomNavigationView;
+import com.google.firebase.firestore.DocumentChange;
+import com.google.firebase.firestore.EventListener;
+import com.google.firebase.firestore.FirebaseFirestore;
+import com.google.firebase.firestore.FirebaseFirestoreException;
+import com.google.firebase.firestore.Query;
+import com.google.firebase.firestore.QuerySnapshot;
 
 import nl.tue.besportive.databinding.ActivityChallengesBinding;
 
@@ -29,31 +38,34 @@ public class ChallengesActivity extends AppCompatActivity {
 
     private ActivityChallengesBinding binding;
     List<Challenges> challengesList = new ArrayList<Challenges>();
-    private RecyclerView recyclerView;
+    RecyclerView recyclerView;
     private RecyclerView.Adapter mAdapter;
     private RecyclerView.LayoutManager layoutManager;
 
-    Button bt_gotoactivech;
+    FirebaseFirestore db;
 
+    Button ib_gotoactivechallenges;
+
+    // Progress Dialog can be added to
 
     private static final String TAG = "Challenges App";
+    @SuppressLint("WrongViewCast")
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         binding = ActivityChallengesBinding.inflate(getLayoutInflater());
         setContentView(binding.getRoot());
-        fillChallengesList();
+        //fillChallengesList();
         Log.d(TAG, "onCreate:"+ challengesList.toString());
         Toast.makeText(this,"Challenges Count =" + challengesList.size(), Toast.LENGTH_LONG).show();
 
-        bt_gotoactivech = findViewById(R.id.bt_gotoactivech);
-        bt_gotoactivech.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                Intent intent = new Intent(ChallengesActivity.this ,ActiveChallengeActivity.class);
-                startActivity(intent);
-            }
-        });
+        //FIREBASE PART
+        db = FirebaseFirestore.getInstance();
+        //challengesList = new ArrayList<Challenges>();
+
+
+
+
 
         RecyclerView recyclerView = findViewById(R.id.ly_challengeslist);
         if (recyclerView != null) {
@@ -96,14 +108,49 @@ public class ChallengesActivity extends AppCompatActivity {
             }
         });
 
+//        ItemClickSupport.addTo(mAdapter).setOnItemClickListener(new ItemClickSupport.OnItemClickListener() {
+//            @Override
+//            public void onItemClicked(RecyclerView recyclerView, int position, View view) {
+//                System.out.println(viewModel.getGroup().getValue().getGroupId());
+//                Intent intent = new Intent(view.getContext(), ActiveChallengeActivity.class);
+//               // intent.putExtra("userId", mAdapter.items.get(position).getUserId());
+//             //   intent.putExtra("groupId", mAdapter.getGroup().getValue().getGroupId());
+//                startActivity(intent);
+//                finish();
+//            }
+//        });
+
+        EventChangeListener();
+
+
+
 
     }
-    private void fillChallengesList() {
-        Challenges c1  = new Challenges(0, "Run 5 km");
-        Challenges c2  = new Challenges(1, "Run 10km");
-        Challenges c3  = new Challenges(2, "100 push ups");
-        challengesList.addAll(Arrays.asList( new Challenges[]{c1,c2,c3}));
+
+    private void EventChangeListener() {
+
+        db.collection("defaultChallenges").orderBy("difficulty", Query.Direction.ASCENDING)
+                .addSnapshotListener(new EventListener<QuerySnapshot>() {
+                    @Override
+                    public void onEvent(@Nullable QuerySnapshot value, @Nullable FirebaseFirestoreException error) {
+
+                        if(error != null){
+                            Log.e("firestore error", error.getMessage());
+                            return ;
+                        }
+                        for (DocumentChange dc : value.getDocumentChanges()){
+
+                            if(dc.getType() == DocumentChange.Type.ADDED){
+
+                                challengesList.add(dc.getDocument().toObject(Challenges.class));
+                            }
+                            mAdapter.notifyDataSetChanged();
+                        }
+
+                    }
+                });
     }
+
     private void leaderboard(View view) {
         startLeaderboardActivity();
     }

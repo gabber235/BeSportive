@@ -97,13 +97,4 @@
         app:layout_constraintTop_toBottomOf="@+id/textView21"
         app:layout_constraintVertical_bias="1.0" />
 
-    <Button
-        android:id="@+id/bt_gotoactivech"
-        android:layout_width="43dp"
-        android:layout_height="25dp"
-        android:layout_marginTop="22dp"
-        android:layout_marginEnd="42dp"
-        android:text="Button"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/ib_confchallenges" />
 </androidx.constraintlayout.widget.ConstraintLayout>

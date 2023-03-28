@@ -2,6 +2,7 @@ package nl.tue.besportive;
 
 import android.content.Context;
 import android.graphics.Color;
+import android.os.Bundle;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -62,6 +63,7 @@ public class RecycleViewAdapter extends RecyclerView.Adapter<RecycleViewAdapter.
     public int getItemCount() {
         return challengesList.size();
     }
+
 
     public class MyViewHolder extends RecyclerView.ViewHolder {
         ImageButton ib_gotoactivechallenges;

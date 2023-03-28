@@ -4,6 +4,9 @@ public class Challenges {
     private int difficulty;
     private String name;
 
+    public Challenges(){
+
+    }
     public Challenges(int difficulty, String name) {
         this.difficulty = difficulty;
         this.name = name;
