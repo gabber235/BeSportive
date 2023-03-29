@@ -18,9 +18,12 @@ public class RecycleViewAdapter extends RecyclerView.Adapter<RecycleViewAdapter.
 
     List<Challenges> challengesList;
     Context context;
+    private RecycleViewClickListener listener;
 
-    public RecycleViewAdapter(List<Challenges> challengesList) {
+
+    public RecycleViewAdapter(List<Challenges> challengesList,RecycleViewClickListener listener) {
         this.challengesList = challengesList;
+        this.listener =listener;
         this.context = context;
     }
 
@@ -65,16 +68,29 @@ public class RecycleViewAdapter extends RecyclerView.Adapter<RecycleViewAdapter.
     }
 
 
-    public class MyViewHolder extends RecyclerView.ViewHolder {
+    public class MyViewHolder extends RecyclerView.ViewHolder implements View.OnClickListener{
         ImageButton ib_gotoactivechallenges;
         TextView  tv_ChallengeName;
         TextView tv_ChDifficulty;
 
-        public MyViewHolder(@NonNull View itemView) {
-            super(itemView);
-            ib_gotoactivechallenges =itemView.findViewById(R.id.ib_gotoactivechallenges);
-            tv_ChallengeName= itemView.findViewById(R.id.tv_challengeName);
-            tv_ChDifficulty=itemView.findViewById(R.id.tv_challengeDifficulty);
+
+        public MyViewHolder(@NonNull View view) {
+            super(view);
+            ib_gotoactivechallenges =view.findViewById(R.id.ib_gotoactivechallenges);
+            tv_ChallengeName= view.findViewById(R.id.tv_challengeName);
+            tv_ChDifficulty=view.findViewById(R.id.tv_challengeDifficulty);
+
+            view.setOnClickListener(this);
         }
+
+        @Override
+        public void onClick(View view) {
+            listener.onClick(view,getAdapterPosition());
+        }
+    }
+
+    public interface RecycleViewClickListener{
+        void onClick(View v,int position);
+
     }
 }

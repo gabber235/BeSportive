@@ -12,6 +12,7 @@ import android.os.Bundle;
 import android.util.Log;
 import android.view.View;
 import android.widget.Button;
+import android.widget.TextView;
 import android.widget.Toast;
 
 import androidx.annotation.Nullable;
@@ -25,6 +26,7 @@ import java.util.List;
 import androidx.appcompat.app.AppCompatActivity;
 
 import com.google.android.material.bottomnavigation.BottomNavigationView;
+import com.google.firebase.StartupTime;
 import com.google.firebase.firestore.DocumentChange;
 import com.google.firebase.firestore.EventListener;
 import com.google.firebase.firestore.FirebaseFirestore;
@@ -42,11 +44,9 @@ public class ChallengesActivity extends AppCompatActivity {
     private RecyclerView.Adapter mAdapter;
     private RecyclerView.LayoutManager layoutManager;
 
+    private RecycleViewAdapter.RecycleViewClickListener listener;
+
     FirebaseFirestore db;
-
-    Button ib_gotoactivechallenges;
-
-    // Progress Dialog can be added to
 
     private static final String TAG = "Challenges App";
     @SuppressLint("WrongViewCast")
@@ -61,12 +61,11 @@ public class ChallengesActivity extends AppCompatActivity {
 
         //FIREBASE PART
         db = FirebaseFirestore.getInstance();
-        //challengesList = new ArrayList<Challenges>();
+        challengesList = new ArrayList<Challenges>();
 
 
 
-
-
+        setOnClickListener();
         RecyclerView recyclerView = findViewById(R.id.ly_challengeslist);
         if (recyclerView != null) {
             recyclerView.setHasFixedSize(true);
@@ -78,7 +77,7 @@ public class ChallengesActivity extends AppCompatActivity {
         recyclerView.setLayoutManager(layoutManager);
 
 
-        mAdapter = new RecycleViewAdapter(challengesList);
+        mAdapter = new RecycleViewAdapter(challengesList, listener);
         recyclerView.setAdapter(mAdapter);
         // Initialize and assign variable
         BottomNavigationView bottomNavigationView=findViewById(R.id.bottom_navigation);
@@ -108,23 +107,22 @@ public class ChallengesActivity extends AppCompatActivity {
             }
         });
 
-//        ItemClickSupport.addTo(mAdapter).setOnItemClickListener(new ItemClickSupport.OnItemClickListener() {
-//            @Override
-//            public void onItemClicked(RecyclerView recyclerView, int position, View view) {
-//                System.out.println(viewModel.getGroup().getValue().getGroupId());
-//                Intent intent = new Intent(view.getContext(), ActiveChallengeActivity.class);
-//               // intent.putExtra("userId", mAdapter.items.get(position).getUserId());
-//             //   intent.putExtra("groupId", mAdapter.getGroup().getValue().getGroupId());
-//                startActivity(intent);
-//                finish();
-//            }
-//        });
-
         EventChangeListener();
 
 
 
 
+    }
+
+    private void setOnClickListener() {
+        listener = new RecycleViewAdapter.RecycleViewClickListener() {
+            @Override
+            public void onClick(View v, int position) {
+                Intent intent= new Intent(getApplicationContext(),ActiveChallengeActivity.class);
+                intent.putExtra("name",challengesList.get(position).getName());
+                startActivity(intent);
+            }
+        };
     }
 
     private void EventChangeListener() {
@@ -180,8 +178,10 @@ public class ChallengesActivity extends AppCompatActivity {
         startActivity(intent);
         finish();
     }
-    public void goToActiveChallenges(View view) {
+    public void goToActiveChallenges(View view, int position) {
         Intent intent = new Intent(this, ActiveChallengeActivity.class);
+        intent.putExtra("name",challengesList.get(position).getName());
+
         startActivity(intent);
     }
 }

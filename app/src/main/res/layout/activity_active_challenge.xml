@@ -34,7 +34,7 @@
         app:layout_constraintTop_toTopOf="parent" />
 
     <TextView
-        android:id="@+id/textView8"
+        android:id="@+id/activeChallengedisplay"
         android:layout_width="300dp"
         android:layout_height="39dp"
         android:layout_marginStart="50dp"
@@ -64,7 +64,7 @@
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.484"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/textView8" />
+        app:layout_constraintTop_toBottomOf="@+id/activeChallengedisplay" />
 
     <TextView
         android:id="@+id/tv_challengeDifficulty"

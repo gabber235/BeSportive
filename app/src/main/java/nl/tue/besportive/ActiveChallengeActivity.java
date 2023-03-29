@@ -3,11 +3,13 @@ package nl.tue.besportive;
 import android.content.DialogInterface;
 import android.content.Intent;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.View;
 import android.widget.Button;
 import android.widget.TextView;
 
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.constraintlayout.motion.widget.Debug;
 import androidx.core.content.ContextCompat;
 import androidx.appcompat.app.AlertDialog;
 
@@ -29,6 +31,8 @@ public class ActiveChallengeActivity extends AppCompatActivity {
     TimerTask timerTask;
     Double time = 0.0;
 
+    TextView activeChallengedisplay;
+
     boolean timerStarted = false;
 
     @Override
@@ -42,6 +46,16 @@ public class ActiveChallengeActivity extends AppCompatActivity {
 
         timer = new Timer();
 
+        activeChallengedisplay = (TextView) findViewById(R.id.activeChallengedisplay);
+
+        String name ="Challenge Not Set";
+        Bundle extras =  getIntent().getExtras();
+
+        if (extras != null){
+            name = extras.getString("name");
+
+        }
+        activeChallengedisplay.setText(name);
     }
 
     public void resetTapped(View view)
