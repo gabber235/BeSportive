@@ -1,29 +1,32 @@
 package nl.tue.besportive;
-
-import android.app.Activity;
-import android.content.Intent;
-import android.os.Bundle;
-import android.util.Log;
-import android.view.MenuItem;
-import android.view.View;
-
-import androidx.appcompat.app.AppCompatActivity;
+import javax.swing.text.View;
 
 import com.google.android.material.bottomnavigation.BottomNavigationView;
-import com.google.firebase.auth.FirebaseAuth;
-import com.google.firebase.auth.FirebaseUser;
 
+import android.content.Intent;
+import android.os.Bundle;
+import android.view.Menu;
+import android.view.MenuInflater;
+import android.view.MenuItem;
+import androidx.appcompat.app.AppCompatActivity;
 import nl.tue.besportive.databinding.ActivityFeedBinding;
 
 public class FeedActivity extends AppCompatActivity {
+
     private ActivityFeedBinding binding;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+        setContentView(R.layout.activity_feed);
         binding = ActivityFeedBinding.inflate(getLayoutInflater());
         setContentView(binding.getRoot());
 
+        binding.button2.setOnClickListener(this::Profile);
+    }
+
+    private void leaderboard(View view) {
+        startLeaderboardActivity();
         // Initialize and assign variable
         BottomNavigationView bottomNavigationView=findViewById(R.id.bottom_navigation);
 
@@ -34,9 +37,7 @@ public class FeedActivity extends AppCompatActivity {
         bottomNavigationView.setOnItemSelectedListener(new BottomNavigationView.OnItemSelectedListener() {
             @Override
             public boolean onNavigationItemSelected(MenuItem item) {
-
-                switch(item.getItemId())
-                {
+                switch(item.getItemId()) {
                     case R.id.challenges:
                         startActivity(new Intent(getApplicationContext(),ChallengesActivity.class));
                         overridePendingTransition(0,0);
@@ -51,16 +52,106 @@ public class FeedActivity extends AppCompatActivity {
                 return false;
             }
         });
-        FirebaseUser user = FirebaseAuth.getInstance().getCurrentUser();
-        if (user != null) {
-            Log.d("TAG", "logged in");
-            // User is signed in
-            System.out.println(user.getUid());
-        } else {
-            // No user is signed in
-            Log.d("TAG", "Not logged in");
 
+
+
+
+    }
+
+
+        @Override
+        public boolean onCreateOptionsMenu(Menu menu){
+            MenuInflater inflater = getMenuInflater();
+            inflater.inflate(R.menu.settings_menu, menu);
+            return true;
         }
+
+        @Override
+        public boolean onOptionsItemSelected(MenuItem item) {
+            switch (item.getItemId()) {
+                case R.id.profile_button:
+                    startActivity(new Intent(getApplicationContext(), ProfileActivity.class));
+                    overridePendingTransition(0, 0);
+                    return true;
+                case R.id.create_group:
+                    startActivity(new Intent(getApplicationContext(), CreateGroupActivity.class));
+                    overridePendingTransition(0, 0);
+                    return true;
+                case R.id.configure_challenges:
+                    startActivity(new Intent(getApplicationContext(), ConfigureChallengesActivity.class));
+                    overridePendingTransition(0, 0);
+                    return true;
+            }
+            return super.onOptionsItemSelected(item);
+
+
+
+
+
+
+
+
+
+    }
+
+}
+
+
+    private void inviteMembers(View view) {
+        startInviteMembersActivity();
+    }
+
+    private void Profile(View view) {
+        startProfileActivity();
+    }
+
+
+    private void startConfigureChallengesActivity() {
+        Intent intent = new Intent(this, ConfigureChallengesActivity.class);
+        startActivity(intent);
+        finish();
+    }
+
+    private void startChallengesOverviewActivity() {
+        Intent intent = new Intent(this, ActiveChallengeActivity.class);
+        startActivity(intent);
+        finish();
+    }
+
+    private void startCreateJoinGroupActivity() {
+        Intent intent = new Intent(this, CreateGroupActivity.class);
+        startActivity(intent);
+        finish();
+    }
+
+    private void startProfileActivity() {
+        Intent intent = new Intent(this, ProfileActivity.class);
+        startActivity(intent);
+        finish();
+    }
+
+    private void startInviteMembersActivity() {
+        Intent intent = new Intent(this, InviteMembersActivity.class);
+        startActivity(intent);
+        finish();
+    }
+
+    private void startLeaderboardActivity() {
+        Intent intent = new Intent(this, LeaderboardActivity.class);
+        startActivity(intent);
+        finish();
+    }
+
+
+    public void feed(View view) {
+        startFeedActivity();
+    }
+
+    //    I used public and you used private .....???
+    public void startFeedActivity() {
+        Intent intent = new Intent(this, FeedActivity.class);
+        startActivity(intent);
+        finish();
     }
 
 }
