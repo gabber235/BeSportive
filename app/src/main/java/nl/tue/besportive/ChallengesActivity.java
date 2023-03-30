@@ -66,6 +66,7 @@ public class ChallengesActivity extends AppCompatActivity {
 
 
         setOnClickListener();
+
         RecyclerView recyclerView = findViewById(R.id.ly_challengeslist);
         if (recyclerView != null) {
             recyclerView.setHasFixedSize(true);
