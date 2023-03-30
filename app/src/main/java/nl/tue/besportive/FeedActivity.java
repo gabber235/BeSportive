@@ -77,8 +77,8 @@ public class FeedActivity extends AppCompatActivity {
                     startActivity(new Intent(getApplicationContext(), ProfileActivity.class));
                     overridePendingTransition(0, 0);
                     return true;
-                case R.id.create_group:
-                    startActivity(new Intent(getApplicationContext(), CreateGroupActivity.class));
+                case R.id.invite_members:
+                    startActivity(new Intent(getApplicationContext(), InviteMembersActivity.class));
                     overridePendingTransition(0, 0);
                     return true;
                 case R.id.configure_challenges:

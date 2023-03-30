@@ -15,7 +15,7 @@
         app:showAsAction="always"/>
 
     <item
-        android:id="@+id/create_group"
+        android:id="@+id/invite_members"
         android:title="@string/item_1_menu_settings"
         app:showAsAction="never"/>
 
