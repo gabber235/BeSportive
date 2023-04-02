@@ -38,5 +38,9 @@
     <string name="feedHeaderText">Feed</string>
     <string name="go_to_member_text">Go to member</string>
     <string name="add_custom_challenge_button_description">Add Custom Challenge</string>
-
+    <string-array name="difficulty_options">
+        <item>Easy</item>
+        <item>Medium</item>
+        <item>Hard</item>
+    </string-array>
 </resources>

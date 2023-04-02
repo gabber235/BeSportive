@@ -4,6 +4,7 @@ public class Challenges {
     private int difficulty;
     private boolean distanceBased;
     private String name;
+    private String challengeId;
 
     public Challenges() {
     }
@@ -12,6 +13,13 @@ public class Challenges {
         this.difficulty = difficulty;
         this.distanceBased = distanceBased;
         this.name = name;
+    }
+    public String getChallengeId() {
+        return challengeId;
+    }
+
+    public void setChallengeId(String challengeId) {
+        this.challengeId = challengeId;
     }
 
     public int getDifficulty() {

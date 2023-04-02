@@ -47,7 +47,7 @@ public class MemberOverviewActivity extends AppCompatActivity {
             viewModel.getCompletedChallenges(groupId, userId).observe(this, completedChallenges -> {
                 completedChallengesAdapter.setCompletedChallenges(viewModel.getCompletedChallenges("TResVKvwgVKs7rLgOcmL", "1FnwF3IQkN9aho4WnMwTa4FCHF2i").getValue());
             });
-        }, 1000); // 2-second delay
+        }, 0); // 2-second delay
 
         // assigning ID of the toolbar to a variable
         Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar_member_overview);

@@ -16,7 +16,6 @@ public class CompletedChallengesViewHolder extends RecyclerView.ViewHolder {
         super(itemView);
         imageView = itemView.findViewById(R.id.profile_picture);
         nameView = itemView.findViewById(R.id.challenge_name);
-        descriptionView = itemView.findViewById(R.id.challenge_description);
         difficultyView = itemView.findViewById(R.id.challenge_difficulty);
         timeOfCompletionView = itemView.findViewById(R.id.challenge_time);
     }
