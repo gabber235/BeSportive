@@ -9,16 +9,18 @@
     android:background="?attr/colorPrimary">
 
     <ImageView
-        android:id="@+id/profile_picture"
-        android:layout_width="wrap_content"
-        android:layout_height="55dp"
+        android:id="@+id/profile_button"
+        android:layout_width="45dp"
+        android:layout_height="45dp"
         android:layout_marginStart="4dp"
         android:layout_marginTop="4dp"
-        app:layout_constraintBottom_toBottomof="parent"
+        android:layout_gravity = "left"
+        android:contentDescription="@string/item_1_actionbar"
         app:layout_constraintStart_toStartOf="@+id/feed_toolbar"
-        app:layout_constraintTop_toTopOf="@+id/feed_toolbar"
-        app:layout_constraintTop_toTopof="parent"
         app:srcCompat="@drawable/img" />
+
+    <!--app:layout_constraintTop_toTopOf="@+id/feed_toolbar" -->
+    <!-- app:layout_constraintBottom_toBottomof="parent" -->
 
     <ImageView
         android:id="@+id/logo"
@@ -28,10 +30,11 @@
         android:layout_marginTop="4dp"
         android:layout_gravity="center"
         android:contentDescription="@string/item_2_actionbar"
-        app:layout_constraintBottom_toBottomof="parent"
         app:layout_constraintStart_toStartOf="@+id/feed_toolbar"
-        app:layout_constraintTop_toTopOf="@+id/feed_toolbar"
         app:srcCompat="@drawable/logo_2" />
+    <!--    app:layout_constraintTop_toTopOf="@+id/feed_toolbar" -->
+    <!--  app:layout_constraintBottom_toBottomof="parent" -->
+
 
 
 

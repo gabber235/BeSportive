@@ -2,23 +2,11 @@ package nl.tue.besportive;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.appcompat.widget.Toolbar;
 import android.os.Bundle;
-import android.provider.ContactsContract;
 import android.view.MenuInflater;
-import android.view.View;
-import android.widget.TextView;
-import android.app.Activity;
 import android.view.Menu;
-import android.widget.PopupMenu;
 import android.content.Intent;
-import android.os.Bundle;
 import android.view.MenuItem;
-import android.view.View;
-
-import androidx.appcompat.app.AppCompatActivity;
-
-import com.google.android.material.appbar.AppBarLayout;
 import com.google.android.material.bottomnavigation.BottomNavigationView;
-
 import nl.tue.besportive.databinding.ActivityFeedBinding;
 
 public class FeedActivity extends AppCompatActivity {
@@ -36,6 +24,9 @@ public class FeedActivity extends AppCompatActivity {
         setSupportActionBar(toolbar);
 
         getSupportActionBar().setTitle(""); //hide title
+        getSupportActionBar().setDisplayHomeAsUpEnabled(true);
+
+        toolbar.setNavigationIcon(R.drawable.img); //Replace back button with profile image.
 
 
         // Initialize and assign variable
@@ -75,11 +66,12 @@ public class FeedActivity extends AppCompatActivity {
 
         @Override
         public boolean onOptionsItemSelected(MenuItem item) {
+            if (item.getItemId() == android.R.id.home) {
+                startActivity(new Intent(getApplicationContext(), ProfileActivity.class));
+                overridePendingTransition(0, 0);
+                return true;
+            }
             switch (item.getItemId()) {
-                case R.id.profile_button:
-                    startActivity(new Intent(getApplicationContext(), ProfileActivity.class));
-                    overridePendingTransition(0, 0);
-                    return true;
                 case R.id.invite_members:
                     startActivity(new Intent(getApplicationContext(), InviteMembersActivity.class));
                     overridePendingTransition(0, 0);
@@ -91,15 +83,9 @@ public class FeedActivity extends AppCompatActivity {
             }
             return super.onOptionsItemSelected(item);
 
+        }
 
 
-
-
-
-
-
-
-    }
 
 }
 
