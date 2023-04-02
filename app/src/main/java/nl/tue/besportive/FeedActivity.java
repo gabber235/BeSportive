@@ -35,6 +35,9 @@ public class FeedActivity extends AppCompatActivity {
         Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar_feed);
         setSupportActionBar(toolbar);
 
+        getSupportActionBar().setTitle(""); //hide title
+
+
         // Initialize and assign variable
         BottomNavigationView bottomNavigationView=findViewById(R.id.bottom_navigation);
 
