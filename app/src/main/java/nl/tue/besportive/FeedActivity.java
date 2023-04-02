@@ -26,7 +26,7 @@ public class FeedActivity extends AppCompatActivity {
         getSupportActionBar().setTitle(""); //hide title
         getSupportActionBar().setDisplayHomeAsUpEnabled(true);
 
-        toolbar.setNavigationIcon(R.drawable.img); //Replace back button with profile image.
+        toolbar.setNavigationIcon(R.drawable.img_2); //Replace back button with profile image.
 
 
         // Initialize and assign variable

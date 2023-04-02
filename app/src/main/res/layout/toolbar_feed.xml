@@ -8,19 +8,6 @@
     android:minHeight="?attr/actionBarSize"
     android:background="?attr/colorPrimary">
 
-    <ImageView
-        android:id="@+id/profile_button"
-        android:layout_width="45dp"
-        android:layout_height="45dp"
-        android:layout_marginStart="4dp"
-        android:layout_marginTop="4dp"
-        android:layout_gravity = "left"
-        android:contentDescription="@string/item_1_actionbar"
-        app:layout_constraintStart_toStartOf="@+id/feed_toolbar"
-        app:srcCompat="@drawable/img" />
-
-    <!--app:layout_constraintTop_toTopOf="@+id/feed_toolbar" -->
-    <!-- app:layout_constraintBottom_toBottomof="parent" -->
 
     <ImageView
         android:id="@+id/logo"
@@ -32,8 +19,7 @@
         android:contentDescription="@string/item_2_actionbar"
         app:layout_constraintStart_toStartOf="@+id/feed_toolbar"
         app:srcCompat="@drawable/logo_2" />
-    <!--    app:layout_constraintTop_toTopOf="@+id/feed_toolbar" -->
-    <!--  app:layout_constraintBottom_toBottomof="parent" -->
+
 
 
 
