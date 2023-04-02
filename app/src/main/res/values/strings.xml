@@ -37,4 +37,7 @@
     <string name="done_button_text">Done</string>
     <string name="feedHeaderText">Feed</string>
     <string name="go_to_member_text">Go to member</string>
+    <string name="complete">Complete</string>
+    <string name="start">Start</string>
+    <string name="cancel_the_challenge">Cancel the Challenge</string>
 </resources>

@@ -4,12 +4,25 @@ public class Challenges {
     private int difficulty;
     private String name;
 
+    private String id;
     public Challenges(){
 
     }
-    public Challenges(int difficulty, String name) {
+    public Challenges(int difficulty, String name, String id) {
         this.difficulty = difficulty;
         this.name = name;
+        this.id =id;
+
+    }
+    public Challenges(String id) {
+        this.id = id;
+    }
+    public String getId() {
+        return id;
+    }
+
+    public void setId(String id) {
+        this.id = id;
     }
 
     @Override

@@ -119,11 +119,9 @@ public class ChallengesActivity extends AppCompatActivity {
         listener = new RecycleViewAdapter.RecycleViewClickListener() {
             @Override
             public void onClick(View v, int position) {
-                Intent intent= new Intent(getApplicationContext(),ActiveChallengeActivity.class);
-                intent.putExtra("name",challengesList.get(position).getName());
-                startActivity(intent);
+                goToActiveChallenges(v,position);
             }
-        };
+        }; // fetch the ids rather than
     }
 
     private void EventChangeListener() {
@@ -140,8 +138,9 @@ public class ChallengesActivity extends AppCompatActivity {
                         for (DocumentChange dc : value.getDocumentChanges()){
 
                             if(dc.getType() == DocumentChange.Type.ADDED){
-
-                                challengesList.add(dc.getDocument().toObject(Challenges.class));
+                                Challenges challenge = dc.getDocument().toObject(Challenges.class);
+                                challenge.setId(dc.getDocument().getId());
+                                challengesList.add(challenge);
                             }
                             mAdapter.notifyDataSetChanged();
                         }
@@ -181,8 +180,8 @@ public class ChallengesActivity extends AppCompatActivity {
     }
     public void goToActiveChallenges(View view, int position) {
         Intent intent = new Intent(this, ActiveChallengeActivity.class);
-        intent.putExtra("name",challengesList.get(position).getName());
-
+        intent.putExtra("challengeId",challengesList.get(position).getId());
+        //Log.e("CHALLENGESACTIVITY","Opening :"+challengesList.get(position).getId());
         startActivity(intent);
     }
 }

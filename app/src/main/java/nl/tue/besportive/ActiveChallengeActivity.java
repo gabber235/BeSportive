@@ -12,7 +12,6 @@ import android.widget.Toast;
 
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
-import androidx.constraintlayout.motion.widget.Debug;
 import androidx.core.content.ContextCompat;
 import androidx.appcompat.app.AlertDialog;
 
@@ -20,9 +19,11 @@ import com.google.android.gms.tasks.OnCompleteListener;
 import com.google.android.gms.tasks.OnFailureListener;
 import com.google.android.gms.tasks.OnSuccessListener;
 import com.google.android.gms.tasks.Task;
+import com.google.firebase.Timestamp;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.firestore.CollectionReference;
 import com.google.firebase.firestore.DocumentReference;
+import com.google.firebase.firestore.DocumentSnapshot;
 import com.google.firebase.firestore.FieldValue;
 import com.google.firebase.firestore.FirebaseFirestore;
 import com.google.firebase.firestore.Query;
@@ -33,7 +34,7 @@ import java.util.HashMap;
 import java.util.Map;
 import java.util.Timer;
 import java.util.TimerTask;
-
+import java.util.Date;
 
 import nl.tue.besportive.databinding.ActivityActiveChallengeBinding;
 
@@ -45,12 +46,14 @@ public class ActiveChallengeActivity extends AppCompatActivity {
     TextView timerText;
     Button start_button;
     Button cancel_button;
+
+    Button complete_button;
     Timer timer;
     TimerTask timerTask;
     Double time = 0.0;
     private static final String TAG = "ActiveChallengesActivity";
     TextView activeChallengedisplay;
-
+    TextView tv_challengedifficulty;
     private String activeChallengeDocId;
 
     boolean timerStarted = false;
@@ -64,38 +67,42 @@ public class ActiveChallengeActivity extends AppCompatActivity {
         timerText = (TextView) findViewById(R.id.timerText);
         start_button = (Button) findViewById(R.id.start_button);
         cancel_button = (Button) findViewById(R.id.cancel_button) ;
-
+        complete_button = (Button) findViewById(R.id.complete_button);
         timer = new Timer();
 
         activeChallengedisplay = (TextView) findViewById(R.id.activeChallengedisplay);
-
+        tv_challengedifficulty = (TextView) findViewById(R.id.tv_challengeDifficulty);
         String name ="Challenge Not Set";
+        String difficultytext= "Difficulty not set";
         Bundle extras =  getIntent().getExtras();
 
         if (extras != null){
             name = extras.getString("name");
+            difficultytext = extras.getString("difficulty");
 
         }
         if(timerStarted == false)
         {
             cancel_button.setVisibility(View.INVISIBLE);
+            complete_button.setVisibility(View.INVISIBLE);
 
         }
 
 
         activeChallengedisplay.setText(name);
+        tv_challengedifficulty.setText(difficultytext);
     }
 
 
 
-    public void startStopTapped(View view)
+    public void startTapped(View view)
     {
         if(timerStarted == false)
         {
             timerStarted = true;
-            setButtonUI("COMPLETE", R.color.white);
             cancel_button.setVisibility(View.VISIBLE);
-
+            complete_button.setVisibility(View.VISIBLE);
+            start_button.setVisibility(View.INVISIBLE);
             startTimer();
         }
         else
@@ -106,6 +113,7 @@ public class ActiveChallengeActivity extends AppCompatActivity {
             timerTask.cancel();
         }
     }
+
 
     private void setButtonUI(String start, int color)
     {
@@ -167,10 +175,14 @@ public class ActiveChallengeActivity extends AppCompatActivity {
         resetAlert.setPositiveButton("Yes", new DialogInterface.OnClickListener() {
             @Override
             public void onClick(DialogInterface dialogInterface, int i) {
+
+                complete_button.setVisibility(View.INVISIBLE);
+                start_button.setVisibility(View.VISIBLE);
+                cancel_button.setVisibility(View.INVISIBLE);
                 // Get a reference to the activeChallenges collection in Firestore
                 FirebaseFirestore db = FirebaseFirestore.getInstance();
-                CollectionReference activeChallengesRef = db.collection("activeChallenges");
-
+                CollectionReference activeChallengesRef = db.collection("group/{groupId}/completedChallenges");
+// define a group {group id TResVKvwgVKs7rLgOcmL}
                 // Delete the active challenge document
                 activeChallengesRef.document(activeChallengeDocId)
                         .delete()
@@ -206,6 +218,95 @@ public class ActiveChallengeActivity extends AppCompatActivity {
         resetAlert.show();
     }
 
+    public void completeChallengeTapped(View view) {
+        // Show the confirmation dialog
+        AlertDialog.Builder completeAlert = new AlertDialog.Builder(this);
+        completeAlert.setTitle("Complete Challenge");
+        completeAlert.setMessage("Are you sure you want to complete the challenge?");
+
+        completeAlert.setPositiveButton("Yes", new DialogInterface.OnClickListener() {
+            @Override
+            public void onClick(DialogInterface dialogInterface, int i) {
+                // Get the current user's ID
+                String userId = FirebaseAuth.getInstance().getCurrentUser().getUid();
+
+                // Get the challenge ID from the extras
+                Bundle extras = getIntent().getExtras();
+                String challengeId = extras.getString("challengeId");
+
+                // Check if challengeId is null or empty
+                if (TextUtils.isEmpty(challengeId)) {
+                    Toast.makeText(ActiveChallengeActivity.this, "Challenge ID is null or empty", Toast.LENGTH_SHORT).show();
+                    return;
+                }
+
+                // Get a reference to the activeChallenges collection in Firestore
+                FirebaseFirestore db = FirebaseFirestore.getInstance();
+                CollectionReference activeChallengesRef = db.collection("activeChallenges");
+
+                // Create a query to find the active challenge document with the specified challengeId and userId
+                Query query = activeChallengesRef.whereEqualTo("challengeId", challengeId)
+                        .whereEqualTo("userId", userId);
+
+                // Execute the query
+                query.get().addOnCompleteListener(new OnCompleteListener<QuerySnapshot>() {
+                    @Override
+                    public void onComplete(@NonNull Task<QuerySnapshot> task) {
+                        if (task.isSuccessful()) {
+                            // Check if the query returned any documents
+                            QuerySnapshot snapshot = task.getResult();
+                            if (snapshot != null && !snapshot.isEmpty()) {
+                                // Get the first document
+                                DocumentSnapshot document = snapshot.getDocuments().get(0);
+
+                                // Update the status to 1 and duration to the difference between the start and complete times
+                                Timestamp startTime = document.getTimestamp("startTime");
+                                Timestamp completeTime = new Timestamp(new Date());
+                                long durationInSeconds = (completeTime.getSeconds() - startTime.getSeconds());
+                                Map<String, Object> updateData = new HashMap<>();
+                                updateData.put("status", 1);
+                                updateData.put("duration", durationInSeconds);
+
+                                // Update the document in the activeChallenges collection
+                                activeChallengesRef.document(document.getId())
+                                        .update(updateData)
+                                        .addOnSuccessListener(new OnSuccessListener<Void>() {
+                                            @Override
+                                            public void onSuccess(Void aVoid) {
+                                                Log.d(TAG, "Active challenge document updated with status 1 and duration " + durationInSeconds);
+                                            }
+                                        })
+                                        .addOnFailureListener(new OnFailureListener() {
+                                            @Override
+                                            public void onFailure(@NonNull Exception e) {
+                                                Log.e(TAG, "Error updating active challenge document", e);
+                                            }
+                                        });
+                            } else {
+                                Log.d(TAG, "No active challenge documents found with challenge ID " + challengeId + " and user ID " + userId);
+                            }
+                        } else {
+                            Log.e(TAG, "Error querying active challenge documents", task.getException());
+                        }
+                    }
+                });
+
+                // Return to the main activity
+                Intent intent = new Intent(ActiveChallengeActivity.this, MainActivity.class);
+                startActivity(intent);
+                finish();
+            }
+        });
+
+        completeAlert.setNeutralButton("No", new DialogInterface.OnClickListener() {
+            @Override
+            public void onClick(DialogInterface dialogInterface, int i) {
+                // User clicked "No", do nothing
+            }
+        });
+
+        completeAlert.show();
+    }
     private String getTimerText()
     {
         int rounded = (int) Math.round(time);
