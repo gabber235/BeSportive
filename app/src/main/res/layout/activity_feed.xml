@@ -117,6 +117,14 @@
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toTopOf="parent" />
 
+            <ImageView
+                android:id="@+id/imageView"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                tools:layout_editor_absoluteX="144dp"
+                tools:layout_editor_absoluteY="285dp"
+                tools:srcCompat="@tools:sample/avatars" />
+
 
             <include
                 android:id="@+id/toolbar_feed"
@@ -143,6 +151,8 @@
                 app:menu="@menu/menu_navigation">
 
     </com.google.android.material.bottomnavigation.BottomNavigationView>
+
+
 
 
 </androidx.constraintlayout.widget.ConstraintLayout>
