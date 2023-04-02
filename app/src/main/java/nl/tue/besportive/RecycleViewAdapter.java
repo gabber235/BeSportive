@@ -2,7 +2,6 @@ package nl.tue.besportive;
 
 import android.content.Context;
 import android.graphics.Color;
-import android.os.Bundle;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -16,21 +15,21 @@ import java.util.List;
 
 public class RecycleViewAdapter extends RecyclerView.Adapter<RecycleViewAdapter.MyViewHolder> {
 
-    List<Challenges> challengesList;
+    List<Challenge> challengesList;
     Context context;
     private RecycleViewClickListener listener;
 
 
-    public RecycleViewAdapter(List<Challenges> challengesList,RecycleViewClickListener listener) {
+    public RecycleViewAdapter(List<Challenge> challengesList, RecycleViewClickListener listener) {
         this.challengesList = challengesList;
-        this.listener =listener;
+        this.listener = listener;
         this.context = context;
     }
 
     @NonNull
     @Override
     public MyViewHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
-        View view= LayoutInflater.from(parent.getContext()).inflate(R.layout.one_line_challenge,parent,false);
+        View view = LayoutInflater.from(parent.getContext()).inflate(R.layout.one_line_challenge, parent, false);
         MyViewHolder holder = new MyViewHolder((view));
         return holder;
     }
@@ -44,7 +43,7 @@ public class RecycleViewAdapter extends RecyclerView.Adapter<RecycleViewAdapter.
         int difficulty = challengesList.get(position).getDifficulty();
         String difficultyText = "";
         int difficultyColor = 0;
-        switch(difficulty) {
+        switch (difficulty) {
             case 0:
                 difficultyText = "Easy";
                 difficultyColor = Color.GREEN;
@@ -68,29 +67,29 @@ public class RecycleViewAdapter extends RecyclerView.Adapter<RecycleViewAdapter.
     }
 
 
-    public class MyViewHolder extends RecyclerView.ViewHolder implements View.OnClickListener{
+    public class MyViewHolder extends RecyclerView.ViewHolder implements View.OnClickListener {
         ImageButton ib_gotoactivechallenges;
-        TextView  tv_ChallengeName;
+        TextView tv_ChallengeName;
         TextView tv_ChDifficulty;
 
 
         public MyViewHolder(@NonNull View view) {
             super(view);
-            ib_gotoactivechallenges =view.findViewById(R.id.ib_gotoactivechallenges);
-            tv_ChallengeName= view.findViewById(R.id.tv_challengeName);
-            tv_ChDifficulty=view.findViewById(R.id.tv_challengeDifficulty);
+            ib_gotoactivechallenges = view.findViewById(R.id.ib_gotoactivechallenges);
+            tv_ChallengeName = view.findViewById(R.id.tv_challengeName);
+            tv_ChDifficulty = view.findViewById(R.id.tv_challengeDifficulty);
 
             view.setOnClickListener(this);
         }
 
         @Override
         public void onClick(View view) {
-            listener.onClick(view,getAdapterPosition());
+            listener.onClick(view, getAdapterPosition());
         }
     }
 
-    public interface RecycleViewClickListener{
-        void onClick(View v,int position);
+    public interface RecycleViewClickListener {
+        void onClick(View v, int position);
 
     }
 }
