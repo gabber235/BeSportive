@@ -35,6 +35,8 @@
     <string name="Leaderboard_placement">1.</string>
     <string name="invite_members_code">3NAB0</string>
     <string name="feed_header">Recent</string>
+    <string name="total_challenges_label">Total challenges done: %1$d</string>
+    <string name="total_time_label">Total time spent: %1$d</string>
 
     <!--Action
     Bar Strings -->
@@ -58,6 +60,7 @@
     <string name="cancel_the_challenge">Cancel the Challenge</string>
     <string name="startChallenge_header">Start Challenge</string>
     <string name="add_custom_challenge_button_description">Add Custom Challenge</string>
+    <string name="generate_image_button">Generate Image!</string>
     <string-array name="difficulty_options">
         <item>Easy</item>
         <item>Medium</item>
