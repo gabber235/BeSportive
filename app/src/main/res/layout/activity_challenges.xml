@@ -5,7 +5,7 @@
     android:id="@+id/b"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".ChallengesActivity">
+    tools:context=".activities.ChallengesActivity">
 
     <ImageView
         android:id="@+id/imageView"

@@ -5,7 +5,7 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:outlineAmbientShadowColor="#FFFFFF"
-    tools:context=".ActiveChallengeActivity">
+    tools:context=".activities.ActiveChallengeActivity">
 
     <ImageView
         android:id="@+id/logo"
@@ -93,8 +93,7 @@
         android:onClick="startTapped"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/timerText"
-        />
+        app:layout_constraintTop_toBottomOf="@+id/timerText" />
 
     <Button
         android:id="@+id/complete_button"

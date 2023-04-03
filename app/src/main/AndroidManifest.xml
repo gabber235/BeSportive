@@ -15,46 +15,46 @@
         android:theme="@style/Theme.BeSportive"
         tools:targetApi="31">
         <activity
-            android:name=".StartChallengeActivity"
+            android:name=".activities.StartChallengeActivity"
             android:exported="false" />
         <activity
-            android:name=".AddChallengeActivity"
+            android:name=".activities.AddChallengeActivity"
             android:exported="false" />
         <activity
-            android:name=".LeaderboardActivity"
+            android:name=".activities.LeaderboardActivity"
             android:exported="false" />
         <activity
-            android:name=".FeedActivity"
+            android:name=".activities.FeedActivity"
             android:exported="false" />
         <activity
-            android:name=".ProfileActivity"
+            android:name=".activities.ProfileActivity"
             android:exported="false" />
         <activity
-            android:name=".MemberOverviewActivity"
+            android:name=".activities.MemberOverviewActivity"
             android:exported="false" />
         <activity
-            android:name=".JoinCreateGroupActivity"
+            android:name=".activities.JoinCreateGroupActivity"
             android:exported="false" />
         <activity
-            android:name=".InviteMembersActivity"
+            android:name=".activities.InviteMembersActivity"
             android:exported="false" />
         <activity
-            android:name=".CreateGroupActivity"
+            android:name=".activities.CreateGroupActivity"
             android:exported="false" />
         <activity
-            android:name=".ConfigureChallengesActivity"
+            android:name=".models.ConfigureChallengesActivity"
             android:exported="false" />
         <activity
-            android:name=".ChallengesActivity"
+            android:name=".activities.ChallengesActivity"
             android:exported="false" />
         <activity
-            android:name=".ActiveChallengeActivity"
+            android:name=".activities.ActiveChallengeActivity"
             android:exported="false" />
         <activity
-            android:name=".OnboardingActivity"
+            android:name=".activities.OnboardingActivity"
             android:exported="false" />
         <activity
-            android:name=".MainActivity"
+            android:name=".activities.MainActivity"
             android:exported="true"
             android:theme="@style/AppTheme.NoActionBar">
             <intent-filter>

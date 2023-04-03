@@ -7,7 +7,7 @@ import androidx.lifecycle.LiveData;
 import androidx.lifecycle.ViewModel;
 import androidx.lifecycle.ViewModelProvider;
 
-import nl.tue.besportive.Challenge;
+import nl.tue.besportive.data.Challenge;
 import nl.tue.besportive.repositories.ChallengeRepository;
 
 public class StartChallengeViewModel extends ViewModel {

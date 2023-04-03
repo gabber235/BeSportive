@@ -5,8 +5,8 @@ import android.util.Log;
 import androidx.lifecycle.LiveData;
 import androidx.lifecycle.Transformations;
 
-import nl.tue.besportive.Challenge;
-import nl.tue.besportive.FirebaseDocumentLiveData;
+import nl.tue.besportive.data.Challenge;
+import nl.tue.besportive.utils.FirebaseDocumentLiveData;
 
 public class ChallengeRepository {
     private LiveData<Challenge> challenge;
@@ -17,10 +17,8 @@ public class ChallengeRepository {
             return challengeSnapshot;
         }
         String path = "groups/" + groupId + "/challenges/" + challengeId;
-        Log.d("ChallengeRepository", "Path: " + path);
-        challengeSnapshot = new FirebaseDocumentLiveData(path);
 
-        return challengeSnapshot;
+        return challengeSnapshot = new FirebaseDocumentLiveData(path);
     }
 
     public LiveData<Challenge> getLiveChallenge(String groupId, String challengeId) {
@@ -40,6 +38,7 @@ public class ChallengeRepository {
 
             Challenge challenge = input.toObject(Challenge.class);
             assert challenge != null;
+
             challenge.setId(input.getId());
             return challenge;
         });

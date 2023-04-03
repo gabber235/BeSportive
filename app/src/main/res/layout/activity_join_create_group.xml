@@ -9,13 +9,13 @@
 
         <variable
             name="viewModel"
-            type="nl.tue.besportive.JoinCreateGroupViewModel" />
+            type="nl.tue.besportive.models.JoinCreateGroupViewModel" />
     </data>
 
     <androidx.constraintlayout.widget.ConstraintLayout
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        tools:context=".JoinCreateGroupActivity">
+        tools:context=".activities.JoinCreateGroupActivity">
 
         <ImageView
             android:id="@+id/imageView2"
