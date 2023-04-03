@@ -7,15 +7,17 @@ import androidx.lifecycle.ViewModel;
 
 public class InviteMembersViewModel extends ViewModel {
     private LiveData<Group> group;
-    private GroupRepository groupRepository;
+    private final GroupRepository groupRepository;
 
     public InviteMembersViewModel() {
         groupRepository = new GroupRepository();
-        group = groupRepository.getLiveGroup();
     }
 
     public LiveData<Group> getGroup() {
-        return group;
+        if (group != null) {
+            return group;
+        }
+        return group = groupRepository.getLiveGroup();
     }
 
     public void done(Context context) {

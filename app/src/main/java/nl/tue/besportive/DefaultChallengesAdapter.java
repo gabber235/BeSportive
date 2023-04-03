@@ -10,7 +10,7 @@ import androidx.recyclerview.widget.RecyclerView;
 
 import java.util.List;
 
-public class DefaultChallengesAdapter extends RecyclerView.Adapter<DefaultChallengesViewHolder>{
+public class DefaultChallengesAdapter extends RecyclerView.Adapter<DefaultChallengesViewHolder> {
     Context context;
     List<Challenges> items;
     private final OnItemClickListener listener;
@@ -31,7 +31,7 @@ public class DefaultChallengesAdapter extends RecyclerView.Adapter<DefaultChalle
     @NonNull
     @Override
     public DefaultChallengesViewHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
-        return new DefaultChallengesViewHolder(LayoutInflater.from(context).inflate(R.layout.default_challenges_view,parent,false));
+        return new DefaultChallengesViewHolder(LayoutInflater.from(context).inflate(R.layout.default_challenges_view, parent, false));
     }
 
     @Override
@@ -41,11 +41,11 @@ public class DefaultChallengesAdapter extends RecyclerView.Adapter<DefaultChalle
         holder.bind(items.get(position), listener);
         // Color
         if (items.get(position).getDifficulty() == 0) {
-            holder.difficultyView.setTextColor(ContextCompat.getColor(context, R.color.colorEasy));
+            holder.difficultyView.setTextColor(ContextCompat.getColor(context, R.color.easy_green));
         } else if (items.get(position).getDifficulty() == 1) {
-            holder.difficultyView.setTextColor(ContextCompat.getColor(context, R.color.colorMedium));
+            holder.difficultyView.setTextColor(ContextCompat.getColor(context, R.color.medium_orange));
         } else if (items.get(position).getDifficulty() == 2) {
-            holder.difficultyView.setTextColor(ContextCompat.getColor(context, R.color.colorHard));
+            holder.difficultyView.setTextColor(ContextCompat.getColor(context, R.color.hard_red));
         }
     }
 
@@ -58,6 +58,7 @@ public class DefaultChallengesAdapter extends RecyclerView.Adapter<DefaultChalle
         this.items = ChallengesList;
         notifyDataSetChanged();
     }
+
     public String convertDifficulty(int difficulty) {
         switch (difficulty) {
             case 0:

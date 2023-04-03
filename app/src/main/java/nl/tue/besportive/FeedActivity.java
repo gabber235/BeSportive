@@ -1,16 +1,18 @@
 package nl.tue.besportive;
 
-import javax.swing.text.View;
-
-import com.apple.laf.AquaButtonBorder.Toolbar;
-import com.google.android.material.bottomnavigation.BottomNavigationView;
 
 import android.content.Intent;
 import android.os.Bundle;
 import android.view.Menu;
 import android.view.MenuInflater;
 import android.view.MenuItem;
+import android.view.View;
+
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.appcompat.widget.Toolbar;
+
+import com.google.android.material.bottomnavigation.BottomNavigationView;
+
 import nl.tue.besportive.databinding.ActivityFeedBinding;
 
 public class FeedActivity extends AppCompatActivity {

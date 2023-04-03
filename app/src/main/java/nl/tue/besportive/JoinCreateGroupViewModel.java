@@ -15,8 +15,8 @@ import java.util.Objects;
 import java.util.concurrent.TimeUnit;
 
 public class JoinCreateGroupViewModel extends ViewModel {
-    private MutableLiveData<String> code;
-    private MutableLiveData<Boolean> loading;
+    private final MutableLiveData<String> code;
+    private final MutableLiveData<Boolean> loading;
 
     public JoinCreateGroupViewModel() {
         code = new MutableLiveData<>();

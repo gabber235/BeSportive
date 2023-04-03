@@ -1,17 +1,20 @@
 package nl.tue.besportive;
+
 import android.content.Context;
 import android.view.LayoutInflater;
 import android.view.ViewGroup;
 
-import java.util.List;
-
 import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
 
+import java.util.List;
 
-public class MemberAdapter extends RecyclerView.Adapter<MyViewHolder>{
-    Context context;
-    List<Member> items;
+import nl.tue.besportive.Group.Member;
+
+
+public class MemberAdapter extends RecyclerView.Adapter<MyViewHolder> {
+    private Context context;
+    private List<Member> items;
 
     public MemberAdapter(Context context, List<Member> items) {
         this.context = context;
@@ -20,17 +23,23 @@ public class MemberAdapter extends RecyclerView.Adapter<MyViewHolder>{
 
     @NonNull
     @Override
-    public MyViewHolder onCreateViewHolder(@NonNull  ViewGroup parent, int viewType) {
-        return new MyViewHolder(LayoutInflater.from(context).inflate(R.layout.member_view,parent,false));
+    public MyViewHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
+        return new MyViewHolder(LayoutInflater.from(context).inflate(R.layout.member_view, parent, false));
+    }
+
+    public Member getMember(int position) {
+        return items.get(position);
     }
 
     @Override
-    public void onBindViewHolder(@NonNull  MyViewHolder holder, int position) {
-        holder.nameView.setText(items.get(position).getName());
-        holder.emailView.setText(items.get(position).getEmail());
-        holder.imageView.setImageResource(items.get(position).getImage());
-        holder.pointsView.setText(String.valueOf(items.get(position).getPoints()));
+    public void onBindViewHolder(@NonNull MyViewHolder holder, int position) {
+        Member member = getMember(position);
+        holder.nameView.setText(member.getName());
+//        holder.emailView.setText(items.get(position).getEmail());
+//        holder.imageView.setImageResource(items.get(position).getImage());
+        holder.pointsView.setText(String.valueOf(member.getPoints()));
     }
+
     public void setMembers(List<Member> members) {
         this.items = members;
         notifyDataSetChanged();

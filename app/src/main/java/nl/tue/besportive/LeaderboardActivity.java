@@ -2,46 +2,30 @@ package nl.tue.besportive;
 
 import android.content.Intent;
 import android.os.Bundle;
-import android.os.Handler;
-import android.util.Log;
 import android.view.Menu;
 import android.view.MenuInflater;
 import android.view.MenuItem;
 import android.view.View;
-import android.widget.TextView;
-import android.widget.Toast;
-import androidx.appcompat.app.AppCompatActivity;
-import androidx.lifecycle.ViewModelProvider;
 
+import androidx.appcompat.app.AppCompatActivity;
 import androidx.appcompat.widget.Toolbar;
-
-import androidx.appcompat.app.AppCompatActivity;
 import androidx.lifecycle.ViewModelProvider;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
-import com.google.android.gms.tasks.OnCompleteListener;
-import com.google.android.gms.tasks.OnFailureListener;
-import com.google.android.gms.tasks.OnSuccessListener;
-import com.google.android.gms.tasks.Task;
 import com.google.android.material.bottomnavigation.BottomNavigationView;
-import com.google.android.material.navigation.NavigationBarView;
-import com.google.firebase.firestore.CollectionReference;
-import com.google.firebase.firestore.DocumentReference;
-import com.google.firebase.firestore.DocumentSnapshot;
 import com.google.firebase.firestore.FirebaseFirestore;
-import com.google.firebase.firestore.QuerySnapshot;
 
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Map;
-import androidx.annotation.NonNull;
 
+import nl.tue.besportive.Group.Member;
 import nl.tue.besportive.databinding.ActivityLeaderboardBinding;
 
 public class LeaderboardActivity extends AppCompatActivity {
     private ActivityLeaderboardBinding binding;
-    public Map<String, Group.Member> membersList;
+    public Map<String, Member> membersList;
     FirebaseFirestore db;
 
     @Override
@@ -54,9 +38,9 @@ public class LeaderboardActivity extends AppCompatActivity {
         setSupportActionBar(toolbar);
         //getSupportActionBar().setDisplayHomeAsUpEnabled(true);
 
-        List<Member> items = new ArrayList<Member>();
+        List<Member> items = new ArrayList<>();
         // Initialize and assign variable
-        BottomNavigationView bottomNavigationView=findViewById(R.id.bottom_navigation);
+        BottomNavigationView bottomNavigationView = findViewById(R.id.bottom_navigation);
 
         // Set Home selected
         bottomNavigationView.setSelectedItemId(R.id.leaderboard);
@@ -66,17 +50,16 @@ public class LeaderboardActivity extends AppCompatActivity {
             @Override
             public boolean onNavigationItemSelected(MenuItem item) {
 
-                switch(item.getItemId())
-                {
+                switch (item.getItemId()) {
                     case R.id.challenges:
-                        startActivity(new Intent(getApplicationContext(),ChallengesActivity.class));
-                        overridePendingTransition(0,0);
+                        startActivity(new Intent(getApplicationContext(), ChallengesActivity.class));
+                        overridePendingTransition(0, 0);
                         return true;
                     case R.id.leaderboard:
                         return true;
                     case R.id.feed:
-                        startActivity(new Intent(getApplicationContext(),FeedActivity.class));
-                        overridePendingTransition(0,0);
+                        startActivity(new Intent(getApplicationContext(), FeedActivity.class));
+                        overridePendingTransition(0, 0);
                         return true;
                 }
                 return false;
@@ -86,7 +69,7 @@ public class LeaderboardActivity extends AppCompatActivity {
         RecyclerView recyclerView = findViewById(R.id.recyclerview);
         // Hardcoding Data to be pulled
         recyclerView.setLayoutManager(new LinearLayoutManager(this));
-        MemberAdapter memberAdapter = new MemberAdapter(getApplicationContext(),items);
+        MemberAdapter memberAdapter = new MemberAdapter(getApplicationContext(), items);
         recyclerView.setAdapter(memberAdapter);
         // Bindings dont work yet dont know why;
         // binding.setViewModel(viewModel);
@@ -102,10 +85,10 @@ public class LeaderboardActivity extends AppCompatActivity {
         ItemClickSupport.addTo(recyclerView).setOnItemClickListener(new ItemClickSupport.OnItemClickListener() {
             @Override
             public void onItemClicked(RecyclerView recyclerView, int position, View view) {
-                System.out.println(viewModel.getGroup().getValue().getGroupId());
+                System.out.println(viewModel.getGroup().getValue().getId());
                 Intent intent = new Intent(view.getContext(), MemberOverviewActivity.class);
-                intent.putExtra("userId", memberAdapter.items.get(position).getUserId());
-                intent.putExtra("groupId", viewModel.getGroup().getValue().getGroupId());
+                intent.putExtra("userId", memberAdapter.getMember(position).getId());
+                intent.putExtra("groupId", viewModel.getGroup().getValue().getId());
                 startActivity(intent);
                 finish();
             }
@@ -130,6 +113,7 @@ public class LeaderboardActivity extends AppCompatActivity {
     private void feed(View view) {
         startFeedActivity();
     }
+
     private void startFeedActivity() {
         Intent intent = new Intent(this, FeedActivity.class);
         startActivity(intent);
@@ -141,6 +125,7 @@ public class LeaderboardActivity extends AppCompatActivity {
         startActivity(intent);
         finish();
     }
+
     private void startChallengesOverviewActivity() {
         Intent intent = new Intent(this, ChallengesActivity.class);
         startActivity(intent);
