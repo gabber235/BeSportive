@@ -1,9 +1,28 @@
 <?xml version="1.0" encoding="utf-8"?>
 <androidx.appcompat.widget.Toolbar
     xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
     android:id="@+id/feed_toolbar"
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
     android:minHeight="?attr/actionBarSize"
-    android:background="?attr/colorPrimary"
-    />
+    android:background="?attr/colorPrimary">
+
+
+    <ImageView
+        android:id="@+id/logo"
+        android:layout_width="wrap_content"
+        android:layout_height="55dp"
+        android:layout_marginStart="4dp"
+        android:layout_marginTop="4dp"
+        android:layout_gravity="center"
+        android:contentDescription="@string/item_2_actionbar"
+        app:layout_constraintStart_toStartOf="@+id/feed_toolbar"
+        app:srcCompat="@drawable/logo_2" />
+
+
+
+
+
+
+</androidx.appcompat.widget.Toolbar>

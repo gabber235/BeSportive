@@ -2,7 +2,8 @@
     <string name="app_name">BeSportive</string>
     <!-- TODO: Remove or change this placeholder text -->
     <string name="hello_blank_fragment">Hello blank fragment</string>
-    <string name="create_group_info_text">Enter a name to create a group so you can start competing with your friends and family</string>
+    <string name="create_group_info_text">Enter a name to create a group so you can start competing
+        with your friends and family</string>
     <string name="create_group_header">Create Group</string>
     <string name="challenges_info_text">Go to active challenges by pressing the challenges below</string>
     <string name="challenges_header">Challenges</string>
@@ -11,12 +12,16 @@
     <string name="active_challenge_difficult_string">Easy</string>
     <string name="active_challenge_timer">08:36</string>
     <string name="configure_challenges_header">Challenges</string>
-    <string name="configure_challenges_info_text">Choose one of the default challenges below with the green plus or add a new challenge to your current challenge list on top.</string>
-    <string name="invite_members_info_text">Give this code to your friends and family to challenge them.</string>
+    <string name="configure_challenges_info_text">Choose one of the default challenges below with
+        the green plus or add a new challenge to your current challenge list on top.</string>
+    <string name="invite_members_info_text">Give this code to your friends and family to challenge
+        them.</string>
     <string name="invite_members_header">Invite Members</string>
     <string name="invite_members_subheader">Code</string>
-    <string name="joincreategroup_join_info_text">Write down the code you have recieved and start doing challenges!</string>
-    <string name="joincreategroup_create_info_text">Create a group to do challenges together and start your 2 week journey!</string>
+    <string name="joincreategroup_join_info_text">Write down the code you have recieved and start
+        doing challenges!</string>
+    <string name="joincreategroup_create_info_text">Create a group to do challenges together and
+        start your 2 week journey!</string>
     <string name="leaderboard_header">Leaderboard</string>
     <string name="memberoverview_email">john.doe@gmail.com</string>
     <string name="memberoverview_name">Emre Altan</string>
@@ -29,6 +34,19 @@
     <string name="profile_statistics_time_spent_text">Total time spent on challenges: %d</string>
     <string name="Leaderboard_placement">1.</string>
     <string name="invite_members_code">3NAB0</string>
+    <string name="done_button_text">Done</string>
+    <string name="feed_header">Recent</string>
+    <string name="go_to_member_text">Go to member</string>
+
+    <!--Action
+    Bar Strings -->
+    <string name="item_1_actionbar">Profile icon</string>
+    <string name="item_2_actionbar">Logo icon</string>
+
+    <string name="item_1_menu_settings">Invite Members</string>
+    <string name="item_2_menu_settings">Configure Challenges</string>
+    <!--  <string name="item_3_menu_settings">Leave Group</string> -->
+
     <string name="createGroup_inputField_placeholder">Name...</string>
     <string name="createGroup_button_text">Create Group</string>
     <string name="joinCreateGroup_code_placeholder">Code...</string>
