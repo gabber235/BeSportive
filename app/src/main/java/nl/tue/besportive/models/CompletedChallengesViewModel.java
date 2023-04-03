@@ -9,7 +9,6 @@ import nl.tue.besportive.data.CompletedChallenge;
 import nl.tue.besportive.repositories.CompletedChallengesRepository;
 
 public class CompletedChallengesViewModel extends ViewModel {
-    private LiveData<List<CompletedChallenge>> completedChallengesLiveData;
     private final CompletedChallengesRepository completedChallengesRepository;
 
 
@@ -18,9 +17,6 @@ public class CompletedChallengesViewModel extends ViewModel {
     }
 
     public LiveData<List<CompletedChallenge>> getCompletedChallenges(String userId) {
-        if (completedChallengesLiveData != null) {
-            return completedChallengesLiveData;
-        }
-        return completedChallengesLiveData = completedChallengesRepository.getCompletedChallenges(userId);
+        return completedChallengesRepository.getCompletedChallenges(userId);
     }
 }

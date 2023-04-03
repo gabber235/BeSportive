@@ -13,13 +13,13 @@ import com.google.firebase.firestore.QuerySnapshot;
 
 import java.util.Objects;
 
+import nl.tue.besportive.activities.ConfigureChallengesActivity;
 import nl.tue.besportive.activities.CreateGroupActivity;
 import nl.tue.besportive.activities.FeedActivity;
 import nl.tue.besportive.activities.InviteMembersActivity;
 import nl.tue.besportive.activities.JoinCreateGroupActivity;
 import nl.tue.besportive.activities.OnboardingActivity;
 import nl.tue.besportive.activities.StartChallengeActivity;
-import nl.tue.besportive.models.ConfigureChallengesActivity;
 
 public class Navigator {
     private static final String TAG = "Navigator";

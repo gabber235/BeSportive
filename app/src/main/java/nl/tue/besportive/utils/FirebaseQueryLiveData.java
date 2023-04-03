@@ -12,10 +12,10 @@ import com.google.firebase.firestore.QuerySnapshot;
 public class FirebaseQueryLiveData extends LiveData<QuerySnapshot> {
     public static final String TAG = "FirebaseQueryLiveData";
 
-    private Query query;
+    private final Query query;
     private final FirebaseEventListener listener = new FirebaseEventListener();
     private ListenerRegistration listenerRegistration;
-    private Handler handler = new Handler();
+    private final Handler handler = new Handler();
 
     private boolean listenerRemovePending = false;
     private final Runnable removeListener = () -> {

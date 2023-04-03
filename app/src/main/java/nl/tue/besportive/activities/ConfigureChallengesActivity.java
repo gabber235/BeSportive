@@ -1,4 +1,4 @@
-package nl.tue.besportive.models;
+package nl.tue.besportive.activities;
 
 import android.content.Intent;
 import android.os.Bundle;
@@ -21,14 +21,16 @@ import java.util.List;
 import java.util.Map;
 
 import nl.tue.besportive.R;
-import nl.tue.besportive.activities.AddChallengeActivity;
 import nl.tue.besportive.adapters.ConfigureChallengesAdapter;
 import nl.tue.besportive.adapters.DefaultChallengesAdapter;
 import nl.tue.besportive.data.Challenge;
 import nl.tue.besportive.databinding.ActivityConfigureChallengesBinding;
+import nl.tue.besportive.models.ConfigureChallengesViewModel;
 
 public class ConfigureChallengesActivity extends AppCompatActivity {
     private ActivityConfigureChallengesBinding binding;
+
+    private String groupId;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -43,18 +45,21 @@ public class ConfigureChallengesActivity extends AppCompatActivity {
         // RecyclerView configuration
         // Call ViewModel
         ConfigureChallengesViewModel viewModel = new ViewModelProvider(this).get(ConfigureChallengesViewModel.class);
+
+        viewModel.getGroupId().observe(this, groupId -> this.groupId = groupId);
+
         // Group challenges Recyclerview
         recyclerView.setLayoutManager(new LinearLayoutManager(this));
         ConfigureChallengesAdapter configureChallengesAdapter = new ConfigureChallengesAdapter(getApplicationContext(), items, viewModel, item -> {
             System.out.println("Item" + item.getId());
-            RemoveChallenge(item.getId(), viewModel.getGroupId().getValue());
+            removeChallenge(item.getId());
         });
         recyclerView.setAdapter(configureChallengesAdapter);
         // Default challenges Recyclerview
         recyclerViewDefaultChallenges.setLayoutManager(new LinearLayoutManager(this));
         DefaultChallengesAdapter defaultChallengesAdapter = new DefaultChallengesAdapter(getApplicationContext(), items, viewModel, item -> {
             System.out.println("Item" + item.getId());
-            addChallenge(item, viewModel.getGroupId().getValue());
+            addChallenge(item);
         });
         recyclerViewDefaultChallenges.setAdapter(defaultChallengesAdapter);
 
@@ -65,15 +70,17 @@ public class ConfigureChallengesActivity extends AppCompatActivity {
         binding.addCustomChallengeButton.setOnClickListener(this::addChallengeActivity);
     }
 
-    private void RemoveChallenge(String challengeId, String groupId) {
+    private void removeChallenge(String challengeId) {
         FirebaseFirestore db = FirebaseFirestore.getInstance();
-        db.collection("groups").document(groupId).collection("challenges").document(challengeId)
+        String path = "groups/" + groupId + "/challenges/" + challengeId;
+        Log.d("TAG", "Path: " + path);
+        db.document(path)
                 .delete()
                 .addOnSuccessListener(aVoid -> Log.i("ConfigureChallengesActivity", "Challenge updated successfully"))
                 .addOnFailureListener(e -> Log.e("ConfigureChallengesActivity", "Error updating challenge", e));
     }
 
-    private void addChallenge(Challenge challengeData, String groupId) {
+    private void addChallenge(Challenge challengeData) {
         String challengeId = challengeData.getId();
         FirebaseFirestore db = FirebaseFirestore.getInstance();
         // Add the challenge to the Firestore database

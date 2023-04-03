@@ -15,7 +15,6 @@ import com.google.android.material.bottomnavigation.BottomNavigationView;
 
 import nl.tue.besportive.R;
 import nl.tue.besportive.databinding.ActivityFeedBinding;
-import nl.tue.besportive.models.ConfigureChallengesActivity;
 
 public class FeedActivity extends AppCompatActivity {
     private ActivityFeedBinding binding;

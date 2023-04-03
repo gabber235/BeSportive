@@ -290,11 +290,8 @@ public class ActiveChallengeActivity extends AppCompatActivity {
             }
         });
 
-        completeAlert.setNeutralButton("No", new DialogInterface.OnClickListener() {
-            @Override
-            public void onClick(DialogInterface dialogInterface, int i) {
-                // User clicked "No", do nothing
-            }
+        completeAlert.setNeutralButton("No", (dialogInterface, i) -> {
+            // User clicked "No", do nothing
         });
 
         completeAlert.show();
@@ -311,28 +308,6 @@ public class ActiveChallengeActivity extends AppCompatActivity {
     }
 
     private String formatTime(int seconds, int minutes, int hours) {
-        return String.format("%02d", hours) + ":" + String.format("%02d", minutes) + ":" + String.format("%02d", seconds);
+        return String.format("%02d:%02d:%02d", hours, minutes, seconds);
     }
-
-
-    private void leaderboard(View view) {
-        startLeaderboardActivity();
-    }
-
-    private void challenges(View view) {
-        startChallengesActivity();
-    }
-
-    private void startLeaderboardActivity() {
-        Intent intent = new Intent(this, LeaderboardActivity.class);
-        startActivity(intent);
-        finish();
-    }
-
-    private void startChallengesActivity() {
-        Intent intent = new Intent(this, ChallengesActivity.class);
-        startActivity(intent);
-        finish();
-    }
-
 }

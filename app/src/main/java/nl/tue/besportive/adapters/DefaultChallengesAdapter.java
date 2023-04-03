@@ -12,8 +12,8 @@ import java.util.List;
 import nl.tue.besportive.R;
 import nl.tue.besportive.data.Challenge;
 import nl.tue.besportive.data.Difficulty;
+import nl.tue.besportive.holders.DefaultChallengesViewHolder;
 import nl.tue.besportive.models.ConfigureChallengesViewModel;
-import nl.tue.besportive.models.DefaultChallengesViewHolder;
 
 public class DefaultChallengesAdapter extends RecyclerView.Adapter<DefaultChallengesViewHolder> {
     Context context;

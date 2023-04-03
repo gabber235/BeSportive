@@ -1,4 +1,4 @@
-package nl.tue.besportive.models;
+package nl.tue.besportive.holders;
 
 import android.view.View;
 import android.widget.ImageView;

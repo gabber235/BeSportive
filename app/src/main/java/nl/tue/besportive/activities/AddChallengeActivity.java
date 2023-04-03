@@ -27,7 +27,6 @@ import java.util.HashMap;
 import java.util.Map;
 
 import nl.tue.besportive.R;
-import nl.tue.besportive.models.ConfigureChallengesActivity;
 import nl.tue.besportive.models.ConfigureChallengesViewModel;
 
 public class AddChallengeActivity extends AppCompatActivity {

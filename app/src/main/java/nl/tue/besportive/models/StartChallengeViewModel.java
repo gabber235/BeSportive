@@ -13,10 +13,8 @@ import nl.tue.besportive.repositories.ChallengeRepository;
 public class StartChallengeViewModel extends ViewModel {
     private final ChallengeRepository challengeRepository;
 
-    private LiveData<Challenge> challenge;
-
-    private String groupId;
-    private String challengeId;
+    private final String groupId;
+    private final String challengeId;
 
     public StartChallengeViewModel(String groupId, String challengeId) {
         challengeRepository = new ChallengeRepository();
@@ -25,10 +23,7 @@ public class StartChallengeViewModel extends ViewModel {
     }
 
     public LiveData<Challenge> getChallenge() {
-        if (challenge != null) {
-            return challenge;
-        }
-        return challenge = challengeRepository.getLiveChallenge(groupId, challengeId);
+        return challengeRepository.getLiveChallenge(groupId, challengeId);
     }
 
 

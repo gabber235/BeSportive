@@ -42,7 +42,7 @@
             android:name=".activities.CreateGroupActivity"
             android:exported="false" />
         <activity
-            android:name=".models.ConfigureChallengesActivity"
+            android:name=".activities.ConfigureChallengesActivity"
             android:exported="false" />
         <activity
             android:name=".activities.ChallengesActivity"

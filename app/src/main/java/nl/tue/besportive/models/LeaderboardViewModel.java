@@ -10,28 +10,17 @@ import nl.tue.besportive.data.Group.Member;
 import nl.tue.besportive.repositories.GroupRepository;
 
 public class LeaderboardViewModel extends ViewModel {
-    private LiveData<Group> group;
-    private LiveData<List<Member>> members;
-    private GroupRepository groupRepository;
-
+    private final GroupRepository groupRepository;
 
     public LeaderboardViewModel() {
         groupRepository = new GroupRepository();
     }
 
     public LiveData<Group> getGroup() {
-        if (group != null) {
-            return group;
-        }
-        return group = groupRepository.getLiveGroup();
+        return groupRepository.getLiveGroup();
     }
 
     public LiveData<List<Member>> getMembersFromViewModel() {
-        if (members != null) {
-            return members;
-        }
-        return members = groupRepository.getLiveMembers();
+        return groupRepository.getLiveMembers();
     }
-
-
 }

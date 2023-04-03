@@ -9,8 +9,6 @@ import nl.tue.besportive.data.Challenge;
 import nl.tue.besportive.repositories.ConfigureChallengesRepository;
 
 public class ConfigureChallengesViewModel extends ViewModel {
-    private LiveData<List<Challenge>> challenges;
-    private LiveData<List<Challenge>> defaultChallenges;
     private final ConfigureChallengesRepository configureChallengesRepository;
 
     public ConfigureChallengesViewModel() {
@@ -18,18 +16,11 @@ public class ConfigureChallengesViewModel extends ViewModel {
     }
 
     public LiveData<List<Challenge>> getChallenges() {
-        if (challenges != null) {
-            return challenges;
-        }
-
-        return challenges = configureChallengesRepository.getChallenges();
+        return configureChallengesRepository.getChallenges();
     }
 
     public LiveData<List<Challenge>> getDefaultChallenges() {
-        if (defaultChallenges != null) {
-            return defaultChallenges;
-        }
-        return defaultChallenges = configureChallengesRepository.getDefaultChallenges();
+        return configureChallengesRepository.getDefaultChallenges();
     }
 
     public LiveData<String> getGroupId() {
