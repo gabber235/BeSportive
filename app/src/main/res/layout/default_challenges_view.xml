@@ -5,18 +5,13 @@
     android:orientation="horizontal"
     android:padding="16dp">
 
-    <ImageView
-        android:id="@+id/profile_picture"
-        android:layout_width="64dp"
-        android:layout_height="64dp"
-        android:src="@drawable/a" />
-
     <LinearLayout
         android:layout_width="0dp"
         android:layout_height="wrap_content"
+        android:layout_marginStart="16dp"
         android:layout_weight="1"
-        android:orientation="vertical"
-        android:layout_marginStart="16dp">
+        android:background="#918B8B"
+        android:orientation="vertical">
 
         <TextView
             android:id="@+id/challenge_name"
@@ -32,13 +27,13 @@
             android:text="Difficulty"
             android:textAppearance="@style/TextAppearance.AppCompat.Caption" />
 
-        <TextView
-            android:id="@+id/challenge_time"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:text="Time of Completion"
-            android:textAppearance="@style/TextAppearance.AppCompat.Caption" />
-
     </LinearLayout>
+
+    <ImageView
+        android:id="@+id/add_button"
+        android:layout_width="34dp"
+        android:layout_height="34dp"
+        android:src="@drawable/ic_plus_green"
+        android:contentDescription="Trash icon" />
 
 </LinearLayout>

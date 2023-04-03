@@ -59,4 +59,10 @@
     <string name="start">Start</string>
     <string name="cancel_the_challenge">Cancel the Challenge</string>
     <string name="startChallenge_header">Start Challenge</string>
+    <string name="add_custom_challenge_button_description">Add Custom Challenge</string>
+    <string-array name="difficulty_options">
+        <item>Easy</item>
+        <item>Medium</item>
+        <item>Hard</item>
+    </string-array>
 </resources>

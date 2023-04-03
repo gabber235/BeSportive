@@ -18,6 +18,9 @@
             android:name=".StartChallengeActivity"
             android:exported="false" />
         <activity
+            android:name=".AddChallengeActivity"
+            android:exported="false" />
+        <activity
             android:name=".LeaderboardActivity"
             android:exported="false" />
         <activity

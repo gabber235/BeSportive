@@ -1,4 +1,7 @@
 package nl.tue.besportive;
+
+import javax.swing.text.View;
+
 import com.apple.laf.AquaButtonBorder.Toolbar;
 import com.google.android.material.bottomnavigation.BottomNavigationView;
 
@@ -18,15 +21,15 @@ public class FeedActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         binding = ActivityFeedBinding.inflate(getLayoutInflater());
         setContentView(binding.getRoot());
+        binding.configureChallengeButton.setOnClickListener(this::configureChallenges);
 
         Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar_feed);
         setSupportActionBar(toolbar);
 
-        getSupportActionBar().setTitle(""); //hide title
+        getSupportActionBar().setTitle(""); // hide title
         getSupportActionBar().setDisplayHomeAsUpEnabled(true);
 
-        toolbar.setNavigationIcon(R.drawable.img); //Replace back button with profile image.
-
+        toolbar.setNavigationIcon(R.drawable.img); // Replace back button with profile image.
 
         // Initialize and assign variable
         BottomNavigationView bottomNavigationView = findViewById(R.id.bottom_navigation);
@@ -39,8 +42,7 @@ public class FeedActivity extends AppCompatActivity {
             @Override
             public boolean onNavigationItemSelected(MenuItem item) {
 
-                switch(item.getItemId())
-                {
+                switch (item.getItemId()) {
                     case R.id.challenges:
                         startActivity(new Intent(getApplicationContext(), ChallengesActivity.class));
                         overridePendingTransition(0, 0);
@@ -56,34 +58,43 @@ public class FeedActivity extends AppCompatActivity {
             }
         });
     }
-        @Override
-        public boolean onCreateOptionsMenu(Menu menu){
-            MenuInflater inflater = getMenuInflater();
-            inflater.inflate(R.menu.settings_menu, menu);
+
+    @Override
+    public boolean onCreateOptionsMenu(Menu menu) {
+        MenuInflater inflater = getMenuInflater();
+        inflater.inflate(R.menu.settings_menu, menu);
+        return true;
+    }
+
+    @Override
+    public boolean onOptionsItemSelected(MenuItem item) {
+        if (item.getItemId() == android.R.id.home) {
+            startActivity(new Intent(getApplicationContext(), ProfileActivity.class));
+            overridePendingTransition(0, 0);
             return true;
         }
-
-        @Override
-        public boolean onOptionsItemSelected(MenuItem item) {
-            if (item.getItemId() == android.R.id.home) {
-                startActivity(new Intent(getApplicationContext(), ProfileActivity.class));
+        switch (item.getItemId()) {
+            case R.id.invite_members:
+                startActivity(new Intent(getApplicationContext(), InviteMembersActivity.class));
                 overridePendingTransition(0, 0);
                 return true;
-            }
-            switch (item.getItemId()) {
-                case R.id.invite_members:
-                    startActivity(new Intent(getApplicationContext(), InviteMembersActivity.class));
-                    overridePendingTransition(0, 0);
-                    return true;
-                case R.id.configure_challenges:
-                    startActivity(new Intent(getApplicationContext(), ConfigureChallengesActivity.class));
-                    overridePendingTransition(0, 0);
-                    return true;
-            }
-            return super.onOptionsItemSelected(item);
-
+            case R.id.configure_challenges:
+                startActivity(new Intent(getApplicationContext(), ConfigureChallengesActivity.class));
+                overridePendingTransition(0, 0);
+                return true;
         }
+        return super.onOptionsItemSelected(item);
 
+    }
 
+    private void configureChallenges(View view) {
+        startConfigureChallengesActivity();
+    }
+
+    private void startConfigureChallengesActivity() {
+        Intent intent = new Intent(this, ConfigureChallengesActivity.class);
+        startActivity(intent);
+        finish();
+    }
 
 }
