@@ -3,6 +3,7 @@ package nl.tue.besportive;
 import java.util.Map;
 
 public class Group {
+    private String id;
     private String name;
     private String admin;
     private String code;
@@ -35,6 +36,18 @@ public class Group {
     public Group() {
     }
 
+    public Group(String id, String name, String admin, String code, Map<String, Member> members) {
+        this.id = id;
+        this.name = name;
+        this.admin = admin;
+        this.code = code;
+        this.members = members;
+    }
+
+    public String getId() {
+        return id;
+    }
+
     public String getName() {
         return name;
     }
@@ -49,6 +62,10 @@ public class Group {
 
     public Map<String, Member> getMembers() {
         return members;
+    }
+
+    public void setId(String id) {
+        this.id = id;
     }
 
     public void setName(String name) {

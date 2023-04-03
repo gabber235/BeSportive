@@ -1,32 +1,23 @@
 package nl.tue.besportive;
 
-import android.content.Intent;
-import android.os.Bundle;
-import android.view.Menu;
-import android.view.MenuInflater;
-import android.view.MenuItem;
-import android.view.View;
-
-import androidx.appcompat.app.AppCompatActivity;
+import javax.swing.text.View;
 
 import com.google.android.material.bottomnavigation.BottomNavigationView;
 
+import android.content.Intent;
+import android.os.Bundle;
+import android.view.MenuItem;
+import androidx.appcompat.app.AppCompatActivity;
 import nl.tue.besportive.databinding.ActivityFeedBinding;
 
 public class FeedActivity extends AppCompatActivity {
-
     private ActivityFeedBinding binding;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_feed);
         binding = ActivityFeedBinding.inflate(getLayoutInflater());
         setContentView(binding.getRoot());
-    }
-
-    private void leaderboard(View view) {
-        startLeaderboardActivity();
         // Initialize and assign variable
         BottomNavigationView bottomNavigationView = findViewById(R.id.bottom_navigation);
 

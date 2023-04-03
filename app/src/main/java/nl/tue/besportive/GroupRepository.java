@@ -1,41 +1,56 @@
 package nl.tue.besportive;
 
-import android.util.Log;
-
-import androidx.lifecycle.MutableLiveData;
+import androidx.lifecycle.LiveData;
+import androidx.lifecycle.Transformations;
 
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
 import com.google.firebase.firestore.FirebaseFirestore;
+import com.google.firebase.firestore.Query;
+import com.google.firebase.firestore.QuerySnapshot;
 
 import java.util.List;
 
 public class GroupRepository {
-    private final MutableLiveData<Group> group = new MutableLiveData<>();
+    private LiveData<Group> group;
+    private LiveData<QuerySnapshot> groupSnapshot;
     private final FirebaseFirestore firestore;
 
     public GroupRepository() {
         firestore = FirebaseFirestore.getInstance();
     }
 
-    public MutableLiveData<Group> getGroup() {
-        Log.i("GroupRepository", "Getting group");
+
+    private Query getGroupQuery() {
         FirebaseUser user = FirebaseAuth.getInstance().getCurrentUser();
         assert user != null;
         String uid = user.getUid();
-        firestore.collection("groups").whereNotEqualTo("members." + uid, null).limit(1).addSnapshotListener((value, error) -> {
-            if (error != null) {
-                Log.e("GroupRepository", "Failed to get group", error);
-                return;
+        return firestore.collection("groups").whereNotEqualTo("members." + uid, null).limit(1);
+    }
+
+    public LiveData<QuerySnapshot> getGroupSnapshot() {
+        if (groupSnapshot != null) {
+            return groupSnapshot;
+        }
+        groupSnapshot = new FirebaseQueryLiveData(getGroupQuery());
+        return groupSnapshot;
+    }
+
+    public LiveData<Group> getLiveGroup() {
+        if (group != null) {
+            return group;
+        }
+
+        group = Transformations.map(getGroupSnapshot(), input -> {
+            if (input == null || input.isEmpty()) {
+                return null;
             }
-            if (value != null) {
-                Log.i("GroupRepository", "Got group: " + value);
-                List<Group> groups = value.toObjects(Group.class);
-                if (groups.size() > 0) {
-                    group.setValue(groups.get(0));
-                }
-            }
+            List<Group> groups = input.toObjects(Group.class);
+            Group group = groups.get(0);
+            group.setId(input.getDocuments().get(0).getId());
+            return group;
         });
+
         return group;
     }
 }

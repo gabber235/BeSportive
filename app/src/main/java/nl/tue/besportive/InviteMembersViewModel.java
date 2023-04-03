@@ -2,19 +2,19 @@ package nl.tue.besportive;
 
 import android.content.Context;
 
-import androidx.lifecycle.MutableLiveData;
+import androidx.lifecycle.LiveData;
 import androidx.lifecycle.ViewModel;
 
 public class InviteMembersViewModel extends ViewModel {
-    private MutableLiveData<Group> group;
+    private LiveData<Group> group;
     private GroupRepository groupRepository;
 
     public InviteMembersViewModel() {
         groupRepository = new GroupRepository();
-        group = groupRepository.getGroup();
+        group = groupRepository.getLiveGroup();
     }
 
-    public MutableLiveData<Group> getGroup() {
+    public LiveData<Group> getGroup() {
         return group;
     }
 
