@@ -25,9 +25,8 @@ public class FeedActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         binding = ActivityFeedBinding.inflate(getLayoutInflater());
         setContentView(binding.getRoot());
-        binding.configureChallengeButton.setOnClickListener(this::configureChallenges);
 
-        Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar_feed);
+        Toolbar toolbar = findViewById(R.id.toolbar_feed);
         setSupportActionBar(toolbar);
 
         getSupportActionBar().setTitle(""); // hide title
