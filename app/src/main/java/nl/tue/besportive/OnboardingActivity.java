@@ -60,16 +60,10 @@ public class OnboardingActivity extends AppCompatActivity {
             FirebaseUser user = FirebaseAuth.getInstance().getCurrentUser();
             assert user != null;
             Toast.makeText(this, "Successfully Signed in", Toast.LENGTH_SHORT).show();
-            startJoinCreateGroupActivity();
+            Navigator.navigateToStartingPage(this);
         } else {
             Log.e("OnboardingActivity", "Sign in failed: " + response.getError());
             Toast.makeText(this, "Sign in failed", Toast.LENGTH_SHORT).show();
         }
-    }
-
-    void startJoinCreateGroupActivity() {
-        Intent intent = new Intent(this, JoinCreateGroupActivity.class);
-        startActivity(intent);
-        finish();
     }
 }

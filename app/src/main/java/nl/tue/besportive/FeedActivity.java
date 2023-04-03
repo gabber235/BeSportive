@@ -1,14 +1,16 @@
 package nl.tue.besportive;
-import javax.swing.text.View;
-
-import com.google.android.material.bottomnavigation.BottomNavigationView;
 
 import android.content.Intent;
 import android.os.Bundle;
 import android.view.Menu;
 import android.view.MenuInflater;
 import android.view.MenuItem;
+import android.view.View;
+
 import androidx.appcompat.app.AppCompatActivity;
+
+import com.google.android.material.bottomnavigation.BottomNavigationView;
+
 import nl.tue.besportive.databinding.ActivityFeedBinding;
 
 public class FeedActivity extends AppCompatActivity {
@@ -21,14 +23,12 @@ public class FeedActivity extends AppCompatActivity {
         setContentView(R.layout.activity_feed);
         binding = ActivityFeedBinding.inflate(getLayoutInflater());
         setContentView(binding.getRoot());
-
-        binding.button2.setOnClickListener(this::Profile);
     }
 
     private void leaderboard(View view) {
         startLeaderboardActivity();
         // Initialize and assign variable
-        BottomNavigationView bottomNavigationView=findViewById(R.id.bottom_navigation);
+        BottomNavigationView bottomNavigationView = findViewById(R.id.bottom_navigation);
 
         // Set Home selected
         bottomNavigationView.setSelectedItemId(R.id.feed);
@@ -37,65 +37,51 @@ public class FeedActivity extends AppCompatActivity {
         bottomNavigationView.setOnItemSelectedListener(new BottomNavigationView.OnItemSelectedListener() {
             @Override
             public boolean onNavigationItemSelected(MenuItem item) {
-                switch(item.getItemId()) {
+                switch (item.getItemId()) {
                     case R.id.challenges:
-                        startActivity(new Intent(getApplicationContext(),ChallengesActivity.class));
-                        overridePendingTransition(0,0);
+                        startActivity(new Intent(getApplicationContext(), ChallengesActivity.class));
+                        overridePendingTransition(0, 0);
                         return true;
                     case R.id.feed:
                         return true;
                     case R.id.leaderboard:
-                        startActivity(new Intent(getApplicationContext(),LeaderboardActivity.class));
-                        overridePendingTransition(0,0);
+                        startActivity(new Intent(getApplicationContext(), LeaderboardActivity.class));
+                        overridePendingTransition(0, 0);
                         return true;
                 }
                 return false;
             }
         });
-
-
-
-
     }
 
 
-        @Override
-        public boolean onCreateOptionsMenu(Menu menu){
-            MenuInflater inflater = getMenuInflater();
-            inflater.inflate(R.menu.settings_menu, menu);
-            return true;
+    @Override
+    public boolean onCreateOptionsMenu(Menu menu) {
+        MenuInflater inflater = getMenuInflater();
+        inflater.inflate(R.menu.settings_menu, menu);
+        return true;
+    }
+
+    @Override
+    public boolean onOptionsItemSelected(MenuItem item) {
+        switch (item.getItemId()) {
+            case R.id.profile_button:
+                startActivity(new Intent(getApplicationContext(), ProfileActivity.class));
+                overridePendingTransition(0, 0);
+                return true;
+            case R.id.create_group:
+                startActivity(new Intent(getApplicationContext(), CreateGroupActivity.class));
+                overridePendingTransition(0, 0);
+                return true;
+            case R.id.configure_challenges:
+                startActivity(new Intent(getApplicationContext(), ConfigureChallengesActivity.class));
+                overridePendingTransition(0, 0);
+                return true;
         }
-
-        @Override
-        public boolean onOptionsItemSelected(MenuItem item) {
-            switch (item.getItemId()) {
-                case R.id.profile_button:
-                    startActivity(new Intent(getApplicationContext(), ProfileActivity.class));
-                    overridePendingTransition(0, 0);
-                    return true;
-                case R.id.create_group:
-                    startActivity(new Intent(getApplicationContext(), CreateGroupActivity.class));
-                    overridePendingTransition(0, 0);
-                    return true;
-                case R.id.configure_challenges:
-                    startActivity(new Intent(getApplicationContext(), ConfigureChallengesActivity.class));
-                    overridePendingTransition(0, 0);
-                    return true;
-            }
-            return super.onOptionsItemSelected(item);
-
-
-
-
-
-
-
+        return super.onOptionsItemSelected(item);
 
 
     }
-
-}
-
 
     private void inviteMembers(View view) {
         startInviteMembersActivity();
