@@ -18,7 +18,7 @@ import nl.tue.besportive.R;
 import nl.tue.besportive.adapters.CompletedChallengesAdapter;
 import nl.tue.besportive.data.CompletedChallenge;
 import nl.tue.besportive.databinding.ActivityMemberOverviewBinding;
-import nl.tue.besportive.models.CompletedChallengesViewModel;
+import nl.tue.besportive.models.MemberOverviewViewModel;
 
 public class MemberOverviewActivity extends AppCompatActivity {
     private ActivityMemberOverviewBinding binding;
@@ -44,7 +44,7 @@ public class MemberOverviewActivity extends AppCompatActivity {
         recyclerView.setLayoutManager(new LinearLayoutManager(this));
         CompletedChallengesAdapter completedChallengesAdapter = new CompletedChallengesAdapter(getApplicationContext(), items);
         recyclerView.setAdapter(completedChallengesAdapter);
-        CompletedChallengesViewModel viewModel = new ViewModelProvider(this).get(CompletedChallengesViewModel.class);
+        MemberOverviewViewModel viewModel = new ViewModelProvider(this).get(MemberOverviewViewModel.class);
         new Handler().postDelayed(() -> {
             viewModel.getCompletedChallenges(userId).observe(this, completedChallenges -> {
                 completedChallengesAdapter.setCompletedChallenges(viewModel.getCompletedChallenges("1FnwF3IQkN9aho4WnMwTa4FCHF2i").getValue());

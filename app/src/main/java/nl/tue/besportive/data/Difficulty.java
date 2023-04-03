@@ -1,9 +1,9 @@
 package nl.tue.besportive.data;
 
 public enum Difficulty {
-    EASY("Easy", 0x4CAF50),
-    MEDIUM("Medium", 0xFF9800),
-    HARD("Hard", 0xF44336);
+    EASY("Easy", 0xFF4CAF50),
+    MEDIUM("Medium", 0xFFFF9800),
+    HARD("Hard", 0xFFF44336);
 
     private final String name;
     private final int color;
@@ -17,11 +17,7 @@ public enum Difficulty {
         return name;
     }
 
-    public String getColor() {
-        return String.format("#%06X", (0xFFFFFF & color));
-    }
-
-    public int getColorInt() {
+    public int getColor() {
         return color;
     }
 

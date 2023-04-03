@@ -1,10 +1,9 @@
 package nl.tue.besportive.activities;
 
 import android.annotation.SuppressLint;
-import android.content.Intent;
 import android.os.Bundle;
+import android.view.Menu;
 import android.view.MenuItem;
-import android.view.View;
 
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.lifecycle.LiveData;
@@ -12,7 +11,6 @@ import androidx.lifecycle.Transformations;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
-import com.google.android.material.bottomnavigation.BottomNavigationView;
 import com.google.firebase.firestore.FirebaseFirestore;
 import com.google.firebase.firestore.Query;
 import com.google.firebase.firestore.QuerySnapshot;
@@ -26,6 +24,7 @@ import nl.tue.besportive.adapters.RecycleViewAdapter;
 import nl.tue.besportive.data.Challenge;
 import nl.tue.besportive.databinding.ActivityChallengesBinding;
 import nl.tue.besportive.repositories.GroupRepository;
+import nl.tue.besportive.utils.BarUtils;
 import nl.tue.besportive.utils.FirebaseQueryLiveData;
 import nl.tue.besportive.utils.Navigator;
 
@@ -70,47 +69,19 @@ public class ChallengesActivity extends AppCompatActivity {
 
         mAdapter = new RecycleViewAdapter(challengesList, listener);
         recyclerView.setAdapter(mAdapter);
-        // Initialize and assign variable
-        BottomNavigationView bottomNavigationView = findViewById(R.id.bottom_navigation);
 
-// Set Home selected
-        bottomNavigationView.setSelectedItemId(R.id.challenges);
-
-// Perform item selected listener
-        bottomNavigationView.setOnItemSelectedListener(new BottomNavigationView.OnItemSelectedListener() {
-            @Override
-            public boolean onNavigationItemSelected(MenuItem item) {
-
-                switch (item.getItemId()) {
-                    case R.id.challenges:
-                        return true;
-                    case R.id.leaderboard:
-                        startActivity(new Intent(getApplicationContext(), LeaderboardActivity.class));
-                        overridePendingTransition(0, 0);
-                        return true;
-                    case R.id.feed:
-                        startActivity(new Intent(getApplicationContext(), FeedActivity.class));
-                        overridePendingTransition(0, 0);
-                        return true;
-                }
-                return false;
-            }
-        });
+        setSupportActionBar(BarUtils.setupToolbar(binding.toolbarFeed.feedToolbar));
+        BarUtils.setupBottomNavigation(this, binding.bottomNavigation, R.id.challenges);
 
         EventChangeListener();
-
-
     }
 
     private void setOnClickListener() {
-        listener = new RecycleViewAdapter.RecycleViewClickListener() {
-            @Override
-            public void onClick(View v, int position) {
-                Challenge challenge = challengesList.get(position);
-                String challengeId = challenge.getId();
+        listener = (v, position) -> {
+            Challenge challenge = challengesList.get(position);
+            String challengeId = challenge.getId();
 
-                Navigator.navigateToStartChallengeActivity(ChallengesActivity.this, getGroupId(), challengeId);
-            }
+            Navigator.navigateToStartChallengeActivity(ChallengesActivity.this, getGroupId(), challengeId);
         }; // fetch the ids rather than
     }
 
@@ -137,5 +108,16 @@ public class ChallengesActivity extends AppCompatActivity {
 
     private String getGroupId() {
         return Objects.requireNonNull(groupRepository.getLiveGroup().getValue()).getId();
+    }
+
+    @Override
+    public boolean onCreateOptionsMenu(Menu menu) {
+        getMenuInflater().inflate(R.menu.settings_menu, menu);
+        return true;
+    }
+
+    @Override
+    public boolean onOptionsItemSelected(MenuItem item) {
+        return BarUtils.selectToolbarMenuItem(this, item);
     }
 }

@@ -42,7 +42,7 @@ public class ConfigureChallengesAdapter extends RecyclerView.Adapter<ConfigureCh
         Challenge challenge = items.get(position);
         holder.nameView.setText(challenge.getName());
         holder.difficultyView.setText(challenge.getSmartDifficulty().getName());
-        holder.difficultyView.setTextColor(challenge.getSmartDifficulty().getColorInt());
+        holder.difficultyView.setTextColor(challenge.getSmartDifficulty().getColor());
         // Set an OnClickListener on the ImageView button in the ViewHolder
         holder.bind(challenge, listener);
     }

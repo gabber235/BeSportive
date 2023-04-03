@@ -46,7 +46,7 @@ public class DefaultChallengesAdapter extends RecyclerView.Adapter<DefaultChalle
 
         holder.nameView.setText(challenge.getName());
         holder.difficultyView.setText(difficulty.getName());
-        holder.difficultyView.setTextColor(difficulty.getColorInt());
+        holder.difficultyView.setTextColor(difficulty.getColor());
         holder.bind(items.get(position), listener);
     }
 
