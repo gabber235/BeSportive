@@ -5,7 +5,7 @@ service cloud.firestore {
       allow read, write: if false;
 
       match /defaultChallenges/{defaultChallengeId}{
-        allow read: if true
+        allow read: if true;
       }
 
       match /users/{userId} {
@@ -14,13 +14,23 @@ service cloud.firestore {
 
       match /groups/{groupId} {
         allow read: if request.auth.uid in resource.data.members;
+
+        function isInGroup() {
+          return request.auth != null && request.auth.uid in get(/databases/$(database)/documents/groups/$(groupId)).data.members;
+        }
+
+        function isGroupAdmin() {
+          return request.auth != null && get(/databases/$(database)/documents/groups/$(groupId)).data.admin == request.auth.uid;
+        }
+
         match /completedChallenges/{completedChallengeId} {
-            allow read: if true
+          allow read: if isInGroup();
+          allow write: if (request.resource.data.userId == request.auth.uid && isInGroup() || isGroupAdmin());
         }
         match /challenges/{challengeId} {
-                allow read: if true
-                allow write: if request.auth != null; // Allow authenticated users to write challenges
-            }
+          allow read: if isInGroup();
+          allow write: if isGroupAdmin();
+        }
       }
     }
   }

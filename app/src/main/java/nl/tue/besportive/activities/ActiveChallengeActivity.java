@@ -93,7 +93,7 @@ public class ActiveChallengeActivity extends AppCompatActivity {
 
 
     public void startTapped(View view) {
-        if (timerStarted == false) {
+        if (!timerStarted) {
             timerStarted = true;
             cancel_button.setVisibility(View.VISIBLE);
             complete_button.setVisibility(View.VISIBLE);
