@@ -8,15 +8,15 @@ import java.util.List;
 import nl.tue.besportive.data.CompletedChallenge;
 import nl.tue.besportive.repositories.CompletedChallengesRepository;
 
-public class CompletedChallengesViewModel extends ViewModel {
+public class MemberOverviewViewModel extends ViewModel {
     private final CompletedChallengesRepository completedChallengesRepository;
 
 
-    public CompletedChallengesViewModel() {
+    public MemberOverviewViewModel() {
         completedChallengesRepository = new CompletedChallengesRepository();
     }
 
     public LiveData<List<CompletedChallenge>> getCompletedChallenges(String userId) {
-        return completedChallengesRepository.getCompletedChallenges(userId);
+        return completedChallengesRepository.getUserCompletedChallenges(userId);
     }
 }

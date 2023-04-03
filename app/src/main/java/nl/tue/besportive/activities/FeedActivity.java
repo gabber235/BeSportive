@@ -1,98 +1,50 @@
 package nl.tue.besportive.activities;
 
 
-import android.content.Intent;
 import android.os.Bundle;
 import android.view.Menu;
-import android.view.MenuInflater;
 import android.view.MenuItem;
-import android.view.View;
 
 import androidx.appcompat.app.AppCompatActivity;
-import androidx.appcompat.widget.Toolbar;
-
-import com.google.android.material.bottomnavigation.BottomNavigationView;
+import androidx.lifecycle.ViewModelProvider;
 
 import nl.tue.besportive.R;
+import nl.tue.besportive.adapters.FeedAdapter;
 import nl.tue.besportive.databinding.ActivityFeedBinding;
+import nl.tue.besportive.models.FeedViewModel;
+import nl.tue.besportive.utils.BarUtils;
 
 public class FeedActivity extends AppCompatActivity {
-    private ActivityFeedBinding binding;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        binding = ActivityFeedBinding.inflate(getLayoutInflater());
+        ActivityFeedBinding binding = ActivityFeedBinding.inflate(getLayoutInflater());
         setContentView(binding.getRoot());
 
-        Toolbar toolbar = findViewById(R.id.toolbar_feed);
-        setSupportActionBar(toolbar);
+        FeedViewModel viewModel = new ViewModelProvider(this).get(FeedViewModel.class);
+        binding.setViewModel(viewModel);
+        binding.setLifecycleOwner(this);
 
-        getSupportActionBar().setTitle(""); // hide title
-        getSupportActionBar().setDisplayHomeAsUpEnabled(true);
+        FeedAdapter adapter = new FeedAdapter(viewModel);
+        binding.recyclerView.setAdapter(adapter);
 
-        toolbar.setNavigationIcon(R.drawable.img); // Replace back button with profile image.
+        viewModel.getFinishedCompletedChallenges().observe(this, adapter::setItems);
 
-        // Initialize and assign variable
-        BottomNavigationView bottomNavigationView = findViewById(R.id.bottom_navigation);
-
-        // Set Home selected
-        bottomNavigationView.setSelectedItemId(R.id.feed);
-
-        // Perform item selected listener
-        bottomNavigationView.setOnItemSelectedListener(item -> {
-            switch (item.getItemId()) {
-                case R.id.challenges:
-                    startActivity(new Intent(getApplicationContext(), ChallengesActivity.class));
-                    overridePendingTransition(0, 0);
-                    return true;
-                case R.id.feed:
-                    return true;
-                case R.id.leaderboard:
-                    startActivity(new Intent(getApplicationContext(), LeaderboardActivity.class));
-                    overridePendingTransition(0, 0);
-                    return true;
-            }
-            return false;
-        });
+        // Setup toolbar and bottom navigation
+        setSupportActionBar(BarUtils.setupToolbar(binding.toolbarFeed.feedToolbar));
+        BarUtils.setupBottomNavigation(this, binding.bottomNavigation, R.id.feed);
     }
 
     @Override
     public boolean onCreateOptionsMenu(Menu menu) {
-        MenuInflater inflater = getMenuInflater();
-        inflater.inflate(R.menu.settings_menu, menu);
+        getMenuInflater().inflate(R.menu.settings_menu, menu);
         return true;
     }
 
     @Override
     public boolean onOptionsItemSelected(MenuItem item) {
-        if (item.getItemId() == android.R.id.home) {
-            startActivity(new Intent(getApplicationContext(), ProfileActivity.class));
-            overridePendingTransition(0, 0);
-            return true;
-        }
-        switch (item.getItemId()) {
-            case R.id.invite_members:
-                startActivity(new Intent(getApplicationContext(), InviteMembersActivity.class));
-                overridePendingTransition(0, 0);
-                return true;
-            case R.id.configure_challenges:
-                startActivity(new Intent(getApplicationContext(), ConfigureChallengesActivity.class));
-                overridePendingTransition(0, 0);
-                return true;
-        }
-        return super.onOptionsItemSelected(item);
-
+        return BarUtils.selectToolbarMenuItem(this, item);
     }
-
-    private void configureChallenges(View view) {
-        startConfigureChallengesActivity();
-    }
-
-    private void startConfigureChallengesActivity() {
-        Intent intent = new Intent(this, ConfigureChallengesActivity.class);
-        startActivity(intent);
-        finish();
-    }
-
 }
+

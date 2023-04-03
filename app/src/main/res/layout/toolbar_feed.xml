@@ -1,11 +1,11 @@
 <?xml version="1.0" encoding="utf-8"?>
-<androidx.appcompat.widget.Toolbar
-    xmlns:android="http://schemas.android.com/apk/res/android"
+<androidx.appcompat.widget.Toolbar xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     android:id="@+id/feed_toolbar"
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
     android:minHeight="?attr/actionBarSize"
+    app:title=" "
     android:background="?attr/colorPrimary">
 
 
@@ -19,10 +19,6 @@
         android:contentDescription="@string/item_2_actionbar"
         app:layout_constraintStart_toStartOf="@+id/feed_toolbar"
         app:srcCompat="@drawable/logo_2" />
-
-
-
-
 
 
 </androidx.appcompat.widget.Toolbar>

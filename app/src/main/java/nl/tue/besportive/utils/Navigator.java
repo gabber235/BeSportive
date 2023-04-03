@@ -13,12 +13,14 @@ import com.google.firebase.firestore.QuerySnapshot;
 
 import java.util.Objects;
 
+import nl.tue.besportive.activities.ChallengesActivity;
 import nl.tue.besportive.activities.ConfigureChallengesActivity;
 import nl.tue.besportive.activities.CreateGroupActivity;
 import nl.tue.besportive.activities.FeedActivity;
 import nl.tue.besportive.activities.InviteMembersActivity;
 import nl.tue.besportive.activities.JoinCreateGroupActivity;
 import nl.tue.besportive.activities.OnboardingActivity;
+import nl.tue.besportive.activities.ProfileActivity;
 import nl.tue.besportive.activities.StartChallengeActivity;
 
 public class Navigator {
@@ -92,11 +94,39 @@ public class Navigator {
     }
 
 
+    public static void navigateToChallengesActivity(Context context) {
+        navigateToChallengesActivity(context, false);
+    }
+
+    public static void navigateToChallengesActivity(Context context, boolean finishActivity) {
+        Log.i(TAG, "navigateToChallengesActivity");
+        Intent intent = new Intent(context, ChallengesActivity.class);
+        context.startActivity(intent);
+        if (finishActivity) finishActivity(context);
+    }
+
+    public static void navigateToLeaderboardActivity(Context context) {
+        navigateToLeaderboardActivity(context, false);
+    }
+
+    public static void navigateToLeaderboardActivity(Context context, boolean finishActivity) {
+        Log.i(TAG, "navigateToLeaderboardActivity");
+        Intent intent = new Intent(context, ChallengesActivity.class);
+        context.startActivity(intent);
+        if (finishActivity) finishActivity(context);
+    }
+
     public static void navigateToStartChallengeActivity(Context context, String groupId, String challengeId) {
         Log.i(TAG, "navigateToStartChallengeActivity");
         Intent intent = new Intent(context, StartChallengeActivity.class);
         intent.putExtra("groupId", groupId);
         intent.putExtra("challengeId", challengeId);
+        context.startActivity(intent);
+    }
+
+    public static void navigateToProfileActivity(Context context) {
+        Log.i(TAG, "navigateToProfile");
+        Intent intent = new Intent(context, ProfileActivity.class);
         context.startActivity(intent);
     }
 
