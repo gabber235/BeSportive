@@ -17,8 +17,8 @@ public class FeedViewModel extends ViewModel implements FeedAdapter.FeedAdapterL
         completedChallengesRepository = new CompletedChallengesRepository();
     }
 
-    public LiveData<List<CompletedChallenge>> getFinishedCompletedChallenges() {
-        return completedChallengesRepository.getFinishedCompletedChallenges();
+    public LiveData<List<CompletedChallenge>> getCompletedChallenges() {
+        return completedChallengesRepository.getLiveCompletedChallenges();
     }
 
     @Override

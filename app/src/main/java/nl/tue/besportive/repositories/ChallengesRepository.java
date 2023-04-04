@@ -5,6 +5,8 @@ import android.util.Log;
 import androidx.lifecycle.LiveData;
 import androidx.lifecycle.Transformations;
 
+import com.google.android.gms.tasks.OnFailureListener;
+import com.google.android.gms.tasks.OnSuccessListener;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
 import com.google.firebase.firestore.DocumentSnapshot;
@@ -12,12 +14,12 @@ import com.google.firebase.firestore.FirebaseFirestore;
 import com.google.firebase.firestore.Query;
 import com.google.firebase.firestore.QuerySnapshot;
 
-import java.util.Date;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 import java.util.Objects;
 
+import nl.tue.besportive.data.ActiveChallenge;
 import nl.tue.besportive.data.Challenge;
 import nl.tue.besportive.utils.FirebaseDocumentLiveData;
 import nl.tue.besportive.utils.FirebaseQueryLiveData;
@@ -117,40 +119,24 @@ public class ChallengesRepository {
         return challenges;
     }
 
-    public LiveData<String> getGroupId() {
-        return groupRepository.getLiveGroupId();
-    }
-
-    public void startChallenge(String challengeId, OnChallengeStartedListener listener, OnChallengeFailedToStartListener failedListener) {
+    public void startChallenge(String challengeId, OnSuccessListener<String> listener, OnFailureListener failedListener) {
         String groupId = Objects.requireNonNull(groupRepository.getLiveGroup().getValue()).getId();
 
         FirebaseFirestore db = FirebaseFirestore.getInstance();
         FirebaseUser user = FirebaseAuth.getInstance().getCurrentUser();
         assert user != null;
 
-        HashMap<String, Object> data = new HashMap<>();
-        data.put("challenge", challengeId);
-        data.put("userId", user.getUid());
-        data.put("startedAt", new Date());
-        data.put("status", 0);
-        
-        db.collection("groups/" + groupId + "/completedChallenges")
+        ActiveChallenge data = new ActiveChallenge(challengeId, user.getUid());
+
+        db.collection("groups/" + groupId + "/activeChallenges")
                 .add(data)
                 .addOnCompleteListener(task -> {
                     if (task.isSuccessful()) {
-                        listener.onChallengeStarted(task.getResult().getId());
+                        listener.onSuccess(task.getResult().getId());
                     } else {
-                        failedListener.onChallengeFailedToStart();
+                        failedListener.onFailure(Objects.requireNonNull(task.getException()));
                         Log.e("ChallengesRepository", "Failed to start challenge", task.getException());
                     }
                 });
-    }
-
-    public interface OnChallengeStartedListener {
-        void onChallengeStarted(String completedChallengeId);
-    }
-
-    public interface OnChallengeFailedToStartListener {
-        void onChallengeFailedToStart();
     }
 }

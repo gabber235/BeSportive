@@ -39,7 +39,7 @@ public class StartChallengeViewModel extends ViewModel {
 
         challengesRepository.startChallenge(challengeId, (completedChallengeId) -> {
             Navigator.navigateToActiveChallengesActivity(context, true);
-        }, () -> {
+        }, (error) -> {
             startingChallenge.setValue(false);
             Toast.makeText(context, "Failed to start challenge", Toast.LENGTH_SHORT).show();
         });

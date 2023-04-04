@@ -31,7 +31,7 @@ public class CompletedChallengesAdapter extends RecyclerView.Adapter<CompletedCh
     @Override
     public void onBindViewHolder(@NonNull CompletedChallengesViewHolder holder, int position) {
         holder.nameView.setText(items.get(position).getName());
-        holder.difficultyView.setText(String.valueOf(items.get(position).getStatus()));
+        holder.difficultyView.setText(String.valueOf(items.get(position).getSmartDifficulty().getName()));
     }
 
     @Override

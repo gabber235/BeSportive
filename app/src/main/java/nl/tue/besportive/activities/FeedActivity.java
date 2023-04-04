@@ -29,7 +29,7 @@ public class FeedActivity extends AppCompatActivity {
         FeedAdapter adapter = new FeedAdapter(viewModel);
         binding.recyclerView.setAdapter(adapter);
 
-        viewModel.getFinishedCompletedChallenges().observe(this, adapter::setItems);
+        viewModel.getCompletedChallenges().observe(this, adapter::setItems);
 
         // Setup toolbar and bottom navigation
         setSupportActionBar(BarUtils.setupPrimaryToolbar(binding.toolbarFeed.toolbar));

@@ -4,28 +4,27 @@ import java.util.Date;
 
 public class CompletedChallenge {
     private String id;
-    private String challenge;
+    private String challengeId;
     private String userId;
     private Date completedAt;
-    private Date startedAt;
     private int duration;
 
     private String name;
     private int difficulty;
 
     private String photoUrl;
-    private int status;
 
     public CompletedChallenge() {
     }
 
-    public CompletedChallenge(String challenge, String userId, Date startedAt, String name, int difficulty, int status) {
-        this.challenge = challenge;
-        this.userId = userId;
-        this.startedAt = startedAt;
-        this.name = name;
-        this.difficulty = difficulty;
-        this.status = status;
+    public CompletedChallenge(Challenge challenge, ActiveChallenge activeChallenge) {
+        this.challengeId = challenge.getId();
+        this.name = challenge.getName();
+        this.difficulty = challenge.getDifficulty();
+        this.completedAt = new Date();
+        this.duration = this.completedAt.getSeconds() - activeChallenge.getStartedAt().getSeconds();
+        this.userId = activeChallenge.getUserId();
+        this.photoUrl = activeChallenge.getPhotoUrl();
     }
 
     public String getId() {
@@ -36,12 +35,12 @@ public class CompletedChallenge {
         this.id = id;
     }
 
-    public String getChallenge() {
-        return challenge;
+    public String getChallengeId() {
+        return challengeId;
     }
 
-    public void setChallenge(String challenge) {
-        this.challenge = challenge;
+    public void setChallengeId(String challengeId) {
+        this.challengeId = challengeId;
     }
 
     public String getName() {
@@ -58,14 +57,6 @@ public class CompletedChallenge {
 
     public void setCompletedAt(Date completedAt) {
         this.completedAt = completedAt;
-    }
-
-    public Date getStartedAt() {
-        return startedAt;
-    }
-
-    public void setStartedAt(Date startedAt) {
-        this.startedAt = startedAt;
     }
 
     public int getDuration() {
@@ -103,13 +94,5 @@ public class CompletedChallenge {
 
     public void setDifficulty(int difficulty) {
         this.difficulty = difficulty;
-    }
-
-    public int getStatus() {
-        return status;
-    }
-
-    public void setStatus(int status) {
-        this.status = status;
     }
 }

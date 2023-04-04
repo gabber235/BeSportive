@@ -3,8 +3,6 @@ package nl.tue.besportive.repositories;
 import androidx.lifecycle.LiveData;
 import androidx.lifecycle.Transformations;
 
-import com.google.firebase.auth.FirebaseAuth;
-import com.google.firebase.auth.FirebaseUser;
 import com.google.firebase.firestore.FirebaseFirestore;
 import com.google.firebase.firestore.Query;
 import com.google.firebase.firestore.QuerySnapshot;
@@ -16,14 +14,11 @@ import nl.tue.besportive.data.CompletedChallenge;
 import nl.tue.besportive.utils.FirebaseQueryLiveData;
 
 public class CompletedChallengesRepository {
-    private Map<String, LiveData<QuerySnapshot>> completedUserChallengesSnapshot;
-    private Map<String, LiveData<List<CompletedChallenge>>> completedUserChallenges;
+    private Map<String, LiveData<QuerySnapshot>> userCompletedChallengesSnapshot;
+    private Map<String, LiveData<List<CompletedChallenge>>> userCompletedChallenges;
 
-    private LiveData<QuerySnapshot> finishedChallengesSnapshot;
-    private LiveData<List<CompletedChallenge>> finishedChallenges;
-
-    private LiveData<QuerySnapshot> activeChallengesSnapshot;
-    private LiveData<CompletedChallenge> activeChallenge;
+    private LiveData<QuerySnapshot> completedChallengesSnapshot;
+    private LiveData<List<CompletedChallenge>> completedChallenges;
 
 
     private final GroupRepository groupRepository;
@@ -35,12 +30,12 @@ public class CompletedChallengesRepository {
     }
 
     private Query getUserCompletedChallengesQuery(String groupId, String uid) {
-        return firestore.collection("groups").document(groupId).collection("completedChallenges").whereEqualTo("uid", uid);
+        return firestore.collection("groups/" + groupId + "/completedChallenges").whereEqualTo("userId", uid);
     }
 
-    private LiveData<QuerySnapshot> getUserCompletedChallengesSnapshot(String userId) {
-        if (completedUserChallengesSnapshot.containsKey(userId)) {
-            return completedUserChallengesSnapshot.get(userId);
+    private LiveData<QuerySnapshot> getLiveUserCompletedChallengesSnapshot(String userId) {
+        if (userCompletedChallengesSnapshot.containsKey(userId)) {
+            return userCompletedChallengesSnapshot.get(userId);
         }
         LiveData<QuerySnapshot> completedChallenges = Transformations.switchMap(groupRepository.getLiveGroup(), group -> {
             if (group == null) {
@@ -48,16 +43,16 @@ public class CompletedChallengesRepository {
             }
             return new FirebaseQueryLiveData(getUserCompletedChallengesQuery(group.getId(), userId));
         });
-        completedUserChallengesSnapshot.put(userId, completedChallenges);
+        userCompletedChallengesSnapshot.put(userId, completedChallenges);
 
         return completedChallenges;
     }
 
-    public LiveData<List<CompletedChallenge>> getUserCompletedChallenges(String uid) {
-        if (completedUserChallenges.containsKey(uid)) {
-            return completedUserChallenges.get(uid);
+    public LiveData<List<CompletedChallenge>> getLiveUserCompletedChallenges(String uid) {
+        if (userCompletedChallenges.containsKey(uid)) {
+            return userCompletedChallenges.get(uid);
         }
-        LiveData<List<CompletedChallenge>> completedChallenges = Transformations.map(getUserCompletedChallengesSnapshot(uid), snapshot -> {
+        LiveData<List<CompletedChallenge>> completedChallenges = Transformations.map(getLiveUserCompletedChallengesSnapshot(uid), snapshot -> {
             if (snapshot == null || snapshot.isEmpty()) {
                 return null;
             }
@@ -70,34 +65,34 @@ public class CompletedChallengesRepository {
 
             return completedChallengesList;
         });
-        completedUserChallenges.put(uid, completedChallenges);
+        userCompletedChallenges.put(uid, completedChallenges);
         return completedChallenges;
     }
 
-    private Query getFinishedCompletedChallengesQuery(String groupId) {
-        return firestore.collection("groups").document(groupId).collection("completedChallenges").whereEqualTo("status", 1);
+    private Query getCompletedChallengesQuery(String groupId) {
+        return firestore.collection("groups/" + groupId + "/completedChallenges").orderBy("completedAt", Query.Direction.DESCENDING);
     }
 
-    private LiveData<QuerySnapshot> getFinishedCompletedChallengesSnapshot() {
-        if (finishedChallengesSnapshot != null) {
-            return finishedChallengesSnapshot;
+    private LiveData<QuerySnapshot> getLiveCompletedChallengesSnapshot() {
+        if (completedChallengesSnapshot != null) {
+            return completedChallengesSnapshot;
         }
         LiveData<QuerySnapshot> completedChallenges = Transformations.switchMap(groupRepository.getLiveGroup(), group -> {
             if (group == null) {
                 return null;
             }
-            return new FirebaseQueryLiveData(getFinishedCompletedChallengesQuery(group.getId()));
+            return new FirebaseQueryLiveData(getCompletedChallengesQuery(group.getId()));
         });
-        finishedChallengesSnapshot = completedChallenges;
+        completedChallengesSnapshot = completedChallenges;
 
         return completedChallenges;
     }
 
-    public LiveData<List<CompletedChallenge>> getFinishedCompletedChallenges() {
-        if (finishedChallenges != null) {
-            return finishedChallenges;
+    public LiveData<List<CompletedChallenge>> getLiveCompletedChallenges() {
+        if (completedChallenges != null) {
+            return completedChallenges;
         }
-        LiveData<List<CompletedChallenge>> completedChallenges = Transformations.map(getFinishedCompletedChallengesSnapshot(), snapshot -> {
+        LiveData<List<CompletedChallenge>> completedChallenges = Transformations.map(getLiveCompletedChallengesSnapshot(), snapshot -> {
             if (snapshot == null || snapshot.isEmpty()) {
                 return null;
             }
@@ -110,41 +105,8 @@ public class CompletedChallengesRepository {
 
             return completedChallengesList;
         });
-        finishedChallenges = completedChallenges;
+        this.completedChallenges = completedChallenges;
         return completedChallenges;
-    }
-
-    private Query getActiveChallengeQuery(String groupId) {
-        FirebaseUser user = FirebaseAuth.getInstance().getCurrentUser();
-        assert user != null;
-        String uid = user.getUid();
-        return firestore.collection("groups/" + groupId + "/completedChallenges").whereEqualTo("status", 0).whereEqualTo("userId", uid).limit(1);
-    }
-
-    public LiveData<QuerySnapshot> getLiveActiveChallengeSnapshot() {
-        if (activeChallengesSnapshot != null) {
-            return activeChallengesSnapshot;
-        }
-        return activeChallengesSnapshot = Transformations.switchMap(groupRepository.getLiveGroup(), group -> {
-            if (group == null) {
-                return null;
-            }
-            return new FirebaseQueryLiveData(getActiveChallengeQuery(group.getId()));
-        });
-    }
-
-    public LiveData<CompletedChallenge> getLiveActiveChallenge() {
-        if (activeChallenge != null) {
-            return activeChallenge;
-        }
-        return activeChallenge = Transformations.map(getLiveActiveChallengeSnapshot(), snapshot -> {
-            if (snapshot == null || snapshot.isEmpty()) {
-                return null;
-            }
-            CompletedChallenge completedChallenge = snapshot.toObjects(CompletedChallenge.class).get(0);
-            completedChallenge.setId(snapshot.getDocuments().get(0).getId());
-            return completedChallenge;
-        });
     }
 }
 

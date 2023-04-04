@@ -20,6 +20,7 @@ import nl.tue.besportive.activities.CreateGroupActivity;
 import nl.tue.besportive.activities.FeedActivity;
 import nl.tue.besportive.activities.InviteMembersActivity;
 import nl.tue.besportive.activities.JoinCreateGroupActivity;
+import nl.tue.besportive.activities.LeaderboardActivity;
 import nl.tue.besportive.activities.OnboardingActivity;
 import nl.tue.besportive.activities.ProfileActivity;
 import nl.tue.besportive.activities.StartChallengeActivity;
@@ -123,7 +124,7 @@ public class Navigator {
 
     public static void navigateToLeaderboardActivity(Context context, boolean finishActivity) {
         Log.i(TAG, "navigateToLeaderboardActivity");
-        Intent intent = new Intent(context, ChallengesActivity.class);
+        Intent intent = new Intent(context, LeaderboardActivity.class);
         context.startActivity(intent);
         if (finishActivity) finishActivity(context);
     }
@@ -191,9 +192,8 @@ public class Navigator {
 
     private static void checkIfUserIsInChallenge(Context context, String groupId) {
         FirebaseFirestore.getInstance()
-                .collection("groups/" + groupId + "/completedChallenges")
+                .collection("groups/" + groupId + "/activeChallenges")
                 .whereEqualTo("userId", Objects.requireNonNull(FirebaseAuth.getInstance().getCurrentUser()).getUid())
-                .whereEqualTo("status", 0)
                 .get()
                 .addOnCompleteListener((task) -> onChallengeQueryComplete(context, task));
     }

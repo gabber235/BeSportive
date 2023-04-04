@@ -8,6 +8,7 @@ import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.firestore.FirebaseFirestore;
 import com.google.firebase.firestore.FirebaseFirestoreSettings;
 import com.google.firebase.functions.FirebaseFunctions;
+import com.google.firebase.storage.FirebaseStorage;
 
 import nl.tue.besportive.BuildConfig;
 import nl.tue.besportive.R;
@@ -34,6 +35,7 @@ public class MainActivity extends AppCompatActivity {
         if (BuildConfig.DEBUG) {
             FirebaseFunctions.getInstance().useEmulator("10.0.2.2", 5001);
             FirebaseAuth.getInstance().useEmulator("10.0.2.2", 9099);
+            FirebaseStorage.getInstance().useEmulator("10.0.2.2", 9199);
             FirebaseFirestore.getInstance().setFirestoreSettings(developSettings);
         } else {
             FirebaseFirestore.getInstance().setFirestoreSettings(productionSettings);

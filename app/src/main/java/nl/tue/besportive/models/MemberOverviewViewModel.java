@@ -17,6 +17,6 @@ public class MemberOverviewViewModel extends ViewModel {
     }
 
     public LiveData<List<CompletedChallenge>> getCompletedChallenges(String userId) {
-        return completedChallengesRepository.getUserCompletedChallenges(userId);
+        return completedChallengesRepository.getLiveUserCompletedChallenges(userId);
     }
 }
