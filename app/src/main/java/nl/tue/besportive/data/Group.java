@@ -1,8 +1,11 @@
 package nl.tue.besportive.data;
 
+import com.google.firebase.firestore.Exclude;
+
 import java.util.Map;
 
 public class Group {
+    @Exclude
     private String id;
     private String name;
     private String admin;

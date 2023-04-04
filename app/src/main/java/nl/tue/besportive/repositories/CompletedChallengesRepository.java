@@ -3,12 +3,15 @@ package nl.tue.besportive.repositories;
 import androidx.lifecycle.LiveData;
 import androidx.lifecycle.Transformations;
 
+import com.google.firebase.auth.FirebaseAuth;
+import com.google.firebase.auth.FirebaseUser;
 import com.google.firebase.firestore.FirebaseFirestore;
 import com.google.firebase.firestore.Query;
 import com.google.firebase.firestore.QuerySnapshot;
 
 import java.util.List;
 import java.util.Map;
+import java.util.Objects;
 
 import nl.tue.besportive.data.CompletedChallenge;
 import nl.tue.besportive.utils.FirebaseQueryLiveData;
@@ -108,5 +111,28 @@ public class CompletedChallengesRepository {
         this.completedChallenges = completedChallenges;
         return completedChallenges;
     }
-}
 
+    public void love(String completedChallengeId) {
+        FirebaseUser user = FirebaseAuth.getInstance().getCurrentUser();
+        if (user == null) {
+            return;
+        }
+
+        String groupId = Objects.requireNonNull(groupRepository.getLiveGroup().getValue()).getId();
+        String path = "groups/" + groupId + "/completedChallenges/" + completedChallengeId;
+
+        firestore.runTransaction(transaction -> {
+            CompletedChallenge challenge = transaction.get(firestore.document(path)).toObject(CompletedChallenge.class);
+            if (challenge == null) {
+                return null;
+            }
+
+            challenge.toggleLove();
+
+
+            transaction.update(firestore.document(path), "lovers", challenge.getLovers());
+
+            return null;
+        });
+    }
+}

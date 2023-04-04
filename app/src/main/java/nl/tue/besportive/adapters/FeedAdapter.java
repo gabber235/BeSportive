@@ -4,9 +4,10 @@ import java.util.ArrayList;
 
 import nl.tue.besportive.R;
 import nl.tue.besportive.data.CompletedChallenge;
+import nl.tue.besportive.data.FeedItem;
 import nl.tue.besportive.databinding.FeedCardBinding;
 
-public class FeedAdapter extends BaseAdapter<FeedCardBinding, CompletedChallenge> {
+public class FeedAdapter extends BaseAdapter<FeedCardBinding, FeedItem> {
     private final FeedAdapterListener listener;
 
     public FeedAdapter(FeedAdapterListener listener) {
@@ -15,12 +16,13 @@ public class FeedAdapter extends BaseAdapter<FeedCardBinding, CompletedChallenge
     }
 
     @Override
-    protected void bind(FeedCardBinding binding, CompletedChallenge item) {
-        binding.setCompletedChallenge(item);
+    protected void bind(FeedCardBinding binding, FeedItem item) {
+        binding.setCompletedChallenge(item.getChallenge());
+        binding.setMember(item.getMember());
         binding.setListener(listener);
     }
 
     public static interface FeedAdapterListener {
-        void onLike(CompletedChallenge completedChallenge);
+        void onLove(CompletedChallenge completedChallenge);
     }
 }

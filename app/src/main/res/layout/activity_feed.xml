@@ -38,12 +38,9 @@
             android:layout_width="match_parent"
             android:layout_height="0dp"
             android:layout_weight="1"
-            android:layout_marginTop="10dp"
-            android:layout_marginBottom="10dp"
-            android:layout_marginLeft="10dp"
-            android:layout_marginRight="10dp"
             app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager"
-            android:orientation="vertical" />
+            android:orientation="vertical"
+            tools:listitem="@layout/feed_card" />
 
 
         <com.google.android.material.bottomnavigation.BottomNavigationView

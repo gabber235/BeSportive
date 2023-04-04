@@ -1,8 +1,12 @@
 package nl.tue.besportive.data;
 
+
+import com.google.firebase.firestore.Exclude;
+
 import java.util.Date;
 
 public class ActiveChallenge {
+    @Exclude
     private String id;
     private String challengeId;
     private String userId;

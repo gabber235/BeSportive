@@ -1,10 +1,13 @@
 package nl.tue.besportive.data;
 
+import com.google.firebase.firestore.Exclude;
+
 public class Challenge {
+    @Exclude
+    private String id;
     private int difficulty;
     private String name;
 
-    private String id;
 
     public Challenge() {
 
@@ -57,5 +60,5 @@ public class Challenge {
         this.difficulty = difficulty;
     }
 
-   
+
 }
