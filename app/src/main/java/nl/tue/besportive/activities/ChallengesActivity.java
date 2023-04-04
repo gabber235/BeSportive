@@ -30,7 +30,7 @@ public class ChallengesActivity extends AppCompatActivity {
 
         viewModel.getChallenges().observe(this, adapter::setItems);
 
-        setSupportActionBar(BarUtils.setupToolbar(binding.toolbarFeed.feedToolbar));
+        setSupportActionBar(BarUtils.setupPrimaryToolbar(binding.toolbarChallenges.toolbar));
         BarUtils.setupBottomNavigation(this, binding.bottomNavigation, R.id.challenges);
     }
 

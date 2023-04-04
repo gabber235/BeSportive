@@ -18,8 +18,8 @@
         android:orientation="vertical">
 
         <include
-            android:id="@+id/toolbar_feed"
-            layout="@layout/toolbar_feed"
+            android:id="@+id/toolbar_challenges"
+            layout="@layout/toolbar"
             android:layout_width="match_parent"
             android:layout_height="wrap_content" />
 

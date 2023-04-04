@@ -4,6 +4,7 @@
     xmlns:tools="http://schemas.android.com/tools">
 
     <data>
+
         <variable
             name="viewModel"
             type="nl.tue.besportive.models.ProfilePageViewModel" />
@@ -14,9 +15,10 @@
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         tools:context=".activities.ProfileActivity">
+
         <include
             android:id="@+id/toolbar_profile_page"
-            layout="@layout/toolbar_feed"
+            layout="@layout/toolbar"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             app:layout_constraintEnd_toEndOf="parent"

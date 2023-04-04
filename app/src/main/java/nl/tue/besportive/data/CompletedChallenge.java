@@ -7,6 +7,7 @@ public class CompletedChallenge {
     private String challenge;
     private String userId;
     private Date completedAt;
+    private Date startedAt;
     private int duration;
 
     private String name;
@@ -16,6 +17,15 @@ public class CompletedChallenge {
     private int status;
 
     public CompletedChallenge() {
+    }
+
+    public CompletedChallenge(String challenge, String userId, Date startedAt, String name, int difficulty, int status) {
+        this.challenge = challenge;
+        this.userId = userId;
+        this.startedAt = startedAt;
+        this.name = name;
+        this.difficulty = difficulty;
+        this.status = status;
     }
 
     public String getId() {
@@ -48,6 +58,14 @@ public class CompletedChallenge {
 
     public void setCompletedAt(Date completedAt) {
         this.completedAt = completedAt;
+    }
+
+    public Date getStartedAt() {
+        return startedAt;
+    }
+
+    public void setStartedAt(Date startedAt) {
+        this.startedAt = startedAt;
     }
 
     public int getDuration() {

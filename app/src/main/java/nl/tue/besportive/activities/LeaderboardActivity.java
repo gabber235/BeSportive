@@ -35,7 +35,7 @@ public class LeaderboardActivity extends AppCompatActivity {
         nl.tue.besportive.databinding.ActivityLeaderboardBinding binding = ActivityLeaderboardBinding.inflate(getLayoutInflater());
         setContentView(binding.getRoot());
 
-        setSupportActionBar(BarUtils.setupToolbar(binding.toolbarFeed.feedToolbar));
+        setSupportActionBar(BarUtils.setupPrimaryToolbar(binding.toolbarLeaderboard.toolbar));
         BarUtils.setupBottomNavigation(this, binding.bottomNavigation, R.id.leaderboard);
 
         List<Member> items = new ArrayList<>();

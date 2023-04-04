@@ -2,8 +2,10 @@ package nl.tue.besportive.models;
 
 import android.content.Context;
 import android.util.Log;
+import android.widget.Toast;
 
 import androidx.lifecycle.LiveData;
+import androidx.lifecycle.MutableLiveData;
 import androidx.lifecycle.ViewModel;
 import androidx.lifecycle.ViewModelProvider;
 
@@ -11,12 +13,12 @@ import nl.tue.besportive.data.Challenge;
 import nl.tue.besportive.repositories.ChallengesRepository;
 
 public class StartChallengeViewModel extends ViewModel {
-    private final ChallengesRepository challengesRepository;
+    private final ChallengesRepository challengesRepository = new ChallengesRepository();
+    private final MutableLiveData<Boolean> startingChallenge = new MutableLiveData<>();
 
     private final String challengeId;
 
     public StartChallengeViewModel(String challengeId) {
-        challengesRepository = new ChallengesRepository();
         this.challengeId = challengeId;
     }
 
@@ -24,10 +26,22 @@ public class StartChallengeViewModel extends ViewModel {
         return challengesRepository.getLiveChallenge(challengeId);
     }
 
+    public LiveData<Boolean> isStartingChallenge() {
+        return startingChallenge;
+    }
+
 
     public void startChallenge(Context context) {
-        // TODO Create the completedChallenge in the database and navigate to the active challenge activity
-        Log.d("StartChallengeViewModel", "Start challenge");
+        if (startingChallenge.getValue() != null && startingChallenge.getValue()) return;
+        startingChallenge.setValue(true);
+
+        challengesRepository.startChallenge(challengeId, (completedChallengeId) -> {
+//            Navigator.navigateToActiveChallengesActivity(context, completedChallengeId, true);
+            Log.d("StartChallengeViewModel", "Challenge started successfully: " + completedChallengeId);
+        }, () -> {
+            startingChallenge.setValue(false);
+            Toast.makeText(context, "Failed to start challenge", Toast.LENGTH_SHORT).show();
+        });
     }
 
     public static class StartChallengeViewModelFactory implements ViewModelProvider.Factory {

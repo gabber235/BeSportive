@@ -1,6 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
 <layout xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:app="http://schemas.android.com/apk/res-auto">
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools">
 
     <data>
 
@@ -41,7 +42,9 @@
                     android:layout_height="wrap_content"
                     android:text="@{challenge.smartDifficulty.name}"
                     android:textColor="@{challenge.smartDifficulty.color}"
-                    android:textSize="16sp" />
+                    android:textSize="16sp"
+                    tools:text="Hard"
+                    tools:textColor="@color/easy_green" />
 
                 <TextView
                     android:id="@+id/tv_challengeName"
@@ -50,7 +53,8 @@
                     android:text="@{challenge.name}"
                     android:textColor="#000000"
                     android:textSize="20sp"
-                    android:textStyle="bold" />
+                    android:textStyle="bold"
+                    tools:text="100 Push Ups" />
 
 
             </LinearLayout>

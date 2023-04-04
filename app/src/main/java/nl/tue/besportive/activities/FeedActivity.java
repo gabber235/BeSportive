@@ -32,7 +32,7 @@ public class FeedActivity extends AppCompatActivity {
         viewModel.getFinishedCompletedChallenges().observe(this, adapter::setItems);
 
         // Setup toolbar and bottom navigation
-        setSupportActionBar(BarUtils.setupToolbar(binding.toolbarFeed.feedToolbar));
+        setSupportActionBar(BarUtils.setupPrimaryToolbar(binding.toolbarFeed.toolbar));
         BarUtils.setupBottomNavigation(this, binding.bottomNavigation, R.id.feed);
     }
 

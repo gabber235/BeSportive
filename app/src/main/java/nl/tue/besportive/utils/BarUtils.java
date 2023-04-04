@@ -2,6 +2,7 @@ package nl.tue.besportive.utils;
 
 import android.app.Activity;
 import android.content.Context;
+import android.os.Handler;
 import android.view.MenuItem;
 
 import androidx.appcompat.widget.Toolbar;
@@ -11,9 +12,24 @@ import com.google.android.material.bottomnavigation.BottomNavigationView;
 import nl.tue.besportive.R;
 
 public class BarUtils {
-    public static Toolbar setupToolbar(Toolbar toolbar) {
+    public static Toolbar setupPrimaryToolbar(Toolbar toolbar) {
         toolbar.setTitle("");
         toolbar.setNavigationIcon(R.drawable.img); // Replace back button with profile image.
+
+        return toolbar;
+    }
+
+    public static Toolbar setupBackToolbar(Toolbar toolbar) {
+        toolbar.setTitle("");
+        toolbar.setNavigationIcon(R.drawable.ic_back);
+
+        // The set navigation listener needs te be called after the toolbar is set as the support bar.
+        new Handler().postDelayed(() -> {
+            toolbar.setNavigationOnClickListener(v -> {
+                Navigator.finishActivity(v.getContext());
+            });
+        }, 10);
+
 
         return toolbar;
     }

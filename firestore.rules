@@ -25,7 +25,7 @@ service cloud.firestore {
 
         match /completedChallenges/{completedChallengeId} {
           allow read: if isInGroup();
-          allow write: if (request.resource.data.userId == request.auth.uid && isInGroup() || isGroupAdmin());
+          allow write: if ((debug(request.resource.data.userId) == request.auth.uid && isInGroup()) || isGroupAdmin());
         }
         match /challenges/{challengeId} {
           allow read: if isInGroup();

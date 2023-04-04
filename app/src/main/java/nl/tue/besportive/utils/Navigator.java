@@ -13,6 +13,7 @@ import com.google.firebase.firestore.QuerySnapshot;
 
 import java.util.Objects;
 
+import nl.tue.besportive.activities.ActiveChallengeActivity;
 import nl.tue.besportive.activities.ChallengesActivity;
 import nl.tue.besportive.activities.ConfigureChallengesActivity;
 import nl.tue.besportive.activities.CreateGroupActivity;
@@ -105,6 +106,18 @@ public class Navigator {
         if (finishActivity) finishActivity(context);
     }
 
+    public static void navigateToActiveChallengesActivity(Context context, String completedChallengeId) {
+        navigateToActiveChallengesActivity(context, completedChallengeId, false);
+    }
+
+    public static void navigateToActiveChallengesActivity(Context context, String completedChallengeId, boolean finishActivity) {
+        Log.i(TAG, "navigateToActiveChallengesActivity");
+        Intent intent = new Intent(context, ActiveChallengeActivity.class);
+        intent.putExtra("completedChallengeId", completedChallengeId);
+        context.startActivity(intent);
+        if (finishActivity) finishActivity(context);
+    }
+
     public static void navigateToLeaderboardActivity(Context context) {
         navigateToLeaderboardActivity(context, false);
     }
@@ -129,9 +142,12 @@ public class Navigator {
         context.startActivity(intent);
     }
 
-    private static void finishActivity(Context context) {
+    public static void finishActivity(Context context) {
         if (context instanceof Activity) {
+            Log.d(TAG, "finishActivity: Finishing activity:" + context.getClass().getSimpleName());
             ((Activity) context).finish();
+        } else {
+            Log.e(TAG, "finishActivity: Context is not an activity");
         }
     }
 

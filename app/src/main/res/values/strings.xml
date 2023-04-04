@@ -56,7 +56,7 @@
     <string name="feedHeaderText">Feed</string>
     <string name="go_to_member_text">Go to member</string>
     <string name="complete">Complete</string>
-    <string name="start">Start</string>
+    <string name="start">Start Challenge</string>
     <string name="cancel_the_challenge">Cancel the Challenge</string>
     <string name="startChallenge_header">Start Challenge</string>
     <string name="add_custom_challenge_button_description">Add Custom Challenge</string>
