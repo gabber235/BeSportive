@@ -116,10 +116,9 @@ public class Navigator {
         if (finishActivity) finishActivity(context);
     }
 
-    public static void navigateToStartChallengeActivity(Context context, String groupId, String challengeId) {
+    public static void navigateToStartChallengeActivity(Context context, String challengeId) {
         Log.i(TAG, "navigateToStartChallengeActivity");
         Intent intent = new Intent(context, StartChallengeActivity.class);
-        intent.putExtra("groupId", groupId);
         intent.putExtra("challengeId", challengeId);
         context.startActivity(intent);
     }

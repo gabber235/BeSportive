@@ -8,22 +8,20 @@ import androidx.lifecycle.ViewModel;
 import androidx.lifecycle.ViewModelProvider;
 
 import nl.tue.besportive.data.Challenge;
-import nl.tue.besportive.repositories.ChallengeRepository;
+import nl.tue.besportive.repositories.ChallengesRepository;
 
 public class StartChallengeViewModel extends ViewModel {
-    private final ChallengeRepository challengeRepository;
+    private final ChallengesRepository challengesRepository;
 
-    private final String groupId;
     private final String challengeId;
 
-    public StartChallengeViewModel(String groupId, String challengeId) {
-        challengeRepository = new ChallengeRepository();
-        this.groupId = groupId;
+    public StartChallengeViewModel(String challengeId) {
+        challengesRepository = new ChallengesRepository();
         this.challengeId = challengeId;
     }
 
     public LiveData<Challenge> getChallenge() {
-        return challengeRepository.getLiveChallenge(groupId, challengeId);
+        return challengesRepository.getLiveChallenge(challengeId);
     }
 
 
@@ -33,18 +31,16 @@ public class StartChallengeViewModel extends ViewModel {
     }
 
     public static class StartChallengeViewModelFactory implements ViewModelProvider.Factory {
-        private final String groupId;
         private final String challengeId;
 
-        public StartChallengeViewModelFactory(String groupId, String challengeId) {
-            this.groupId = groupId;
+        public StartChallengeViewModelFactory(String challengeId) {
             this.challengeId = challengeId;
         }
 
         @Override
         public <T extends ViewModel> T create(Class<T> modelClass) {
             if (modelClass.isAssignableFrom(StartChallengeViewModel.class)) {
-                return (T) new StartChallengeViewModel(groupId, challengeId);
+                return (T) new StartChallengeViewModel(challengeId);
             } else {
                 throw new IllegalArgumentException("Unknown ViewModel class");
             }
