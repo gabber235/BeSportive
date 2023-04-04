@@ -6,7 +6,7 @@ import nl.tue.besportive.R;
 import nl.tue.besportive.data.CompletedChallenge;
 import nl.tue.besportive.databinding.FeedCardBinding;
 
-public class FeedAdapter extends BaseAdapter<nl.tue.besportive.databinding.FeedCardBinding, CompletedChallenge> {
+public class FeedAdapter extends BaseAdapter<FeedCardBinding, CompletedChallenge> {
     private final FeedAdapterListener listener;
 
     public FeedAdapter(FeedAdapterListener listener) {
