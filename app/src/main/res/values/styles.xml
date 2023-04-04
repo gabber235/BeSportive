@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+
+    <style name="Widget.App.Button" parent="Widget.MaterialComponents.Button.TextButton">
+        <item name="android:backgroundTint">@color/orange_500</item>
+        <item name="android:textColor">@color/white</item>
+    </style>
+
+    <style name="Widget.App.OutlineButton" parent="Widget.MaterialComponents.Button.OutlinedButton">
+        <item name="android:backgroundTint">#00000000</item>
+        <item name="android:textColor">@color/orange_500</item>
+        <item name="strokeColor">@color/orange_500</item>
+    </style>
+</resources>

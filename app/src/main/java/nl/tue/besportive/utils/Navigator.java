@@ -106,14 +106,13 @@ public class Navigator {
         if (finishActivity) finishActivity(context);
     }
 
-    public static void navigateToActiveChallengesActivity(Context context, String completedChallengeId) {
-        navigateToActiveChallengesActivity(context, completedChallengeId, false);
+    public static void navigateToActiveChallengesActivity(Context context) {
+        navigateToActiveChallengesActivity(context, false);
     }
 
-    public static void navigateToActiveChallengesActivity(Context context, String completedChallengeId, boolean finishActivity) {
+    public static void navigateToActiveChallengesActivity(Context context, boolean finishActivity) {
         Log.i(TAG, "navigateToActiveChallengesActivity");
         Intent intent = new Intent(context, ActiveChallengeActivity.class);
-        intent.putExtra("completedChallengeId", completedChallengeId);
         context.startActivity(intent);
         if (finishActivity) finishActivity(context);
     }
@@ -184,9 +183,26 @@ public class Navigator {
 
     private static void onGroupQueryComplete(Context context, Task<QuerySnapshot> task) {
         if (task.isSuccessful() && !task.getResult().isEmpty()) {
-            Navigator.navigateToFeedActivity(context, true);
+            checkIfUserIsInChallenge(context, task.getResult().getDocuments().get(0).getId());
         } else {
             Navigator.navigateToJoinCreateGroupActivity(context, true);
+        }
+    }
+
+    private static void checkIfUserIsInChallenge(Context context, String groupId) {
+        FirebaseFirestore.getInstance()
+                .collection("groups/" + groupId + "/completedChallenges")
+                .whereEqualTo("userId", Objects.requireNonNull(FirebaseAuth.getInstance().getCurrentUser()).getUid())
+                .whereEqualTo("status", 0)
+                .get()
+                .addOnCompleteListener((task) -> onChallengeQueryComplete(context, task));
+    }
+
+    private static void onChallengeQueryComplete(Context context, Task<QuerySnapshot> task) {
+        if (task.isSuccessful() && !task.getResult().isEmpty()) {
+            Navigator.navigateToActiveChallengesActivity(context, true);
+        } else {
+            Navigator.navigateToFeedActivity(context, true);
         }
     }
 }

@@ -1,7 +1,6 @@
 package nl.tue.besportive.models;
 
 import android.content.Context;
-import android.util.Log;
 import android.widget.Toast;
 
 import androidx.lifecycle.LiveData;
@@ -9,8 +8,11 @@ import androidx.lifecycle.MutableLiveData;
 import androidx.lifecycle.ViewModel;
 import androidx.lifecycle.ViewModelProvider;
 
+import java.util.Objects;
+
 import nl.tue.besportive.data.Challenge;
 import nl.tue.besportive.repositories.ChallengesRepository;
+import nl.tue.besportive.utils.Navigator;
 
 public class StartChallengeViewModel extends ViewModel {
     private final ChallengesRepository challengesRepository = new ChallengesRepository();
@@ -36,8 +38,7 @@ public class StartChallengeViewModel extends ViewModel {
         startingChallenge.setValue(true);
 
         challengesRepository.startChallenge(challengeId, (completedChallengeId) -> {
-//            Navigator.navigateToActiveChallengesActivity(context, completedChallengeId, true);
-            Log.d("StartChallengeViewModel", "Challenge started successfully: " + completedChallengeId);
+            Navigator.navigateToActiveChallengesActivity(context, true);
         }, () -> {
             startingChallenge.setValue(false);
             Toast.makeText(context, "Failed to start challenge", Toast.LENGTH_SHORT).show();
@@ -54,7 +55,7 @@ public class StartChallengeViewModel extends ViewModel {
         @Override
         public <T extends ViewModel> T create(Class<T> modelClass) {
             if (modelClass.isAssignableFrom(StartChallengeViewModel.class)) {
-                return (T) new StartChallengeViewModel(challengeId);
+                return Objects.requireNonNull(modelClass.cast(new StartChallengeViewModel(challengeId)));
             } else {
                 throw new IllegalArgumentException("Unknown ViewModel class");
             }

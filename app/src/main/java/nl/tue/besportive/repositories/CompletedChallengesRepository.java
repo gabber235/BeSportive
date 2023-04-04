@@ -3,6 +3,8 @@ package nl.tue.besportive.repositories;
 import androidx.lifecycle.LiveData;
 import androidx.lifecycle.Transformations;
 
+import com.google.firebase.auth.FirebaseAuth;
+import com.google.firebase.auth.FirebaseUser;
 import com.google.firebase.firestore.FirebaseFirestore;
 import com.google.firebase.firestore.Query;
 import com.google.firebase.firestore.QuerySnapshot;
@@ -19,6 +21,10 @@ public class CompletedChallengesRepository {
 
     private LiveData<QuerySnapshot> finishedChallengesSnapshot;
     private LiveData<List<CompletedChallenge>> finishedChallenges;
+
+    private LiveData<QuerySnapshot> activeChallengesSnapshot;
+    private LiveData<CompletedChallenge> activeChallenge;
+
 
     private final GroupRepository groupRepository;
     private final FirebaseFirestore firestore;
@@ -106,6 +112,39 @@ public class CompletedChallengesRepository {
         });
         finishedChallenges = completedChallenges;
         return completedChallenges;
+    }
+
+    private Query getActiveChallengeQuery(String groupId) {
+        FirebaseUser user = FirebaseAuth.getInstance().getCurrentUser();
+        assert user != null;
+        String uid = user.getUid();
+        return firestore.collection("groups/" + groupId + "/completedChallenges").whereEqualTo("status", 0).whereEqualTo("userId", uid).limit(1);
+    }
+
+    public LiveData<QuerySnapshot> getLiveActiveChallengeSnapshot() {
+        if (activeChallengesSnapshot != null) {
+            return activeChallengesSnapshot;
+        }
+        return activeChallengesSnapshot = Transformations.switchMap(groupRepository.getLiveGroup(), group -> {
+            if (group == null) {
+                return null;
+            }
+            return new FirebaseQueryLiveData(getActiveChallengeQuery(group.getId()));
+        });
+    }
+
+    public LiveData<CompletedChallenge> getLiveActiveChallenge() {
+        if (activeChallenge != null) {
+            return activeChallenge;
+        }
+        return activeChallenge = Transformations.map(getLiveActiveChallengeSnapshot(), snapshot -> {
+            if (snapshot == null || snapshot.isEmpty()) {
+                return null;
+            }
+            CompletedChallenge completedChallenge = snapshot.toObjects(CompletedChallenge.class).get(0);
+            completedChallenge.setId(snapshot.getDocuments().get(0).getId());
+            return completedChallenge;
+        });
     }
 }
 

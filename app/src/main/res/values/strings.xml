@@ -8,7 +8,7 @@
     <string name="challenges_info_text">Go to active challenges by pressing the challenges below</string>
     <string name="challenges_header">Challenges</string>
     <string name="active_challenge_header">Active Challenge</string>
-    <string name="active_challenge_challengename">100 Push ups</string>
+    <string name="active_challenge_challenge_name">100 Push ups</string>
     <string name="active_challenge_difficult_string">Easy</string>
     <string name="active_challenge_timer">08:36</string>
     <string name="configure_challenges_header">Challenges</string>
@@ -55,12 +55,13 @@
     <string name="done_button_text">Done</string>
     <string name="feedHeaderText">Feed</string>
     <string name="go_to_member_text">Go to member</string>
-    <string name="complete">Complete</string>
+    <string name="complete">Complete Challenge</string>
     <string name="start">Start Challenge</string>
     <string name="cancel_the_challenge">Cancel the Challenge</string>
     <string name="startChallenge_header">Start Challenge</string>
     <string name="add_custom_challenge_button_description">Add Custom Challenge</string>
     <string name="generate_image_button">Generate Image!</string>
+    <string name="take_picture">Take Picture</string>
     <string-array name="difficulty_options">
         <item>Easy</item>
         <item>Medium</item>

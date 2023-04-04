@@ -53,7 +53,7 @@
 
 
         <TextView
-            android:id="@+id/tv_challengeDifficulty"
+            android:id="@+id/challengeDifficulty"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:text="@{viewModel.challenge.smartDifficulty.name ?? `.....`}"

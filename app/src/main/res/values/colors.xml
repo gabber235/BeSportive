@@ -2,7 +2,8 @@
 <resources>
     <color name="black">#FF000000</color>
     <color name="white">#FFFFFFFF</color>
-    <color name="orange_500">#E39245</color>
+    <color name="orange_500">#FF9800</color>
+    <color name="orange_600">#E39245</color>
     <color name="orange_700">#B76E2E</color>
     <color name="green_500">#49EA9E</color>
     <color name="green_900">#006837</color>
