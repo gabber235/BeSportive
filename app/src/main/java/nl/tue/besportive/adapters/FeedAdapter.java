@@ -16,7 +16,7 @@ public class FeedAdapter extends BaseAdapter<FeedCardBinding, FeedItem> {
     }
 
     @Override
-    protected void bind(FeedCardBinding binding, FeedItem item) {
+    protected void bind(FeedCardBinding binding, int position, FeedItem item) {
         binding.setCompletedChallenge(item.getChallenge());
         binding.setMember(item.getMember());
         binding.setListener(listener);

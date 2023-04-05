@@ -62,6 +62,7 @@
     <string name="add_custom_challenge_button_description">Add Custom Challenge</string>
     <string name="generate_image_button">Generate Image!</string>
     <string name="take_picture">Take Picture</string>
+    <string name="user_profile_icon">User Profile Icon</string>
     <string-array name="difficulty_options">
         <item>Easy</item>
         <item>Medium</item>

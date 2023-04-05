@@ -74,7 +74,7 @@ public class GroupRepository {
                 Member member = entry.getValue();
                 member.setId(entry.getKey());
                 return member;
-            }).collect(Collectors.toList());
+            }).sorted().collect(Collectors.toList());
         });
     }
 

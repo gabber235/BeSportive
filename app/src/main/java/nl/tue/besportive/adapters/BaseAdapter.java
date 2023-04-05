@@ -16,7 +16,7 @@ public abstract class BaseAdapter<B extends ViewDataBinding, T> extends Recycler
 
     private final int layoutId;
 
-    protected abstract void bind(B binding, T item);
+    protected abstract void bind(B binding, int position, T item);
 
     public BaseAdapter(List<T> items, int layoutId) {
         this.items = items;
@@ -37,7 +37,7 @@ public abstract class BaseAdapter<B extends ViewDataBinding, T> extends Recycler
 
     @Override
     public void onBindViewHolder(BaseViewHolder<B> holder, int position) {
-        bind(holder.getBinding(), items.get(position));
+        bind(holder.getBinding(), position, items.get(position));
         holder.getBinding().executePendingBindings();
     }
 

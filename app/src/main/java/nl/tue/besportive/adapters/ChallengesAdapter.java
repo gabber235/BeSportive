@@ -17,7 +17,7 @@ public class ChallengesAdapter extends BaseAdapter<ChallengeCardBinding, Challen
     }
 
     @Override
-    protected void bind(ChallengeCardBinding binding, Challenge item) {
+    protected void bind(ChallengeCardBinding binding, int position, Challenge item) {
         binding.setChallenge(item);
         binding.setListener(listener);
     }

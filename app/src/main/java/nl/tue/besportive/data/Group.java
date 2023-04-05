@@ -12,7 +12,7 @@ public class Group {
     private String code;
     private Map<String, Member> members;
 
-    public static class Member {
+    public static class Member implements Comparable<Member> {
         private String id;
         private String name;
         private String photoUrl;
@@ -59,6 +59,11 @@ public class Group {
 
         public void setPoints(int points) {
             this.points = points;
+        }
+
+        @Override
+        public int compareTo(Member o) {
+            return Integer.compare(o.points, points);
         }
     }
 

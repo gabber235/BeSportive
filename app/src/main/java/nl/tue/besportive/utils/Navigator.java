@@ -21,6 +21,7 @@ import nl.tue.besportive.activities.FeedActivity;
 import nl.tue.besportive.activities.InviteMembersActivity;
 import nl.tue.besportive.activities.JoinCreateGroupActivity;
 import nl.tue.besportive.activities.LeaderboardActivity;
+import nl.tue.besportive.activities.MemberOverviewActivity;
 import nl.tue.besportive.activities.OnboardingActivity;
 import nl.tue.besportive.activities.ProfileActivity;
 import nl.tue.besportive.activities.StartChallengeActivity;
@@ -133,6 +134,13 @@ public class Navigator {
         Log.i(TAG, "navigateToStartChallengeActivity");
         Intent intent = new Intent(context, StartChallengeActivity.class);
         intent.putExtra("challengeId", challengeId);
+        context.startActivity(intent);
+    }
+
+    public static void navigateToMemberOverviewActivity(Context context, String userId) {
+        Log.i(TAG, "navigateToMemberOverviewActivity");
+        Intent intent = new Intent(context, MemberOverviewActivity.class);
+        intent.putExtra("userId", userId);
         context.startActivity(intent);
     }
 

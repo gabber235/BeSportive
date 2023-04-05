@@ -20,6 +20,6 @@ public class MyViewHolder extends RecyclerView.ViewHolder {
         imageView = itemView.findViewById(R.id.imageview);
         nameView = itemView.findViewById(R.id.name);
         emailView = itemView.findViewById(R.id.email);
-        pointsView = itemView.findViewById(R.id.Points);
+        pointsView = itemView.findViewById(R.id.points);
     }
 }
