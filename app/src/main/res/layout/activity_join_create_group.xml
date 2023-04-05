@@ -12,80 +12,66 @@
             type="nl.tue.besportive.models.JoinCreateGroupViewModel" />
     </data>
 
-    <androidx.constraintlayout.widget.ConstraintLayout
+    <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="match_parent"
+        android:orientation="vertical"
         tools:context=".activities.JoinCreateGroupActivity">
 
         <ImageView
             android:id="@+id/imageView2"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
+            android:layout_gravity="center_horizontal"
             android:layout_marginTop="32dp"
             android:contentDescription="logo"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toTopOf="parent"
             app:srcCompat="@drawable/logo_2" />
 
         <ImageView
             android:id="@+id/imageView4"
             android:layout_width="181dp"
             android:layout_height="126dp"
-            app:layout_constraintBottom_toTopOf="@+id/textView"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/imageView2"
-            app:layout_constraintVertical_bias="1.0"
-            app:srcCompat="@drawable/join_cartoon" />
+            android:layout_gravity="center_horizontal"
+            android:layout_marginTop="16dp"
+            app:srcCompat="@drawable/join_cartoon"
+            android:contentDescription="Shaking hands" />
 
         <TextView
             android:id="@+id/textView"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_marginBottom="5dp"
+            android:layout_gravity="center_horizontal"
+            android:layout_marginTop="16dp"
             android:contentDescription="Join"
             android:fontFamily="sans-serif-black"
             android:text="Join"
             android:textAppearance="@style/TextAppearance.AppCompat.Medium"
-            android:textSize="30sp"
-            app:layout_constraintBottom_toTopOf="@+id/textView3"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/imageView4" />
+            android:textSize="30sp" />
 
         <TextView
             android:id="@+id/textView3"
-            android:layout_width="320dp"
-            android:layout_height="39dp"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center_horizontal"
             android:layout_marginTop="4dp"
             android:text="@string/joincreategroup_join_info_text"
-            android:textAlignment="center"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintHorizontal_bias="0.494"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/textView" />
+            android:textAlignment="center" />
 
         <com.google.android.material.textfield.TextInputLayout
             android:id="@+id/codeInputLayout"
             style="@style/Widget.Material3.TextInputEditText.OutlinedBox"
-            android:layout_width="wrap_content"
+            android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_marginStart="130dp"
-            android:layout_marginEnd="130dp"
+            android:layout_marginHorizontal="32dp"
+            android:layout_marginTop="8dp"
             android:enabled="@{!viewModel.loading}"
             android:hint="@string/joinCreateGroup_code_placeholder"
             app:counterEnabled="true"
             app:counterMaxLength="5"
-            app:helperText="Required*"
-            app:layout_constraintBottom_toTopOf="@+id/joinButton"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/textView3">
-
+            app:helperText="Required*">
             <com.google.android.material.textfield.TextInputEditText
                 android:id="@+id/codeInputText"
-                android:layout_width="196dp"
+                android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:maxLength="5"
                 android:text="@={viewModel.code}" />
@@ -95,78 +81,56 @@
             android:id="@+id/joinButton"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_marginTop="25dp"
-            android:text="@string/joinCreateGroup_buttons_join"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/codeInputLayout"
+            android:layout_gravity="center_horizontal"
+            android:layout_marginTop="8dp"
             android:enabled="@{viewModel.code.length() == 5}"
-            android:visibility="@{viewModel.loading ? View.GONE : View.VISIBLE}"
-            android:onClick="@{() -> viewModel.joinGroup(context)}" />
-
+            android:onClick="@{() -> viewModel.joinGroup(context)}"
+            android:text="@string/joinCreateGroup_buttons_join"
+            android:visibility="@{viewModel.loading ? View.GONE : View.VISIBLE}" />
         <ProgressBar
             android:id="@+id/joinGroupProgressBar"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_marginTop="20dp"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/codeInputLayout"
+            android:layout_gravity="center_horizontal"
+            android:layout_marginTop="8dp"
             android:visibility="@{viewModel.loading ? View.VISIBLE : View.GONE}" />
 
         <View
             android:id="@+id/divider"
-            android:layout_width="409dp"
+            android:layout_width="match_parent"
             android:layout_height="1dp"
-            android:layout_marginStart="1dp"
-            android:layout_marginTop="100dp"
-            android:layout_marginEnd="1dp"
-            android:layout_marginBottom="40dp"
-            android:background="?android:attr/listDivider"
-            app:layout_constraintBottom_toTopOf="@+id/textView4"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/codeInputLayout" />
-        />
-
+            android:layout_marginTop="4dp"
+            android:layout_marginBottom="4dp"
+            android:background="?android:attr/listDivider" />
 
         <TextView
             android:id="@+id/textView4"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_marginTop="50dp"
+            android:layout_gravity="center_horizontal"
+            android:layout_marginTop="8dp"
             android:fontFamily="sans-serif-black"
             android:text="Create"
             android:textAppearance="@style/TextAppearance.AppCompat.Medium"
-            android:textSize="30sp"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/divider" />
-
+            android:textSize="30sp" />
 
         <TextView
             android:id="@+id/textView5"
-            android:layout_width="298dp"
-            android:layout_height="42dp"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="8dp"
             android:text="@string/joincreategroup_create_info_text"
-            android:textAlignment="center"
-            app:layout_constraintBottom_toTopOf="@+id/createGroupButton"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/textView4" />
+            android:textAlignment="center" />
 
         <Button
             android:id="@+id/createGroupButton"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
+            android:layout_gravity="center_horizontal"
             android:layout_marginTop="8dp"
-            android:text="@string/joinCreateGroup_buttons_create"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/textView5"
             android:enabled="@{!viewModel.loading}"
-            android:onClick="@{() -> viewModel.navigateToCreateGroupActivity(context)}" />
+            android:onClick="@{() -> viewModel.navigateToCreateGroupActivity(context)}"
+            android:text="@string/joinCreateGroup_buttons_create" />
 
-
-    </androidx.constraintlayout.widget.ConstraintLayout>
+    </LinearLayout>
 </layout>
