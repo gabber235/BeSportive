@@ -33,7 +33,6 @@ public class LeaderboardActivity extends AppCompatActivity {
 
         setSupportActionBar(BarUtils.setupPrimaryToolbar(binding.toolbarLeaderboard.toolbar));
         BarUtils.setupBottomNavigation(this, binding.bottomNavigation, R.id.leaderboard);
-
     }
 
     @Override

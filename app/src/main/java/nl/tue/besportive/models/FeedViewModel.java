@@ -1,5 +1,7 @@
 package nl.tue.besportive.models;
 
+import android.content.Context;
+
 import androidx.lifecycle.LiveData;
 import androidx.lifecycle.MediatorLiveData;
 import androidx.lifecycle.ViewModel;
@@ -14,6 +16,7 @@ import nl.tue.besportive.data.FeedItem;
 import nl.tue.besportive.data.Group;
 import nl.tue.besportive.repositories.CompletedChallengesRepository;
 import nl.tue.besportive.repositories.GroupRepository;
+import nl.tue.besportive.utils.Navigator;
 
 public class FeedViewModel extends ViewModel implements FeedAdapter.FeedAdapterListener {
     private final CompletedChallengesRepository completedChallengesRepository;
@@ -67,5 +70,10 @@ public class FeedViewModel extends ViewModel implements FeedAdapter.FeedAdapterL
     @Override
     public void onLove(CompletedChallenge completedChallenge) {
         completedChallengesRepository.love(completedChallenge.getId());
+    }
+
+    @Override
+    public void openMember(Context context, Group.Member member) {
+        Navigator.navigateToMemberOverviewActivity(context, member.getId());
     }
 }

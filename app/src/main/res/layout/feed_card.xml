@@ -54,6 +54,7 @@
                     android:adjustViewBounds="true"
                     android:scaleType="centerCrop"
                     app:imageUrl="@{member.photoUrl}"
+                    android:onClick="@{() -> listener.openMember(context, member)}"
                     tools:src="@drawable/img" />
 
                 <LinearLayout

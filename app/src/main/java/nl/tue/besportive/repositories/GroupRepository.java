@@ -78,6 +78,15 @@ public class GroupRepository {
         });
     }
 
+    public LiveData<Member> getLiveMember(String uid) {
+        return Transformations.map(getLiveMembers(), members -> {
+            if (members == null) {
+                return null;
+            }
+            return members.stream().filter(member -> member.getId().equals(uid)).findFirst().orElse(null);
+        });
+    }
+
     public LiveData<String> getLiveGroupId() {
         if (groupId != null) {
             return groupId;

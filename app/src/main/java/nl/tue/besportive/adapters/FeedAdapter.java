@@ -1,10 +1,13 @@
 package nl.tue.besportive.adapters;
 
+import android.content.Context;
+
 import java.util.ArrayList;
 
 import nl.tue.besportive.R;
 import nl.tue.besportive.data.CompletedChallenge;
 import nl.tue.besportive.data.FeedItem;
+import nl.tue.besportive.data.Group.Member;
 import nl.tue.besportive.databinding.FeedCardBinding;
 
 public class FeedAdapter extends BaseAdapter<FeedCardBinding, FeedItem> {
@@ -24,5 +27,7 @@ public class FeedAdapter extends BaseAdapter<FeedCardBinding, FeedItem> {
 
     public static interface FeedAdapterListener {
         void onLove(CompletedChallenge completedChallenge);
+
+        void openMember(Context context, Member member);
     }
 }

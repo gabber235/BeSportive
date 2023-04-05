@@ -13,7 +13,6 @@ import java.util.List;
 
 public abstract class BaseAdapter<B extends ViewDataBinding, T> extends RecyclerView.Adapter<BaseViewHolder<B>> {
     private List<T> items;
-
     private final int layoutId;
 
     protected abstract void bind(B binding, int position, T item);

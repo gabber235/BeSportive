@@ -9,6 +9,7 @@ import com.google.firebase.firestore.FirebaseFirestore;
 import com.google.firebase.firestore.Query;
 import com.google.firebase.firestore.QuerySnapshot;
 
+import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 import java.util.Objects;
@@ -17,8 +18,8 @@ import nl.tue.besportive.data.CompletedChallenge;
 import nl.tue.besportive.utils.FirebaseQueryLiveData;
 
 public class CompletedChallengesRepository {
-    private Map<String, LiveData<QuerySnapshot>> userCompletedChallengesSnapshot;
-    private Map<String, LiveData<List<CompletedChallenge>>> userCompletedChallenges;
+    private final Map<String, LiveData<QuerySnapshot>> userCompletedChallengesSnapshot = new HashMap<>();
+    private final Map<String, LiveData<List<CompletedChallenge>>> userCompletedChallenges = new HashMap<>();
 
     private LiveData<QuerySnapshot> completedChallengesSnapshot;
     private LiveData<List<CompletedChallenge>> completedChallenges;
