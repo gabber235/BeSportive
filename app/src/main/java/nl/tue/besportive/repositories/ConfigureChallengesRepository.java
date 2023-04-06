@@ -80,10 +80,6 @@ public class ConfigureChallengesRepository {
         });
     }
 
-    public LiveData<String> getGroupId() {
-        return groupRepository.getLiveGroupId();
-    }
-
     public void addChallenge(Challenge challenge) {
         groupRepository.fetchGroupId((groupId) -> {
             String path = "groups/" + groupId + "/challenges/" + challenge.getId();

@@ -104,6 +104,15 @@ public class BarUtils {
             });
             return true;
         }
+        if (item.getItemId() == R.id.leave_group) {
+            verifyLeaveGroup(context, () -> {
+                GroupRepository repository = new GroupRepository();
+                repository.leaveGroup(() -> {
+                    Navigator.navigateToStartingPage(context);
+                });
+            });
+            return true;
+        }
         return false;
     }
 
@@ -112,6 +121,15 @@ public class BarUtils {
                 .setTitle("Disband group")
                 .setMessage("Are you sure you want to disband this group?")
                 .setPositiveButton("Disband", (dialog, which) -> onDisband.run())
+                .setNegativeButton("Cancel", null)
+                .show();
+    }
+
+    private static void verifyLeaveGroup(Context context, Runnable onLeave) {
+        new AlertDialog.Builder(context)
+                .setTitle("Leave group")
+                .setMessage("Are you sure you want to leave this group?")
+                .setPositiveButton("Leave", (dialog, which) -> onLeave.run())
                 .setNegativeButton("Cancel", null)
                 .show();
     }

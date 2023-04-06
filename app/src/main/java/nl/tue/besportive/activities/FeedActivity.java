@@ -16,6 +16,8 @@ import nl.tue.besportive.utils.BarUtils;
 
 public class FeedActivity extends AppCompatActivity {
 
+    private boolean isAdministrator = false;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -31,6 +33,11 @@ public class FeedActivity extends AppCompatActivity {
 
         viewModel.getFeedItems().observe(this, adapter::setItems);
 
+        viewModel.isAdministrator().observe(this, isAdministrator -> {
+            this.isAdministrator = isAdministrator;
+            invalidateOptionsMenu();
+        });
+
         // Setup toolbar and bottom navigation
         setSupportActionBar(BarUtils.setupPrimaryToolbar(binding.toolbarFeed.toolbar));
         BarUtils.setupBottomNavigation(this, binding.bottomNavigation, R.id.feed);
@@ -38,7 +45,11 @@ public class FeedActivity extends AppCompatActivity {
 
     @Override
     public boolean onCreateOptionsMenu(Menu menu) {
-        getMenuInflater().inflate(R.menu.admin_settings_menu, menu);
+        if (isAdministrator) {
+            getMenuInflater().inflate(R.menu.admin_settings_menu, menu);
+        } else {
+            getMenuInflater().inflate(R.menu.member_setttings_menu, menu);
+        }
         return true;
     }
 

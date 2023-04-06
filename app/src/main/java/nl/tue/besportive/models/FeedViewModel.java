@@ -34,6 +34,10 @@ public class FeedViewModel extends ViewModel implements FeedAdapter.FeedAdapterL
         return completedChallengesRepository.getLiveCompletedChallenges();
     }
 
+    public LiveData<Boolean> isAdministrator() {
+        return groupRepository.isAdministrator();
+    }
+
     public LiveData<List<FeedItem>> getFeedItems() {
         if (feedItems != null) {
             return feedItems;

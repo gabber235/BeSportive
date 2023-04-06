@@ -23,7 +23,6 @@ public class GroupRepository {
     private LiveData<Group> group;
     private LiveData<List<Member>> members;
 
-    private LiveData<String> groupId;
     private final FirebaseFirestore firestore;
 
     public GroupRepository() {
@@ -89,16 +88,12 @@ public class GroupRepository {
         });
     }
 
-    public LiveData<String> getLiveGroupId() {
-        if (groupId != null) {
-            return groupId;
-        }
-
-        return groupId = Transformations.map(getLiveGroup(), group -> {
+    public LiveData<Boolean> isAdministrator() {
+        return Transformations.map(getLiveGroup(), group -> {
             if (group == null) {
-                return null;
+                return false;
             }
-            return group.getId();
+            return group.getAdmin().equals(FirebaseAuth.getInstance().getCurrentUser().getUid());
         });
     }
 
@@ -116,6 +111,14 @@ public class GroupRepository {
         FirebaseFunctions.getInstance().getHttpsCallable("disbandGroup").call().addOnCompleteListener(task -> {
             if (task.isSuccessful()) {
                 onDisband.run();
+            }
+        });
+    }
+
+    public void leaveGroup(Runnable onLeave) {
+        FirebaseFunctions.getInstance().getHttpsCallable("leaveGroup").call().addOnCompleteListener(task -> {
+            if (task.isSuccessful()) {
+                onLeave.run();
             }
         });
     }

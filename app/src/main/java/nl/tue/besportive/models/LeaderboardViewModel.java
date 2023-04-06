@@ -24,6 +24,10 @@ public class LeaderboardViewModel extends ViewModel implements LeaderboardAdapte
         return groupRepository.getLiveMembers();
     }
 
+    public LiveData<Boolean> isAdministrator() {
+        return groupRepository.isAdministrator();
+    }
+
     @Override
     public void onMemberClicked(Context context, Member member) {
         Navigator.navigateToMemberOverviewActivity(context, member.getId());

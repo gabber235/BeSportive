@@ -81,6 +81,7 @@
     <string name="challenge_name_input">Challenge Name:</string>
     <string name="create_challenge">Create Challenge</string>
     <string name="create_challenge_subtitle">Fill in the details of your custom challenge below. Then click the button to create your challenge.</string>
+    <string name="leave_group">Leave Group</string>
     <string-array name="difficulty_options">
         <item>Easy</item>
         <item>Medium</item>

@@ -15,6 +15,8 @@ import nl.tue.besportive.utils.BarUtils;
 
 public class LeaderboardActivity extends AppCompatActivity {
 
+    private boolean isAdministrator = false;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -29,6 +31,10 @@ public class LeaderboardActivity extends AppCompatActivity {
 
         viewModel.getMembers().observe(this, adapter::setItems);
 
+        viewModel.isAdministrator().observe(this, isAdministrator -> {
+            this.isAdministrator = isAdministrator;
+            invalidateOptionsMenu();
+        });
         setContentView(binding.getRoot());
 
         setSupportActionBar(BarUtils.setupPrimaryToolbar(binding.toolbarLeaderboard.toolbar));
@@ -37,7 +43,11 @@ public class LeaderboardActivity extends AppCompatActivity {
 
     @Override
     public boolean onCreateOptionsMenu(Menu menu) {
-        getMenuInflater().inflate(R.menu.admin_settings_menu, menu);
+        if (isAdministrator) {
+            getMenuInflater().inflate(R.menu.admin_settings_menu, menu);
+        } else {
+            getMenuInflater().inflate(R.menu.member_setttings_menu, menu);
+        }
         return true;
     }
 

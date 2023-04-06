@@ -11,10 +11,12 @@ import java.util.List;
 import nl.tue.besportive.adapters.ChallengesAdapter;
 import nl.tue.besportive.data.Challenge;
 import nl.tue.besportive.repositories.ChallengesRepository;
+import nl.tue.besportive.repositories.GroupRepository;
 import nl.tue.besportive.utils.Navigator;
 
 public class ChallengesViewModel extends ViewModel implements ChallengesAdapter.ChallengesAdapterListener {
     private final ChallengesRepository challengesRepository;
+    private final GroupRepository groupRepository = new GroupRepository();
 
     public ChallengesViewModel() {
         challengesRepository = new ChallengesRepository();
@@ -22,6 +24,10 @@ public class ChallengesViewModel extends ViewModel implements ChallengesAdapter.
 
     public LiveData<List<Challenge>> getChallenges() {
         return challengesRepository.getLiveChallenges();
+    }
+
+    public LiveData<Boolean> isAdministrator() {
+        return groupRepository.isAdministrator();
     }
 
     @Override

@@ -168,6 +168,34 @@ export const joinGroup = functions.https.onCall(async (data, context) => {
     return group.id;
 });
 
+export const leaveGroup = functions.https.onCall(async (data, context) => {
+    const auth = context.auth;
+    if (!auth) {
+        throw new functions.https.HttpsError(
+            "unauthenticated",
+            "User must be authenticated to leave a group",
+        );
+    }
+    const {uid} = auth;
+
+    const groupRef = await admin.firestore().collection("groups")
+        .where(`members.${uid}`, "!=", null)
+        .limit(1)
+        .get();
+
+    if (groupRef.empty) {
+        throw new functions.https.HttpsError(
+            "not-found",
+            "Group not found",
+        );
+    }
+
+    const group = groupRef.docs[0];
+    await group.ref.update({
+        [`members.${uid}`]: FieldValue.delete(),
+    });
+});
+
 /**
  * Disband a group, delete '/groups/{groupId}' and all sub-collections
  * And delete all files in the group's storage '/{groupId}'

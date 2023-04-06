@@ -14,11 +14,12 @@ import java.util.Objects;
 import nl.tue.besportive.adapters.ConfigureChallengesAdapter.DefaultChallengesAdapter.DefaultChallengesAdapterListener;
 import nl.tue.besportive.data.Challenge;
 import nl.tue.besportive.repositories.ConfigureChallengesRepository;
+import nl.tue.besportive.repositories.GroupRepository;
 import nl.tue.besportive.utils.Navigator;
 
 public class ConfigureChallengesViewModel extends ViewModel implements GroupChallengesAdapterListener, DefaultChallengesAdapterListener {
     private final ConfigureChallengesRepository configureChallengesRepository;
-
+    private final GroupRepository groupRepository = new GroupRepository();
     private final boolean inCreateGroupFlow;
 
     public ConfigureChallengesViewModel(boolean inCreateGroupFlow) {
@@ -34,10 +35,7 @@ public class ConfigureChallengesViewModel extends ViewModel implements GroupChal
         return configureChallengesRepository.getDefaultChallenges();
     }
 
-    public LiveData<String> getGroupId() {
-        return configureChallengesRepository.getGroupId();
-    }
-
+   
     public boolean isInCreateGroupFlow() {
         return inCreateGroupFlow;
     }
