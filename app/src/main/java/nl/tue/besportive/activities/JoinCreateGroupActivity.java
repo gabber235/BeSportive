@@ -7,6 +7,7 @@ import androidx.lifecycle.ViewModelProvider;
 
 import nl.tue.besportive.databinding.ActivityJoinCreateGroupBinding;
 import nl.tue.besportive.models.JoinCreateGroupViewModel;
+import nl.tue.besportive.utils.BarUtils;
 
 public class JoinCreateGroupActivity extends AppCompatActivity {
 
@@ -20,5 +21,7 @@ public class JoinCreateGroupActivity extends AppCompatActivity {
         binding.setViewModel(viewModel);
 
         setContentView(binding.getRoot());
+
+        setSupportActionBar(BarUtils.setupPrimaryToolbar(binding.toolbarJoinCreateGroup.toolbar));
     }
 }

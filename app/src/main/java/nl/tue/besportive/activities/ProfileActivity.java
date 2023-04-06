@@ -24,16 +24,14 @@ import nl.tue.besportive.models.ProfilePageViewModel;
 import nl.tue.besportive.utils.BarUtils;
 
 public class ProfileActivity extends AppCompatActivity {
-    private ActivityProfileBinding binding;
-    private ProfilePageViewModel viewModel;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        binding = ActivityProfileBinding.inflate(getLayoutInflater());
+        ActivityProfileBinding binding = ActivityProfileBinding.inflate(getLayoutInflater());
         setContentView(binding.getRoot());
         // Set viewModel
-        viewModel = new ViewModelProvider(this).get(ProfilePageViewModel.class);
+        ProfilePageViewModel viewModel = new ViewModelProvider(this).get(ProfilePageViewModel.class);
         binding.setViewModel(viewModel);
         binding.setLifecycleOwner(this);
 

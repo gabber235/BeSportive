@@ -60,6 +60,12 @@ public class BarUtils {
             }
         });
 
+        // The set navigation listener needs te be called after the toolbar is set as the support bar.
+        new Handler().postDelayed(() -> {
+            toolbar.setNavigationOnClickListener(v -> Navigator.navigateToProfileActivity(v.getContext()));
+        }, 10);
+
+
         return toolbar;
     }
 
@@ -79,10 +85,6 @@ public class BarUtils {
     }
 
     public static boolean selectToolbarMenuItem(Context context, MenuItem item) {
-        if (item.getItemId() == android.R.id.home) {
-            Navigator.navigateToProfileActivity(context);
-            return true;
-        }
         if (item.getItemId() == R.id.invite_members) {
             Navigator.navigateToInviteMembersActivity(context);
             return true;

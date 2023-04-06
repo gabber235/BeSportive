@@ -64,6 +64,7 @@
     <string name="take_picture">Take Picture</string>
     <string name="user_profile_icon">User Profile Icon</string>
     <string name="configure_challenges_subheader_text">Choose one of the default challenges below with the green plus or add a new challenge to your current challenge list on top</string>
+    <string name="join">Join</string>
     <string-array name="difficulty_options">
         <item>Easy</item>
         <item>Medium</item>

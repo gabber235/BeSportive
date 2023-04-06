@@ -15,36 +15,30 @@
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="match_parent"
+        android:gravity="center_horizontal"
         android:orientation="vertical"
         tools:context=".activities.JoinCreateGroupActivity">
 
-        <ImageView
-            android:id="@+id/imageView2"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_gravity="center_horizontal"
-            android:layout_marginTop="32dp"
-            android:contentDescription="logo"
-            app:srcCompat="@drawable/logo_2" />
+        <include
+            android:id="@+id/toolbar_join_create_group"
+            layout="@layout/toolbar"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content" />
 
         <ImageView
             android:id="@+id/imageView4"
-            android:layout_width="181dp"
-            android:layout_height="126dp"
-            android:layout_gravity="center_horizontal"
-            android:layout_marginTop="16dp"
-            app:srcCompat="@drawable/join_cartoon"
-            android:contentDescription="Shaking hands" />
+            android:layout_width="wrap_content"
+            android:layout_height="0dp"
+            android:layout_weight="3"
+            android:contentDescription="Shaking hands"
+            app:srcCompat="@drawable/join_cartoon" />
 
         <TextView
             android:id="@+id/textView"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_gravity="center_horizontal"
-            android:layout_marginTop="16dp"
-            android:contentDescription="Join"
             android:fontFamily="sans-serif-black"
-            android:text="Join"
+            android:text="@string/join"
             android:textAppearance="@style/TextAppearance.AppCompat.Medium"
             android:textSize="30sp" />
 
@@ -52,8 +46,7 @@
             android:id="@+id/textView3"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_gravity="center_horizontal"
-            android:layout_marginTop="4dp"
+            android:layout_marginHorizontal="30dp"
             android:text="@string/joincreategroup_join_info_text"
             android:textAlignment="center" />
 
@@ -69,6 +62,7 @@
             app:counterEnabled="true"
             app:counterMaxLength="5"
             app:helperText="Required*">
+
             <com.google.android.material.textfield.TextInputEditText
                 android:id="@+id/codeInputText"
                 android:layout_width="match_parent"
@@ -81,18 +75,15 @@
             android:id="@+id/joinButton"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_gravity="center_horizontal"
-            android:layout_marginTop="8dp"
             android:enabled="@{viewModel.code.length() == 5}"
             android:onClick="@{() -> viewModel.joinGroup(context)}"
             android:text="@string/joinCreateGroup_buttons_join"
             android:visibility="@{viewModel.loading ? View.GONE : View.VISIBLE}" />
+
         <ProgressBar
             android:id="@+id/joinGroupProgressBar"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_gravity="center_horizontal"
-            android:layout_marginTop="8dp"
             android:visibility="@{viewModel.loading ? View.VISIBLE : View.GONE}" />
 
         <View
@@ -107,7 +98,7 @@
             android:id="@+id/textView4"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_gravity="center_horizontal"
+
             android:layout_marginTop="8dp"
             android:fontFamily="sans-serif-black"
             android:text="Create"
@@ -118,7 +109,7 @@
             android:id="@+id/textView5"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_marginTop="8dp"
+            android:layout_marginHorizontal="30dp"
             android:text="@string/joincreategroup_create_info_text"
             android:textAlignment="center" />
 
@@ -126,11 +117,14 @@
             android:id="@+id/createGroupButton"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_gravity="center_horizontal"
             android:layout_marginTop="8dp"
             android:enabled="@{!viewModel.loading}"
             android:onClick="@{() -> viewModel.navigateToCreateGroupActivity(context)}"
             android:text="@string/joinCreateGroup_buttons_create" />
 
+        <Space
+            android:layout_width="match_parent"
+            android:layout_height="0dp"
+            android:layout_weight="1" />
     </LinearLayout>
 </layout>
