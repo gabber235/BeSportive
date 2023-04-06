@@ -2,6 +2,7 @@ package nl.tue.besportive.models;
 
 import android.content.Context;
 
+import androidx.appcompat.app.AlertDialog;
 import androidx.lifecycle.LiveData;
 import androidx.lifecycle.ViewModel;
 
@@ -27,7 +28,7 @@ public class ProfileViewModel extends ViewModel {
 
     public void logout(Context context) {
         // Show a dialog to confirm logout then call userRepository.logout()
-        new androidx.appcompat.app.AlertDialog.Builder(context)
+        new AlertDialog.Builder(context)
                 .setTitle("Logout")
                 .setMessage("Are you sure you want to logout?")
                 .setPositiveButton(R.string.logout, (dialog, which) -> {

@@ -1,73 +1,122 @@
 <?xml version="1.0" encoding="utf-8"?>
-<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:app="http://schemas.android.com/apk/res-auto"
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools"
-    android:layout_width="match_parent"
-    android:layout_height="match_parent"
-    android:orientation="vertical"
-    tools:context=".activities.ConfigureChallengesActivity">
+    xmlns:app="http://schemas.android.com/apk/res-auto">
 
-    <!-- Header -->
-    <TextView
-        android:id="@+id/header_text"
-        android:text="My Challenges"
-        android:textSize="24sp"
+    <data>
+
+        <import type="android.view.View" />
+
+        <variable
+            name="viewModel"
+            type="nl.tue.besportive.models.ConfigureChallengesViewModel" />
+    </data>
+
+    <LinearLayout
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:padding="16dp" />
+        android:layout_height="match_parent"
+        android:orientation="vertical"
+        tools:context=".activities.ConfigureChallengesActivity">
 
-    <!-- Challenges -->
-    <TextView
-        android:id="@+id/challenges_text"
-        android:text="@string/configure_challenges_subheader_text"
-        android:textSize="16sp"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:padding="16dp" />
+        <RelativeLayout
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:visibility="@{viewModel.inCreateGroupFlow ? View.GONE : View.VISIBLE}">
 
-    <!-- My Challenges RecyclerView -->
-    <androidx.recyclerview.widget.RecyclerView
-        android:id="@+id/my_challenges_recyclerview"
-        android:layout_width="match_parent"
-        android:layout_height="0dp"
-        android:layout_weight="1"
-        android:layout_marginTop="8dp"
-        android:layout_marginStart="16dp"
-        android:layout_marginEnd="16dp" />
+            <include
+                android:id="@+id/configure_challenges_toolbar"
+                layout="@layout/toolbar"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content" />
 
-    <!-- Divider Line -->
-    <View
-        android:id="@+id/divider_line"
-        android:layout_width="match_parent"
-        android:layout_height="1dp"
-        android:layout_marginTop="4dp"
-        android:background="@android:color/darker_gray"
-        android:paddingStart="4dp"
-        android:paddingEnd="4dp" />
+        </RelativeLayout>
 
-    <!-- Default Challenges RecyclerView -->
-    <androidx.recyclerview.widget.RecyclerView
-        android:id="@+id/default_challenges_recyclerview"
-        android:layout_width="match_parent"
-        android:layout_height="0dp"
-        android:layout_weight="1"
-        android:layout_marginTop="4dp"
-        android:layout_marginStart="16dp"
-        android:layout_marginEnd="16dp" />
 
-    <!-- Add Custom Challenge Button -->
-    <Button
-        android:id="@+id/add_custom_challenge_button"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_gravity="center_horizontal"
-        android:layout_marginStart="100dp"
-        android:layout_marginTop="8dp"
-        android:layout_marginEnd="100dp"
-        android:layout_marginBottom="25dp"
-        android:background="#FF9800"
-        android:text="Add Custom Challenge"
-        android:textColor="@android:color/black"
-        android:textSize="16sp" />
+        <!-- Header -->
+        <TextView
+            android:id="@+id/header_text"
+            android:text="@string/my_challenges"
+            android:textSize="24sp"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:paddingHorizontal="16dp"
+            android:paddingTop="12dp" />
 
-</LinearLayout>
+        <!-- Challenges -->
+        <TextView
+            android:id="@+id/challenges_text"
+            android:text="@string/configure_challenges_subheader_text"
+            android:textSize="16sp"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:paddingVertical="6dp"
+            android:paddingHorizontal="16dp" />
+
+        <!-- My Challenges RecyclerView -->
+        <androidx.recyclerview.widget.RecyclerView
+            android:id="@+id/group_challenges_recyclerview"
+            android:layout_width="match_parent"
+            android:layout_height="0dp"
+            android:layout_weight="1"
+            app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager"
+            tools:listitem="@layout/group_challenges_card" />
+
+        <!-- Divider Line -->
+        <View
+            android:id="@+id/divider_line"
+            android:layout_width="match_parent"
+            android:layout_height="1dp"
+            android:background="@android:color/darker_gray"
+            android:layout_marginVertical="3dp" />
+
+        <!-- Default Challenges RecyclerView -->
+        <androidx.recyclerview.widget.RecyclerView
+            android:id="@+id/default_challenges_recyclerview"
+            android:layout_width="match_parent"
+            android:layout_height="0dp"
+            android:layout_weight="1"
+            app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager"
+            tools:listitem="@layout/default_challenges_card" />
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal"
+            android:gravity="end">
+
+            <Space
+                android:layout_width="0dp"
+                android:layout_height="match_parent"
+                android:layout_weight="2" />
+
+            <Button
+                android:id="@+id/next_button"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="@string/next"
+                android:layout_gravity="center"
+                android:onClick="@{() -> viewModel.nextButtonClicked(context)}"
+                android:visibility="@{viewModel.inCreateGroupFlow ? View.VISIBLE : View.GONE}" />
+
+            <Space
+                android:layout_width="0dp"
+                android:layout_height="match_parent"
+                android:layout_weight="1" />
+
+            <!-- Add Custom Challenge Button -->
+            <com.google.android.material.floatingactionbutton.FloatingActionButton
+                android:id="@+id/add_custom_challenge_button"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:contentDescription="@string/add_custom_challenge_button"
+                android:layout_marginHorizontal="16dp"
+                android:layout_marginBottom="16dp"
+                android:layout_gravity="bottom|end"
+                android:src="@drawable/ic_plus_green"
+                android:onClick="@{() -> viewModel.addButtonClicked(context)}" />
+
+        </LinearLayout>
+
+
+    </LinearLayout>
+</layout>

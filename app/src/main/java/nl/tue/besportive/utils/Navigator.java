@@ -14,6 +14,7 @@ import com.google.firebase.firestore.QuerySnapshot;
 import java.util.Objects;
 
 import nl.tue.besportive.activities.ActiveChallengeActivity;
+import nl.tue.besportive.activities.AddChallengeActivity;
 import nl.tue.besportive.activities.ChallengesActivity;
 import nl.tue.besportive.activities.ConfigureChallengesActivity;
 import nl.tue.besportive.activities.CreateGroupActivity;
@@ -45,16 +46,30 @@ public class Navigator {
         navigateToConfigureChallengesActivity(context, false, false);
     }
 
-    public static void navigateToConfigureChallengesActivity(Context context, boolean finishActivity, boolean inCreationFlow) {
+    public static void navigateToConfigureChallengesActivity(Context context, boolean finishActivity, boolean inCreateGroupFlow) {
         Log.i(TAG, "navigateToConfigureChallengesActivity");
         Intent intent = new Intent(context, ConfigureChallengesActivity.class);
-        intent.putExtra("inCreationFlow", inCreationFlow);
+        intent.putExtra("inCreateGroupFlow", inCreateGroupFlow);
         context.startActivity(intent);
         if (finishActivity) finishActivity(context);
     }
 
-    public static void navigateToJoinCreateGroupActivity(Context context) {
-        navigateToJoinCreateGroupActivity(context, false);
+    public static void navigateToAddChallengeActivity(Context context) {
+        Log.i(TAG, "navigateToAddChallengeActivity");
+        Intent intent = new Intent(context, AddChallengeActivity.class);
+        context.startActivity(intent);
+    }
+
+    public static void navigateToInviteMembersActivity(Context context) {
+        navigateToInviteMembersActivity(context, false, false);
+    }
+
+    public static void navigateToInviteMembersActivity(Context context, boolean finishActivity, boolean inCreateGroupFlow) {
+        Log.i(TAG, "navigateToInviteMembersActivity");
+        Intent intent = new Intent(context, InviteMembersActivity.class);
+        intent.putExtra("inCreateGroupFlow", inCreateGroupFlow);
+        context.startActivity(intent);
+        if (finishActivity) finishActivity(context);
     }
 
     public static void navigateToJoinCreateGroupActivity(Context context, boolean finishActivity) {
@@ -64,30 +79,11 @@ public class Navigator {
         if (finishActivity) finishActivity(context);
     }
 
-    public static void navigateToInviteMembersActivity(Context context) {
-        navigateToInviteMembersActivity(context, false);
-    }
-
-    public static void navigateToInviteMembersActivity(Context context, boolean finishActivity) {
-        Log.i(TAG, "navigateToInviteMembersActivity");
-        Intent intent = new Intent(context, InviteMembersActivity.class);
-        context.startActivity(intent);
-        if (finishActivity) finishActivity(context);
-    }
-
-    public static void navigateToFeedActivity(Context context) {
-        navigateToFeedActivity(context, false);
-    }
-
     public static void navigateToFeedActivity(Context context, boolean finishActivity) {
         Log.i(TAG, "navigateToFeedActivity");
         Intent intent = new Intent(context, FeedActivity.class);
         context.startActivity(intent);
         if (finishActivity) finishActivity(context);
-    }
-
-    public static void navigateToOnboardingActivity(Context context) {
-        navigateToOnboardingActivity(context, false);
     }
 
     public static void navigateToOnboardingActivity(Context context, boolean finishActivity) {
@@ -98,10 +94,6 @@ public class Navigator {
     }
 
 
-    public static void navigateToChallengesActivity(Context context) {
-        navigateToChallengesActivity(context, false);
-    }
-
     public static void navigateToChallengesActivity(Context context, boolean finishActivity) {
         Log.i(TAG, "navigateToChallengesActivity");
         Intent intent = new Intent(context, ChallengesActivity.class);
@@ -109,19 +101,11 @@ public class Navigator {
         if (finishActivity) finishActivity(context);
     }
 
-    public static void navigateToActiveChallengesActivity(Context context) {
-        navigateToActiveChallengesActivity(context, false);
-    }
-
     public static void navigateToActiveChallengesActivity(Context context, boolean finishActivity) {
         Log.i(TAG, "navigateToActiveChallengesActivity");
         Intent intent = new Intent(context, ActiveChallengeActivity.class);
         context.startActivity(intent);
         if (finishActivity) finishActivity(context);
-    }
-
-    public static void navigateToLeaderboardActivity(Context context) {
-        navigateToLeaderboardActivity(context, false);
     }
 
     public static void navigateToLeaderboardActivity(Context context, boolean finishActivity) {

@@ -1,60 +1,50 @@
 package nl.tue.besportive.adapters;
 
-import android.content.Context;
-import android.view.LayoutInflater;
-import android.view.ViewGroup;
-
-import androidx.annotation.NonNull;
-import androidx.recyclerview.widget.RecyclerView;
-
-import java.util.List;
+import java.util.ArrayList;
 
 import nl.tue.besportive.R;
 import nl.tue.besportive.data.Challenge;
-import nl.tue.besportive.holders.ConfigureChallengesViewHolder;
-import nl.tue.besportive.models.ConfigureChallengesViewModel;
+import nl.tue.besportive.databinding.DefaultChallengesCardBinding;
+import nl.tue.besportive.databinding.GroupChallengesCardBinding;
 
-public class ConfigureChallengesAdapter extends RecyclerView.Adapter<ConfigureChallengesViewHolder> {
-    Context context;
-    List<Challenge> items;
-    private final OnItemClickListener listener;
-    private ConfigureChallengesViewModel viewModel;
+public class ConfigureChallengesAdapter {
+    public static class GroupChallengesAdapter extends BaseAdapter<GroupChallengesCardBinding, Challenge> {
+        private final GroupChallengesAdapterListener listener;
 
-    public interface OnItemClickListener {
-        void onItemClick(Challenge item);
+        public GroupChallengesAdapter(GroupChallengesAdapterListener listener) {
+            super(new ArrayList<>(), R.layout.group_challenges_card);
+            this.listener = listener;
+
+        }
+
+        @Override
+        protected void bind(GroupChallengesCardBinding binding, int position, Challenge item) {
+            binding.setChallenge(item);
+            binding.setListener(listener);
+        }
+
+        public interface GroupChallengesAdapterListener {
+            void onRemove(Challenge challenge);
+        }
     }
 
-    public ConfigureChallengesAdapter(Context context, List<Challenge> items, ConfigureChallengesViewModel viewModel, OnItemClickListener listener) {
-        this.context = context;
-        this.items = items;
-        this.listener = listener;
-        this.viewModel = viewModel;
-    }
+    public static class DefaultChallengesAdapter extends BaseAdapter<DefaultChallengesCardBinding, Challenge> {
+        private final DefaultChallengesAdapterListener listener;
 
-    @NonNull
-    @Override
-    public ConfigureChallengesViewHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
-        return new ConfigureChallengesViewHolder(LayoutInflater.from(context).inflate(R.layout.challenges_view, parent, false));
-    }
+        public DefaultChallengesAdapter(DefaultChallengesAdapterListener listener) {
+            super(new ArrayList<>(), R.layout.default_challenges_card);
+            this.listener = listener;
 
-    @Override
-    public void onBindViewHolder(@NonNull ConfigureChallengesViewHolder holder, int position) {
-        Challenge challenge = items.get(position);
-        holder.nameView.setText(challenge.getName());
-        holder.difficultyView.setText(challenge.getSmartDifficulty().getName());
-        holder.difficultyView.setTextColor(challenge.getSmartDifficulty().getColor());
-        // Set an OnClickListener on the ImageView button in the ViewHolder
-        holder.bind(challenge, listener);
-    }
+        }
 
+        @Override
+        protected void bind(DefaultChallengesCardBinding binding, int position, Challenge item) {
+            binding.setChallenge(item);
+            binding.setListener(listener);
+        }
 
-    @Override
-    public int getItemCount() {
-        return items.size();
-    }
-
-    public void setChallenges(List<Challenge> ChallengesList) {
-        this.items = ChallengesList;
-        notifyDataSetChanged();
+        public interface DefaultChallengesAdapterListener {
+            void onAdd(Challenge challenge);
+        }
     }
 }

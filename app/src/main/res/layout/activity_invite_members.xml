@@ -22,8 +22,7 @@
             android:id="@+id/toolbar_invite"
             layout="@layout/toolbar"
             android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:visibility="@{viewModel.inCreateGroupFlow ? View.GONE : View.VISIBLE}" />
+            android:layout_height="wrap_content" />
 
         <Space
             android:layout_width="match_parent"

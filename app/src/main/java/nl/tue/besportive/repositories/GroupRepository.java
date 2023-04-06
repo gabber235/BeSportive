@@ -3,11 +3,13 @@ package nl.tue.besportive.repositories;
 import androidx.lifecycle.LiveData;
 import androidx.lifecycle.Transformations;
 
+import com.google.android.gms.tasks.OnSuccessListener;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
 import com.google.firebase.firestore.FirebaseFirestore;
 import com.google.firebase.firestore.Query;
 import com.google.firebase.firestore.QuerySnapshot;
+import com.google.firebase.functions.FirebaseFunctions;
 
 import java.util.List;
 import java.util.stream.Collectors;
@@ -97,6 +99,24 @@ public class GroupRepository {
                 return null;
             }
             return group.getId();
+        });
+    }
+
+    public void fetchGroupId(OnSuccessListener<String> onSuccess) {
+        getGroupQuery().get().addOnSuccessListener(queryDocumentSnapshots -> {
+            if (queryDocumentSnapshots.isEmpty()) {
+                onSuccess.onSuccess(null);
+            } else {
+                onSuccess.onSuccess(queryDocumentSnapshots.getDocuments().get(0).getId());
+            }
+        });
+    }
+
+    public void disbandGroup(Runnable onDisband) {
+        FirebaseFunctions.getInstance().getHttpsCallable("disbandGroup").call().addOnCompleteListener(task -> {
+            if (task.isSuccessful()) {
+                onDisband.run();
+            }
         });
     }
 }

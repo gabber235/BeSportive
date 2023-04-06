@@ -18,7 +18,7 @@
         them.</string>
     <string name="invite_members_header">Invite Members</string>
     <string name="invite_members_subheader">Code</string>
-    <string name="joincreategroup_join_info_text">Write down the code you have recieved and start
+    <string name="joincreategroup_join_info_text">Write down the code you have received and start
         doing challenges!</string>
     <string name="joincreategroup_create_info_text">Create a group to do challenges together and
         start your 2 week journey!</string>
@@ -60,7 +60,7 @@
     <string name="start">Start Challenge</string>
     <string name="cancel_the_challenge">Cancel the Challenge</string>
     <string name="startChallenge_header">Start Challenge</string>
-    <string name="add_custom_challenge_button_description">Add Custom Challenge</string>
+    <string name="add_custom_challenge_button">Add Custom Challenge</string>
     <string name="generate_image_button">Generate New Profile Picture!</string>
     <string name="take_picture">Take Picture</string>
     <string name="user_profile_icon">User Profile Icon</string>
@@ -68,6 +68,19 @@
     <string name="join">Join</string>
     <string name="profile_picture">Profile picture</string>
     <string name="logout">Logout</string>
+    <string name="next">Next</string>
+    <string name="item_3_menu_settings">Disband group</string>
+    <string name="my_challenges">My Challenges</string>
+    <string name="challenge_name">Challenge Name</string>
+    <string name="difficulty">Difficulty</string>
+    <string name="add_icon">Add icon</string>
+    <string name="trash_icon">Trash icon</string>
+    <string name="enter_challenge_name">Enter Challenge Name</string>
+    <string name="select_difficulty_level">Select difficulty level</string>
+    <string name="difficulty_level">Difficulty Level:</string>
+    <string name="challenge_name_input">Challenge Name:</string>
+    <string name="create_challenge">Create Challenge</string>
+    <string name="create_challenge_subtitle">Fill in the details of your custom challenge below. Then click the button to create your challenge.</string>
     <string-array name="difficulty_options">
         <item>Easy</item>
         <item>Medium</item>

@@ -83,4 +83,18 @@ public class ConfigureChallengesRepository {
     public LiveData<String> getGroupId() {
         return groupRepository.getLiveGroupId();
     }
+
+    public void addChallenge(Challenge challenge) {
+        groupRepository.fetchGroupId((groupId) -> {
+            String path = "groups/" + groupId + "/challenges/" + challenge.getId();
+            firestore.document(path).set(challenge);
+        });
+    }
+
+    public void removeChallenge(Challenge challenge) {
+        groupRepository.fetchGroupId((groupId) -> {
+            String path = "groups/" + groupId + "/challenges/" + challenge.getId();
+            firestore.document(path).delete();
+        });
+    }
 }

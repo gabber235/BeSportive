@@ -15,6 +15,6 @@
         android:layout_height="match_parent"
         android:layout_gravity="center"
         android:contentDescription="@string/item_2_actionbar"
-        app:srcCompat="@drawable/logo_2" />
+        app:srcCompat="@drawable/logo" />
 
 </androidx.appcompat.widget.Toolbar>

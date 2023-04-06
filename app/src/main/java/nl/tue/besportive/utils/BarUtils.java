@@ -8,6 +8,7 @@ import android.graphics.drawable.Drawable;
 import android.os.Handler;
 import android.view.MenuItem;
 
+import androidx.appcompat.app.AlertDialog;
 import androidx.appcompat.widget.Toolbar;
 
 import com.google.android.material.bottomnavigation.BottomNavigationView;
@@ -18,6 +19,7 @@ import com.squareup.picasso.Picasso;
 import com.squareup.picasso.Target;
 
 import nl.tue.besportive.R;
+import nl.tue.besportive.repositories.GroupRepository;
 
 public class BarUtils {
     public static Toolbar setupPrimaryToolbar(Toolbar toolbar) {
@@ -93,7 +95,25 @@ public class BarUtils {
             Navigator.navigateToConfigureChallengesActivity(context);
             return true;
         }
+        if (item.getItemId() == R.id.disband_group) {
+            verifyDisbandGroup(context, () -> {
+                GroupRepository repository = new GroupRepository();
+                repository.disbandGroup(() -> {
+                    Navigator.navigateToStartingPage(context);
+                });
+            });
+            return true;
+        }
         return false;
+    }
+
+    private static void verifyDisbandGroup(Context context, Runnable onDisband) {
+        new AlertDialog.Builder(context)
+                .setTitle("Disband group")
+                .setMessage("Are you sure you want to disband this group?")
+                .setPositiveButton("Disband", (dialog, which) -> onDisband.run())
+                .setNegativeButton("Cancel", null)
+                .show();
     }
 
     public static void setupBottomNavigation(Activity activity, BottomNavigationView bottomNavigationView, int selectedItemId) {

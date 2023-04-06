@@ -38,7 +38,7 @@ public class FeedActivity extends AppCompatActivity {
 
     @Override
     public boolean onCreateOptionsMenu(Menu menu) {
-        getMenuInflater().inflate(R.menu.settings_menu, menu);
+        getMenuInflater().inflate(R.menu.admin_settings_menu, menu);
         return true;
     }
 

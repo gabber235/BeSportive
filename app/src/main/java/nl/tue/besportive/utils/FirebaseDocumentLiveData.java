@@ -12,10 +12,10 @@ import com.google.firebase.firestore.ListenerRegistration;
 public class FirebaseDocumentLiveData extends LiveData<DocumentSnapshot> {
     private static final String TAG = "FirebaseDocumentLiveData";
 
-    private String documentPath;
+    private final String documentPath;
     private final FirebaseEventListener listener = new FirebaseEventListener();
     private ListenerRegistration listenerRegistration;
-    private Handler handler = new Handler();
+    private final Handler handler = new Handler();
 
     private boolean listenerRemovePending = false;
     private final Runnable removeListener = () -> {
@@ -63,5 +63,10 @@ public class FirebaseDocumentLiveData extends LiveData<DocumentSnapshot> {
             }
             setValue(documentSnapshot);
         }
+    }
+
+
+    public static String generateId() {
+        return FirebaseFirestore.getInstance().collection("someCollection").document().getId();
     }
 }

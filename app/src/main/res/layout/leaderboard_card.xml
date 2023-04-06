@@ -34,7 +34,7 @@
             android:id="@+id/position"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="@{position + 1 + `.`}"
+            android:text="@{(position + 1) + `.`}"
             android:textSize="24sp"
             android:layout_gravity="bottom"
             tools:text="1."

@@ -1,23 +1,25 @@
 package nl.tue.besportive.data;
 
+import androidx.annotation.NonNull;
+
 import com.google.firebase.firestore.Exclude;
+
+import nl.tue.besportive.utils.FirebaseDocumentLiveData;
 
 public class Challenge {
     @Exclude
     private String id;
-    private int difficulty;
     private String name;
+    private int difficulty;
 
 
     public Challenge() {
-
     }
 
-    public Challenge(int difficulty, String name, String id) {
-        this.difficulty = difficulty;
+    public Challenge(String name, @NonNull Difficulty difficulty) {
+        this.id = FirebaseDocumentLiveData.generateId();
         this.name = name;
-        this.id = id;
-
+        this.difficulty = difficulty.ordinal();
     }
 
     public Challenge(String id) {
@@ -32,33 +34,24 @@ public class Challenge {
         this.id = id;
     }
 
-    @Override
-    public String toString() {
-        return "Challenges{" +
-                "difficulty=" + difficulty +
-                ", name='" + name + '\'' +
-                '}';
-    }
 
     public String getName() {
         return name;
-    }
-
-    public int getDifficulty() {
-        return difficulty;
-    }
-
-    public Difficulty getSmartDifficulty() {
-        return Difficulty.getDifficulty(difficulty);
     }
 
     public void setName(String name) {
         this.name = name;
     }
 
+    public int getDifficulty() {
+        return difficulty;
+    }
+
     public void setDifficulty(int difficulty) {
         this.difficulty = difficulty;
     }
 
-
+    public Difficulty getSmartDifficulty() {
+        return Difficulty.getDifficulty(difficulty);
+    }
 }

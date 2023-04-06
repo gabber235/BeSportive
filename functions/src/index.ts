@@ -1,8 +1,10 @@
 import * as functions from "firebase-functions";
 import * as admin from "firebase-admin";
+import {firestore} from "firebase-admin";
 import {FieldValue} from "@google-cloud/firestore";
 import {faker} from "@faker-js/faker";
 
+const MAX_RETRY_ATTEMPTS = 3;
 
 admin.initializeApp();
 
@@ -165,6 +167,53 @@ export const joinGroup = functions.https.onCall(async (data, context) => {
 
     return group.id;
 });
+
+/**
+ * Disband a group, delete '/groups/{groupId}' and all sub-collections
+ * And delete all files in the group's storage '/{groupId}'
+ */
+export const disbandGroup = functions.https.onCall(async (data, context) => {
+    const auth = context.auth;
+    if (!auth) {
+        throw new functions.https.HttpsError(
+            "unauthenticated",
+            "User must be authenticated to disband a group",
+        );
+    }
+    const {uid} = auth;
+
+    const groupRef = await admin.firestore().collection("groups")
+        .where("admin", "==", uid)
+        .limit(1)
+        .get();
+
+    if (groupRef.empty) {
+        throw new functions.https.HttpsError(
+            "not-found",
+            "Group not found",
+        );
+    }
+
+    const group = groupRef.docs[0];
+
+    const bulkWriter = admin.firestore().bulkWriter();
+    bulkWriter.onWriteError((error) => {
+        if (error.failedAttempts < MAX_RETRY_ATTEMPTS) {
+            return true;
+        } else {
+            console.log("Failed write at document: ", error.documentRef.path);
+            return false;
+        }
+    });
+
+    await firestore().recursiveDelete(group.ref, bulkWriter);
+
+    const bucket = admin.storage().bucket();
+    await bucket.deleteFiles({
+        prefix: group.id,
+    });
+});
+
 /**
  *  When a file is uploaded to "{groupId}/{activeChallengeId}/image.jpg" in the storage bucket,
  *  Add the image url to the challenge document in Firestore "/groups/{groupId}/activeChallenges/{activeChallengeId}"
