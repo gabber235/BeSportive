@@ -1,18 +1,41 @@
 import * as functions from "firebase-functions";
 import * as admin from "firebase-admin";
 import {FieldValue} from "@google-cloud/firestore";
+import {faker} from "@faker-js/faker";
 
 
 admin.initializeApp();
 
-export const onUserCreate = functions.auth.user().onCreate(async (user) => {
-    const userRef = admin.firestore().collection("users").doc(user.uid);
+export const onUserCreate = functions.auth.user().onCreate(async (callingUser) => {
+    const userRef = admin.firestore().collection("users").doc(callingUser.uid);
+
+    const user = await admin.auth().getUser(callingUser.uid);
+
+    const email = user.email;
+    let name = user.displayName;
+    let photoUrl = user.photoURL;
+
+
+    if (!name) {
+        name = faker.name.fullName();
+        await admin.auth().updateUser(user.uid, {
+            displayName: name,
+        });
+    }
+    if (!photoUrl) {
+        photoUrl = `https://api.multiavatar.com/${user.uid}.png`;
+        await admin.auth().updateUser(user.uid, {
+            photoURL: photoUrl,
+        });
+    }
+
     await userRef.set({
-        email: user.email,
-        name: user.displayName,
-        photoUrl: user.photoURL,
+        email: email,
+        name: name,
+        photoUrl: photoUrl,
         totalTime: 0,
         totalChallenges: 0,
+        totalPoints: 0,
     });
 });
 
@@ -147,14 +170,6 @@ export const onCompletedChallengeCreate = functions.firestore
         const {groupId} = context.params;
         const {userId, duration} = snapshot.data() as { userId: string, duration: number };
 
-
-        // Update the user's total time and total challenges
-        await admin.firestore().doc(`users/${userId}`).update({
-            totalTime: FieldValue.increment(duration),
-            totalChallenges: FieldValue.increment(1),
-        });
-
-
         // Update the user's points based on the difficulty of the challenge.
         // The difficulty is stored in the challenge document in Firestore "/groups/{groupId}/challenges/{challengeId}"
         const challengeId = snapshot.data()?.challengeId;
@@ -165,6 +180,14 @@ export const onCompletedChallengeCreate = functions.firestore
         const difficulty: number = challenge.data()?.difficulty;
 
         const points = 100 * (difficulty + 1);
+
+        // Update the user's total time and total challenges
+        await admin.firestore().doc(`users/${userId}`).update({
+            totalTime: FieldValue.increment(duration),
+            totalChallenges: FieldValue.increment(1),
+            totalPoints: FieldValue.increment(points),
+        });
+
 
         // Update the user's points
         await admin.firestore().doc(`groups/${groupId}`).update({
