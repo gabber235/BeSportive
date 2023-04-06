@@ -12,4 +12,5 @@
     <color name="medium_orange">#FF9800</color>
     <color name="hard_red">#F44336</color>
     <color name="card_background_color">#DCDBDB</color>
+    <color name="gray">#808080</color>
 </resources>

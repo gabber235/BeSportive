@@ -3,16 +3,12 @@ package nl.tue.besportive.data;
 public class SportiveUser {
     private String name;
     private String photoUrl;
+    private String email;
     private int totalChallenges;
     private int totalTime;
+    private int totalPoints;
 
-    public SportiveUser() {}
-
-    public SportiveUser(String name, String photoUrl, int totalChallenges, int totalTime) {
-        this.name = name;
-        this.photoUrl = photoUrl;
-        this.totalChallenges = totalChallenges;
-        this.totalTime = totalTime;
+    public SportiveUser() {
     }
 
     public String getName() {
@@ -31,6 +27,14 @@ public class SportiveUser {
         this.photoUrl = photoUrl;
     }
 
+    public String getEmail() {
+        return email;
+    }
+
+    public void setEmail(String email) {
+        this.email = email;
+    }
+
     public int getTotalChallenges() {
         return totalChallenges;
     }
@@ -45,5 +49,13 @@ public class SportiveUser {
 
     public void setTotalTime(int totalTime) {
         this.totalTime = totalTime;
+    }
+
+    public int getTotalPoints() {
+        return totalPoints;
+    }
+
+    public void setTotalPoints(int totalPoints) {
+        this.totalPoints = totalPoints;
     }
 }

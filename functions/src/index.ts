@@ -44,6 +44,48 @@ export const onUserDelete = functions.auth.user().onDelete(async (user) => {
     await userRef.delete();
 });
 
+/**
+ * When the users document is updated in Firestore "/users/{userId}",
+ * Check if the name or photoUrl has changed and update the user's name and photoUrl in the auth service
+ * And update the user's name and photoUrl in the group document in Firestore "/groups/{groupId}" under
+ * "members.{userId}.name" and "members.{userId}.photoUrl"
+ */
+export const onUserUpdate = functions.firestore
+    .document("/users/{userId}")
+    .onUpdate(async (change, context) => {
+        const {userId} = context.params;
+        const {name: oldName, photoUrl: oldPhotoUrl} = change.before.data() as { name: string, photoUrl: string };
+        const {name, photoUrl} = change.after.data() as { name: string, photoUrl: string };
+
+        // Check if the name or photoUrl has changed
+        if (oldName === name && oldPhotoUrl === photoUrl) {
+            return;
+        }
+
+        // Update the user's name and photoUrl in the auth service
+        await admin.auth().updateUser(userId, {
+            displayName: name,
+            photoURL: photoUrl,
+        });
+
+        // Update the user's name and photoUrl in the group document in Firestore "/groups/{groupId}"
+
+        const group = await admin.firestore().collection("groups")
+            .where(`members.${userId}`, "!=", null)
+            .limit(1)
+            .get();
+
+        if (group.empty) {
+            return;
+        }
+
+        const groupRef = group.docs[0].ref;
+        await groupRef.update({
+            [`members.${userId}.name`]: name,
+            [`members.${userId}.photoUrl`]: photoUrl,
+        });
+    });
+
 export const createGroup = functions.https.onCall(async (data, context) => {
     const name = data;
     const auth = context.auth;
