@@ -3,6 +3,7 @@ package nl.tue.besportive.models;
 import android.content.Context;
 import android.util.Log;
 
+import androidx.appcompat.app.AlertDialog;
 import androidx.lifecycle.LiveData;
 import androidx.lifecycle.MediatorLiveData;
 import androidx.lifecycle.ViewModel;
@@ -18,6 +19,7 @@ import nl.tue.besportive.data.FeedItem;
 import nl.tue.besportive.data.Group.Member;
 import nl.tue.besportive.repositories.CompletedChallengesRepository;
 import nl.tue.besportive.repositories.GroupRepository;
+import nl.tue.besportive.utils.Navigator;
 
 public class MemberOverviewViewModel extends ViewModel implements FeedAdapter.FeedAdapterListener {
     private final CompletedChallengesRepository completedChallengesRepository;
@@ -78,6 +80,15 @@ public class MemberOverviewViewModel extends ViewModel implements FeedAdapter.Fe
     }
 
     public void kickMember(Context context) {
+        new AlertDialog.Builder(context)
+                .setTitle("Kick member")
+                .setMessage("Are you sure you want to kick this member?")
+                .setPositiveButton("Yes", (dialog, which) -> {
+                    groupRepository.kickMember(userId);
+                    Navigator.finishActivity(context);
+                })
+                .setNegativeButton("No", null)
+                .show();
     }
 
     public static class MemberOverviewViewModelFactory implements ViewModelProvider.Factory {

@@ -44,6 +44,18 @@ export const onUserCreate = functions.auth.user().onCreate(async (callingUser) =
 export const onUserDelete = functions.auth.user().onDelete(async (user) => {
     const userRef = admin.firestore().collection("users").doc(user.uid);
     await userRef.delete();
+
+    const group = await admin.firestore().collection("groups")
+        .where(`members.${user.uid}`, "!=", null)
+        .limit(1)
+        .get();
+
+    if (group.empty) {
+        return;
+    }
+
+    const groupRef = group.docs[0].ref;
+    await removeUserFromGroup(user.uid, groupRef.id);
 });
 
 /**
@@ -191,10 +203,102 @@ export const leaveGroup = functions.https.onCall(async (data, context) => {
     }
 
     const group = groupRef.docs[0];
-    await group.ref.update({
-        [`members.${uid}`]: FieldValue.delete(),
-    });
+    await removeUserFromGroup(uid, group.id);
 });
+
+export const kickUser = functions.https.onCall(async (data, context) => {
+    const userId = data;
+    const auth = context.auth;
+    if (!auth) {
+        throw new functions.https.HttpsError(
+            "unauthenticated",
+            "User must be authenticated to kick a user",
+        );
+    }
+    const {uid} = auth;
+
+    const groupRef = await admin.firestore().collection("groups")
+        .where(`members.${userId}`, "!=", null)
+        .where("admin", "==", uid)
+        .limit(1)
+        .get();
+
+    if (groupRef.empty) {
+        throw new functions.https.HttpsError(
+            "permission-denied",
+            "User is not an admin",
+        );
+    }
+
+    const group = groupRef.docs[0];
+    await removeUserFromGroup(userId, group.id);
+});
+
+
+/**
+ * Remove a user from a group.
+ *
+ * @param {string} userId The user id
+ * @param {string} groupId The group id
+ */
+async function removeUserFromGroup(userId: string, groupId: string) {
+    const groupRef = admin.firestore().collection("groups").doc(groupId);
+
+    // Delete the group if the user is the last member
+    const group = await groupRef.get();
+    if (group.exists && Object.keys(group.data()?.members).length === 0) {
+        await deleteGroup(groupId);
+        return;
+    }
+
+    await firestore().runTransaction(async (transaction) => {
+        const group = await transaction.get(groupRef);
+        if (!group.exists) {
+            throw new functions.https.HttpsError(
+                "not-found",
+                "Group not found",
+            );
+        }
+        if (group.data()?.admin === userId) {
+            throw new functions.https.HttpsError(
+                "permission-denied",
+                "Cannot remove the admin",
+            );
+        }
+
+        const query = groupRef.collection("completedChallenges").where("userId", "==", userId);
+        const completedChallenges = await transaction.get(query);
+
+        transaction.update(groupRef, {
+            [`members.${userId}`]: FieldValue.delete(),
+        });
+
+
+        // If the user is the admin, assign a new admin
+        if (group.data()?.admin === userId) {
+            const newAdmin = Object.keys(group.data()?.members)[0];
+            transaction.update(groupRef, {
+                admin: newAdmin,
+            });
+        }
+
+        // Go through all the completed challenges and remove all challenges completed by the user
+        // Then delete the photo from the storage
+
+        const bucket = admin.storage().bucket();
+
+        for (const challenge of completedChallenges.docs) {
+            transaction.delete(challenge.ref);
+            // Check if the file exists before deleting it
+            const file = bucket.file(`${groupId}/${challenge.id}/image.jpg`);
+
+            const [exists] = await file.exists();
+            if (exists) {
+                await file.delete();
+            }
+        }
+    });
+}
 
 /**
  * Disband a group, delete '/groups/{groupId}' and all sub-collections
@@ -224,6 +328,15 @@ export const disbandGroup = functions.https.onCall(async (data, context) => {
 
     const group = groupRef.docs[0];
 
+    await deleteGroup(group.id);
+});
+
+/**
+ * Deletes the group and all sub-collections
+ *
+ * @param {string} groupId The group id
+ */
+async function deleteGroup(groupId: string) {
     const bulkWriter = admin.firestore().bulkWriter();
     bulkWriter.onWriteError((error) => {
         if (error.failedAttempts < MAX_RETRY_ATTEMPTS) {
@@ -234,13 +347,14 @@ export const disbandGroup = functions.https.onCall(async (data, context) => {
         }
     });
 
-    await firestore().recursiveDelete(group.ref, bulkWriter);
+    const groupRef = admin.firestore().collection("groups").doc(groupId);
+    await firestore().recursiveDelete(groupRef, bulkWriter);
 
     const bucket = admin.storage().bucket();
     await bucket.deleteFiles({
-        prefix: group.id,
+        prefix: groupId,
     });
-});
+}
 
 /**
  *  When a file is uploaded to "{groupId}/{activeChallengeId}/image.jpg" in the storage bucket,

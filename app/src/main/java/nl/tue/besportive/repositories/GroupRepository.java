@@ -1,5 +1,7 @@
 package nl.tue.besportive.repositories;
 
+import android.util.Log;
+
 import androidx.lifecycle.LiveData;
 import androidx.lifecycle.Transformations;
 
@@ -111,6 +113,8 @@ public class GroupRepository {
         FirebaseFunctions.getInstance().getHttpsCallable("disbandGroup").call().addOnCompleteListener(task -> {
             if (task.isSuccessful()) {
                 onDisband.run();
+            } else {
+                Log.e("GroupRepository", "Failed to disband group", task.getException());
             }
         });
     }
@@ -119,6 +123,18 @@ public class GroupRepository {
         FirebaseFunctions.getInstance().getHttpsCallable("leaveGroup").call().addOnCompleteListener(task -> {
             if (task.isSuccessful()) {
                 onLeave.run();
+            } else {
+                Log.e("GroupRepository", "Failed to leave group", task.getException());
+            }
+        });
+    }
+
+    public void kickMember(String uid) {
+        FirebaseFunctions.getInstance().getHttpsCallable("kickUser").call(uid).addOnCompleteListener(task -> {
+            if (task.isSuccessful()) {
+                Log.d("GroupRepository", "Kicked user " + uid);
+            } else {
+                Log.e("GroupRepository", "Failed to kick user " + uid, task.getException());
             }
         });
     }
