@@ -28,15 +28,18 @@ import nl.tue.besportive.databinding.ActivityConfigureChallengesBinding;
 import nl.tue.besportive.models.ConfigureChallengesViewModel;
 
 public class ConfigureChallengesActivity extends AppCompatActivity {
-    private ActivityConfigureChallengesBinding binding;
 
     private String groupId;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        binding = ActivityConfigureChallengesBinding.inflate(getLayoutInflater());
+        ActivityConfigureChallengesBinding binding = ActivityConfigureChallengesBinding.inflate(getLayoutInflater());
         setContentView(binding.getRoot());
+
+        boolean inCreateGroupFlow = getIntent().getBooleanExtra("inCreateGroupFlow", false);
+
+
         // Call recyclerview
         RecyclerView recyclerView = findViewById(R.id.my_challenges_recyclerview);
         RecyclerView recyclerViewDefaultChallenges = findViewById(R.id.default_challenges_recyclerview);
@@ -44,7 +47,7 @@ public class ConfigureChallengesActivity extends AppCompatActivity {
         List<Challenge> items = new ArrayList<>();
         // RecyclerView configuration
         // Call ViewModel
-        ConfigureChallengesViewModel viewModel = new ViewModelProvider(this).get(ConfigureChallengesViewModel.class);
+        ConfigureChallengesViewModel viewModel = new ViewModelProvider(this, new ConfigureChallengesViewModel.ConfigureChallengesViewModelFactory(inCreateGroupFlow)).get(ConfigureChallengesViewModel.class);
 
         viewModel.getGroupId().observe(this, groupId -> this.groupId = groupId);
 

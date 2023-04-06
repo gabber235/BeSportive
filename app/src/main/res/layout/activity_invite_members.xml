@@ -1,9 +1,11 @@
 <?xml version="1.0" encoding="utf-8"?>
 <layout xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools">
 
     <data>
+
+        <import type="android.view.View" />
+
         <variable
             name="viewModel"
             type="nl.tue.besportive.models.InviteMembersViewModel" />
@@ -16,51 +18,76 @@
         android:gravity="center_horizontal"
         tools:context=".activities.InviteMembersActivity">
 
+        <include
+            android:id="@+id/toolbar_invite"
+            layout="@layout/toolbar"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:visibility="@{viewModel.inCreateGroupFlow ? View.GONE : View.VISIBLE}" />
+
+        <Space
+            android:layout_width="match_parent"
+            android:layout_height="0dp"
+            android:layout_weight="3" />
+
         <TextView
             android:id="@+id/textView2"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_marginTop="64dp"
             android:text="@string/invite_members_header"
             android:textColor="#E8000000"
             android:textSize="34sp"
             android:textStyle="bold" />
 
+        <Space
+            android:layout_width="match_parent"
+            android:layout_height="0dp"
+            android:layout_weight="1" />
+
         <TextView
             android:id="@+id/textView8"
-            android:layout_width="300dp"
+            android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_marginTop="50dp"
             android:text="@string/invite_members_subheader"
             android:textAlignment="center"
             android:textSize="26sp"
             android:textStyle="bold" />
+
+
         <TextView
             android:id="@+id/codeView"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_marginTop="68dp"
             android:text="@{viewModel.group.code ?? `.....`}"
             android:textColor="#FF9800"
             android:textSize="60sp"
             android:textStyle="bold"
-            tools:text="GroupCode"/>
+            tools:text="1A9D6" />
 
         <TextView
             android:id="@+id/textView14"
-            android:layout_width="295dp"
+            android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_marginTop="30dp"
+            android:layout_marginHorizontal="32dp"
             android:text="@string/invite_members_info_text"
             android:textAlignment="center" />
+
+        <Space
+            android:layout_width="match_parent"
+            android:layout_height="0dp"
+            android:layout_weight="2" />
 
         <Button
             android:id="@+id/doneButton"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_marginTop="50dp"
             android:text="Done"
+            android:visibility="@{viewModel.inCreateGroupFlow ? View.VISIBLE : View.GONE}"
             android:onClick="@{() -> viewModel.done(context)}" />
 
+        <Space
+            android:layout_width="match_parent"
+            android:layout_height="0dp"
+            android:layout_weight="4" />
     </LinearLayout>
 </layout>

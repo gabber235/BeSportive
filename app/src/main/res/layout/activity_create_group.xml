@@ -16,26 +16,28 @@
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:orientation="vertical"
+        android:gravity="center_horizontal"
         tools:context=".activities.CreateGroupActivity">
 
-        <ImageView
-            android:id="@+id/imageView3"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_marginTop="32dp"
-            android:layout_gravity="center_horizontal"
-            app:srcCompat="@drawable/logo_2" />
+        <include
+            android:id="@+id/toolbar_create_group"
+            layout="@layout/toolbar"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content" />
+
+        <Space
+            android:layout_width="match_parent"
+            android:layout_height="0dp"
+            android:layout_weight="2" />
 
         <TextView
             android:id="@+id/textView2"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_marginTop="128dp"
             android:text="@string/create_group_header"
             android:textColor="#E8000000"
             android:textSize="34sp"
-            android:textStyle="bold"
-            android:layout_gravity="center_horizontal" />
+            android:textStyle="bold" />
 
         <TextView
             android:id="@+id/textView8"
@@ -43,9 +45,8 @@
             android:layout_height="60dp"
             android:text="@string/create_group_info_text"
             android:textAlignment="center"
-            android:gravity="center"
-            android:layout_gravity="center_horizontal"
             android:layout_marginTop="16dp" />
+
         <com.google.android.material.textfield.TextInputLayout
             android:id="@+id/nameInputLayout"
             style="@style/Widget.Material3.TextInputEditText.OutlinedBox"
@@ -69,13 +70,17 @@
                 android:maxLines="1" />
         </com.google.android.material.textfield.TextInputLayout>
 
+        <Space
+            android:layout_width="match_parent"
+            android:layout_height="0dp"
+            android:layout_weight="1" />
+
         <Button
             android:id="@+id/createGroupButton"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginTop="20dp"
             android:text="@string/createGroup_button_text"
-            android:layout_gravity="center_horizontal"
             android:visibility="@{viewModel.loading ? View.GONE : View.VISIBLE}"
             android:enabled="@{viewModel.name.length() > 0}"
             android:onClick="@{() -> viewModel.createGroup(context)}" />
@@ -85,8 +90,12 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginTop="20dp"
-            android:layout_gravity="center_horizontal"
             android:visibility="@{viewModel.loading ? View.VISIBLE : View.GONE}" />
+
+        <Space
+            android:layout_width="match_parent"
+            android:layout_height="0dp"
+            android:layout_weight="4" />
     </LinearLayout>
 </layout>
 

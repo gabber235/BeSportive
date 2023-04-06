@@ -42,12 +42,13 @@ public class Navigator {
 
 
     public static void navigateToConfigureChallengesActivity(Context context) {
-        navigateToConfigureChallengesActivity(context, false);
+        navigateToConfigureChallengesActivity(context, false, false);
     }
 
-    public static void navigateToConfigureChallengesActivity(Context context, boolean finishActivity) {
+    public static void navigateToConfigureChallengesActivity(Context context, boolean finishActivity, boolean inCreationFlow) {
         Log.i(TAG, "navigateToConfigureChallengesActivity");
         Intent intent = new Intent(context, ConfigureChallengesActivity.class);
+        intent.putExtra("inCreationFlow", inCreationFlow);
         context.startActivity(intent);
         if (finishActivity) finishActivity(context);
     }
