@@ -6,8 +6,12 @@ import android.util.Log;
 import androidx.appcompat.app.AlertDialog;
 import androidx.lifecycle.LiveData;
 import androidx.lifecycle.MediatorLiveData;
+import androidx.lifecycle.Transformations;
 import androidx.lifecycle.ViewModel;
 import androidx.lifecycle.ViewModelProvider;
+
+import com.google.firebase.auth.FirebaseAuth;
+import com.google.firebase.auth.FirebaseUser;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -67,6 +71,30 @@ public class MemberOverviewViewModel extends ViewModel implements FeedAdapter.Fe
         return challenges.stream()
                 .map(challenge -> new FeedItem(challenge, member))
                 .collect(Collectors.toList());
+    }
+
+
+    public LiveData<Boolean> viewKickButton() {
+        return Transformations.map(groupRepository.getLiveGroup(), group -> {
+            if (group == null) {
+                return false;
+            }
+
+            FirebaseUser user = FirebaseAuth.getInstance().getCurrentUser();
+            if (user == null) {
+                return false;
+            }
+
+            if (group.getAdmin() == null) {
+                return false;
+            }
+
+            if (!group.getAdmin().equals(user.getUid())) {
+                return false;
+            }
+
+            return userId != null && !userId.equals(user.getUid());
+        });
     }
 
     @Override

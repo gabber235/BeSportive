@@ -5,6 +5,8 @@
 
     <data>
 
+        <import type="android.view.View" />
+
         <variable
             name="viewModel"
             type="nl.tue.besportive.models.MemberOverviewViewModel" />
@@ -52,6 +54,7 @@
                 android:layout_height="wrap_content"
                 android:src="@drawable/ic_trash_red"
                 android:layout_marginStart="10dp"
+                android:visibility="@{viewModel.viewKickButton() ? View.VISIBLE : View.GONE}"
                 android:onClick="@{() -> viewModel.kickMember(context)}" />
         </LinearLayout>
 
