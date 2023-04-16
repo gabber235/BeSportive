@@ -7,6 +7,7 @@ In this README file an explanation will be given for how to get access to the ap
 By opening a Command Prompt in the Terminal and filling in the commands below in the "How to start the firebase emulator" section.
 - Sometimes an error is shown in which it is indicated that "the port is already taken". 
 In this case the user can follow the trouble shooting section indicated underneath the "How to start the firebase emulator" section.
+- When the emulator is started up a test email and password can be used to make an account and get access to the app. This data is indicated below.
 
 ## How to start the firebase emulator
 
@@ -23,3 +24,7 @@ In this case the user can follow the trouble shooting section indicated undernea
 2. Run the command: `netstat -ano | findstr :<PORT>` (Replace "<PORT>" with the port number 8080, but keep the colon)
 3. Find the PID and copy this PID
 4. Run the command: `taskkill / PID <PID> /F` (Replace "<PID>" with the PID number copied in step 3)
+
+#### When the emulator is started the user will be able to log in with the following email and password: 
+- email: john.do@gmail.com
+- password: Test1234
