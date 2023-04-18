@@ -8,9 +8,11 @@ import android.view.View;
 import androidx.databinding.DataBindingUtil;
 import androidx.lifecycle.ViewModelProvider;
 import androidx.test.core.app.ActivityScenario;
+import androidx.test.ext.junit.rules.ActivityScenarioRule;
 import androidx.test.platform.app.InstrumentationRegistry;
 import androidx.test.ext.junit.runners.AndroidJUnit4;
 
+import org.junit.Rule;
 import org.junit.Test;
 import org.junit.runner.RunWith;
 
@@ -19,9 +21,11 @@ import static org.junit.Assert.*;
 import nl.tue.besportive.activities.ConfigureChallengesActivity;
 import nl.tue.besportive.activities.FeedActivity;
 import nl.tue.besportive.activities.LeaderboardActivity;
+import nl.tue.besportive.activities.ProfileActivity;
 import nl.tue.besportive.databinding.ActivityConfigureChallengesBinding;
 import nl.tue.besportive.models.ConfigureChallengesViewModel;
 import nl.tue.besportive.models.FeedViewModel;
+import nl.tue.besportive.models.ProfileViewModel;
 
 
 import static org.junit.Assert.assertNotNull;
@@ -44,7 +48,7 @@ public class InstrumentedTest {
 
     //Test in Configure Challenges that the activity is correctly created and its layout is inflated.
     @Test
-    public void testActivityCreation() {
+    public void configureChallengesTestActivityCreation() {
         ActivityScenario<ConfigureChallengesActivity> scenario = ActivityScenario.launch(ConfigureChallengesActivity.class);
         scenario.onActivity(activity -> {
             View view = activity.findViewById(R.id.activity_configure_challenges_layout);
@@ -55,7 +59,7 @@ public class InstrumentedTest {
     }
     //Test in Configure Challenges  that the ViewModel is correctly initialized and bound to the layout.
     @Test
-    public void testViewModelBinding() {
+    public void configureChallengesTestViewModelBinding() {
         ActivityScenario<ConfigureChallengesActivity> scenario = ActivityScenario.launch(ConfigureChallengesActivity.class);
         scenario.onActivity(activity -> {
             ConfigureChallengesViewModel viewModel = new ViewModelProvider(activity).get(ConfigureChallengesViewModel.class);
@@ -79,6 +83,17 @@ public class InstrumentedTest {
         });
     }
 
+    @Rule
+    public ActivityScenarioRule<ProfileActivity> activityScenarioRule = new ActivityScenarioRule<>(ProfileActivity.class);
 
-
+    //Test Case for Checking that if theView Model is correctly initialized and not null
+    @Test
+    public void profileViewtestViewModelBinding() {
+        ActivityScenario<ProfileActivity> scenario = activityScenarioRule.getScenario();
+        scenario.onActivity(activity -> {
+            ProfileViewModel viewModel = new ViewModelProvider(activity).get(ProfileViewModel.class);
+            assertNotNull(viewModel);
+        });
+    }
 }
+
