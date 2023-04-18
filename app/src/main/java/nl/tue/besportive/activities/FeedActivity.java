@@ -57,5 +57,6 @@ public class FeedActivity extends AppCompatActivity {
     public boolean onOptionsItemSelected(MenuItem item) {
         return BarUtils.selectToolbarMenuItem(this, item);
     }
+
 }
 
