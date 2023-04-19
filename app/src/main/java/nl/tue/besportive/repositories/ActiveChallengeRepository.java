@@ -24,40 +24,63 @@ import nl.tue.besportive.data.CompletedChallenge;
 import nl.tue.besportive.utils.FirebaseQueryLiveData;
 
 public class ActiveChallengeRepository {
+
+    // Firebase instances
+    private final FirebaseFirestore firestore;
+    private final FirebaseStorage storage;
+
+    // Live data for active challenges
     private LiveData<QuerySnapshot> activeChallengesSnapshot;
     private LiveData<ActiveChallenge> activeChallenge;
-    private final FirebaseFirestore firestore;
 
+    // Group repository instance
     private final GroupRepository groupRepository;
 
     public ActiveChallengeRepository() {
         firestore = FirebaseFirestore.getInstance();
         groupRepository = new GroupRepository();
+        storage = FirebaseStorage.getInstance();
     }
 
+    // Query to get active challenge
     private Query getActiveChallengeQuery(String groupId) {
         FirebaseUser user = FirebaseAuth.getInstance().getCurrentUser();
         assert user != null;
+
+        // Get user ID
         String uid = user.getUid();
-        return firestore.collection("groups/" + groupId + "/activeChallenges").whereEqualTo("userId", uid).limit(1);
+
+        // Query active challenge based on user ID and group ID
+        return firestore.collection("groups/" + groupId + "/activeChallenges")
+                .whereEqualTo("userId", uid)
+                .limit(1);
     }
 
+    // Get live data snapshot of active challenges
     public LiveData<QuerySnapshot> getLiveActiveChallengeSnapshot() {
         if (activeChallengesSnapshot != null) {
             return activeChallengesSnapshot;
         }
-        return activeChallengesSnapshot = Transformations.switchMap(groupRepository.getLiveGroup(), group -> {
-            if (group == null) {
-                return null;
-            }
-            return new FirebaseQueryLiveData(getActiveChallengeQuery(group.getId()));
-        });
+
+        // Get live group data
+        return activeChallengesSnapshot = Transformations.switchMap(
+                groupRepository.getLiveGroup(),
+                group -> {
+                    if (group == null) {
+                        return null;
+                    }
+                    // Return snapshot of active challenges based on group ID
+                    return new FirebaseQueryLiveData(getActiveChallengeQuery(group.getId()));
+                });
     }
 
+    // Get live data for active challenge
     public LiveData<ActiveChallenge> getLiveActiveChallenge() {
         if (activeChallenge != null) {
             return activeChallenge;
         }
+
+        // Map active challenge snapshot to ActiveChallenge object
         return activeChallenge = Transformations.map(getLiveActiveChallengeSnapshot(), snapshot -> {
             if (snapshot == null || snapshot.isEmpty()) {
                 return null;
@@ -67,6 +90,7 @@ public class ActiveChallengeRepository {
             return activeChallenge;
         });
     }
+
 
     public UploadTask uploadPhoto(Bitmap photo) {
         String groupId = Objects.requireNonNull(groupRepository.getLiveGroup().getValue()).getId();

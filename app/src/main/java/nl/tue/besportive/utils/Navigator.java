@@ -46,7 +46,8 @@ public class Navigator {
         navigateToConfigureChallengesActivity(context, false, false);
     }
 
-    public static void navigateToConfigureChallengesActivity(Context context, boolean finishActivity, boolean inCreateGroupFlow) {
+    public static void navigateToConfigureChallengesActivity(Context context, boolean finishActivity
+            , boolean inCreateGroupFlow) {
         Log.i(TAG, "navigateToConfigureChallengesActivity");
         Intent intent = new Intent(context, ConfigureChallengesActivity.class);
         intent.putExtra("inCreateGroupFlow", inCreateGroupFlow);
@@ -64,7 +65,8 @@ public class Navigator {
         navigateToInviteMembersActivity(context, false, false);
     }
 
-    public static void navigateToInviteMembersActivity(Context context, boolean finishActivity, boolean inCreateGroupFlow) {
+    public static void navigateToInviteMembersActivity(Context context, boolean finishActivity,
+                                                       boolean inCreateGroupFlow) {
         Log.i(TAG, "navigateToInviteMembersActivity");
         Intent intent = new Intent(context, InviteMembersActivity.class);
         intent.putExtra("inCreateGroupFlow", inCreateGroupFlow);
@@ -137,7 +139,8 @@ public class Navigator {
 
     public static void finishActivity(Context context) {
         if (context instanceof Activity) {
-            Log.d(TAG, "finishActivity: Finishing activity:" + context.getClass().getSimpleName());
+            Log.d(TAG, "finishActivity: Finishing activity:" + context.getClass().
+                    getSimpleName());
             ((Activity) context).finish();
         } else {
             Log.e(TAG, "finishActivity: Context is not an activity");
@@ -162,7 +165,8 @@ public class Navigator {
 
     private static void onUserReloaded(Context context, Task<Void> task) {
         if (task.isSuccessful()) {
-            checkIfUserHasGroup(context, Objects.requireNonNull(FirebaseAuth.getInstance().getCurrentUser()));
+            checkIfUserHasGroup(context, Objects.requireNonNull(FirebaseAuth.getInstance().
+                    getCurrentUser()));
         } else {
             Navigator.navigateToOnboardingActivity(context, true);
         }
@@ -186,7 +190,8 @@ public class Navigator {
     private static void checkIfUserIsInChallenge(Context context, String groupId) {
         FirebaseFirestore.getInstance()
                 .collection("groups/" + groupId + "/activeChallenges")
-                .whereEqualTo("userId", Objects.requireNonNull(FirebaseAuth.getInstance().getCurrentUser()).getUid())
+                .whereEqualTo("userId", Objects.requireNonNull(FirebaseAuth.getInstance().
+                        getCurrentUser()).getUid())
                 .get()
                 .addOnCompleteListener((task) -> onChallengeQueryComplete(context, task));
     }

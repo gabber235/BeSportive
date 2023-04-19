@@ -15,17 +15,19 @@ public class InviteMembersActivity extends AppCompatActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+
         binding = ActivityInviteMembersBinding.inflate(getLayoutInflater());
 
+        // initialize variables here
         boolean inCreateGroupFlow = getIntent().getBooleanExtra("inCreateGroupFlow", false);
 
-        InviteMembersViewModel viewModel = new ViewModelProvider(this, new InviteMembersViewModel.InviteMembersViewModelFactory(inCreateGroupFlow)).get(InviteMembersViewModel.class);
+        InviteMembersViewModel viewModel = new ViewModelProvider(this,
+                new InviteMembersViewModel.InviteMembersViewModelFactory(inCreateGroupFlow)).get(InviteMembersViewModel.class);
         binding.setViewModel(viewModel);
         binding.setLifecycleOwner(this);
 
         setContentView(binding.getRoot());
 
         setSupportActionBar(BarUtils.setupBackToolbar(binding.toolbarInvite.toolbar));
-
     }
 }

@@ -6,6 +6,9 @@ import nl.tue.besportive.R;
 import nl.tue.besportive.data.FeedItem;
 import nl.tue.besportive.databinding.FeedCardBinding;
 
+/**
+ * Adapter for displaying a member's completed challenges in a RecyclerView.
+ */
 public class MemberOverviewAdapter extends BaseAdapter<FeedCardBinding, FeedItem> {
     private final FeedAdapter.FeedAdapterListener listener;
 

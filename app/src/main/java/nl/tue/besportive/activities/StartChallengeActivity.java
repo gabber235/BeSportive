@@ -18,7 +18,8 @@ public class StartChallengeActivity extends AppCompatActivity {
 
         String challengeId = getIntent().getStringExtra("challengeId");
 
-        StartChallengeViewModel viewModel = new ViewModelProvider(this, new StartChallengeViewModel.StartChallengeViewModelFactory(challengeId)).get(StartChallengeViewModel.class);
+        StartChallengeViewModel viewModel = new ViewModelProvider(this,
+                new StartChallengeViewModel.StartChallengeViewModelFactory(challengeId)).get(StartChallengeViewModel.class);
         binding.setViewModel(viewModel);
         binding.setLifecycleOwner(this);
 

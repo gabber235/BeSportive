@@ -20,8 +20,11 @@ public class LeaderboardActivity extends AppCompatActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        ActivityLeaderboardBinding binding = ActivityLeaderboardBinding.inflate(getLayoutInflater());
 
+        ActivityLeaderboardBinding binding = ActivityLeaderboardBinding.inflate(getLayoutInflater());
+        setContentView(binding.getRoot());
+
+        // initialize variables here
         LeaderboardViewModel viewModel = new ViewModelProvider(this).get(LeaderboardViewModel.class);
         binding.setViewModel(viewModel);
         binding.setLifecycleOwner(this);
@@ -35,7 +38,6 @@ public class LeaderboardActivity extends AppCompatActivity {
             this.isAdministrator = isAdministrator;
             invalidateOptionsMenu();
         });
-        setContentView(binding.getRoot());
 
         setSupportActionBar(BarUtils.setupPrimaryToolbar(binding.toolbarLeaderboard.toolbar));
         BarUtils.setupBottomNavigation(this, binding.bottomNavigation, R.id.leaderboard);
@@ -55,6 +57,4 @@ public class LeaderboardActivity extends AppCompatActivity {
     public boolean onOptionsItemSelected(MenuItem item) {
         return BarUtils.selectToolbarMenuItem(this, item);
     }
-
-
 }

@@ -14,14 +14,17 @@ import nl.tue.besportive.models.ActiveChallengeViewModel;
 
 public class ActiveChallengeActivity extends AppCompatActivity {
 
+    // declare variables here
     ActiveChallengeViewModel viewModel;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        ActivityActiveChallengeBinding binding = ActivityActiveChallengeBinding.inflate(getLayoutInflater());
 
+        // initialize variables here
         viewModel = new ViewModelProvider(this).get(ActiveChallengeViewModel.class);
+
+        ActivityActiveChallengeBinding binding = ActivityActiveChallengeBinding.inflate(getLayoutInflater());
         binding.setViewModel(viewModel);
         binding.setLifecycleOwner(this);
 

@@ -24,7 +24,6 @@ public class CompletedChallengesRepository {
     private LiveData<QuerySnapshot> completedChallengesSnapshot;
     private LiveData<List<CompletedChallenge>> completedChallenges;
 
-
     private final GroupRepository groupRepository;
     private final FirebaseFirestore firestore;
 
@@ -34,19 +33,24 @@ public class CompletedChallengesRepository {
     }
 
     private Query getUserCompletedChallengesQuery(String groupId, String uid) {
-        return firestore.collection("groups/" + groupId + "/completedChallenges").whereEqualTo("userId", uid);
+        return firestore.collection(String.format("groups/%s/completedChallenges", groupId))
+                .whereEqualTo("userId", uid);
     }
 
     private LiveData<QuerySnapshot> getLiveUserCompletedChallengesSnapshot(String userId) {
         if (userCompletedChallengesSnapshot.containsKey(userId)) {
             return userCompletedChallengesSnapshot.get(userId);
         }
-        LiveData<QuerySnapshot> completedChallenges = Transformations.switchMap(groupRepository.getLiveGroup(), group -> {
-            if (group == null) {
-                return null;
-            }
-            return new FirebaseQueryLiveData(getUserCompletedChallengesQuery(group.getId(), userId));
-        });
+        LiveData<QuerySnapshot> completedChallenges = Transformations.switchMap(
+                groupRepository.getLiveGroup(),
+                group -> {
+                    if (group == null) {
+                        return null;
+                    }
+                    return new FirebaseQueryLiveData(
+                            getUserCompletedChallengesQuery(group.getId(), userId));
+                });
+
         userCompletedChallengesSnapshot.put(userId, completedChallenges);
 
         return completedChallenges;
@@ -56,32 +60,37 @@ public class CompletedChallengesRepository {
         if (userCompletedChallenges.containsKey(uid)) {
             return userCompletedChallenges.get(uid);
         }
-        LiveData<List<CompletedChallenge>> completedChallenges = Transformations.map(getLiveUserCompletedChallengesSnapshot(uid), snapshot -> {
-            if (snapshot == null || snapshot.isEmpty()) {
-                return null;
-            }
-            List<CompletedChallenge> completedChallengesList = snapshot.toObjects(CompletedChallenge.class);
 
-            // The id is not automatically set by Firebase, so we have to do it manually
-            for (int i = 0; i < completedChallengesList.size(); i++) {
-                completedChallengesList.get(i).setId(snapshot.getDocuments().get(i).getId());
-            }
+        LiveData<List<CompletedChallenge>> completedChallenges = Transformations.map(
+                getLiveUserCompletedChallengesSnapshot(uid),
+                snapshot -> {
+                    if (snapshot == null || snapshot.isEmpty()) {
+                        return null;
+                    }
+                    List<CompletedChallenge> completedChallengesList = snapshot.toObjects(CompletedChallenge.class);
 
-            return completedChallengesList;
-        });
+                    // The id is not automatically set by Firebase, so we have to do it manually
+                    for (int i = 0; i < completedChallengesList.size(); i++) {
+                        completedChallengesList.get(i).setId(snapshot.getDocuments().get(i).getId());
+                    }
+
+                    return completedChallengesList;
+                });
         userCompletedChallenges.put(uid, completedChallenges);
         return completedChallenges;
     }
 
     private Query getCompletedChallengesQuery(String groupId) {
-        return firestore.collection("groups/" + groupId + "/completedChallenges").orderBy("completedAt", Query.Direction.DESCENDING);
+        return firestore.collection(String.format("groups/%s/completedChallenges", groupId))
+                .orderBy("completedAt", Query.Direction.DESCENDING);
     }
 
     private LiveData<QuerySnapshot> getLiveCompletedChallengesSnapshot() {
         if (completedChallengesSnapshot != null) {
             return completedChallengesSnapshot;
         }
-        LiveData<QuerySnapshot> completedChallenges = Transformations.switchMap(groupRepository.getLiveGroup(), group -> {
+        LiveData<QuerySnapshot> completedChallenges = Transformations.
+                switchMap(groupRepository.getLiveGroup(), group -> {
             if (group == null) {
                 return null;
             }
@@ -96,11 +105,13 @@ public class CompletedChallengesRepository {
         if (completedChallenges != null) {
             return completedChallenges;
         }
-        LiveData<List<CompletedChallenge>> completedChallenges = Transformations.map(getLiveCompletedChallengesSnapshot(), snapshot -> {
+        LiveData<List<CompletedChallenge>> completedChallenges = Transformations.
+                map(getLiveCompletedChallengesSnapshot(), snapshot -> {
             if (snapshot == null || snapshot.isEmpty()) {
                 return null;
             }
-            List<CompletedChallenge> completedChallengesList = snapshot.toObjects(CompletedChallenge.class);
+            List<CompletedChallenge> completedChallengesList = snapshot.
+                    toObjects(CompletedChallenge.class);
 
             // The id is not automatically set by Firebase, so we have to do it manually
             for (int i = 0; i < completedChallengesList.size(); i++) {
@@ -123,13 +134,13 @@ public class CompletedChallengesRepository {
         String path = "groups/" + groupId + "/completedChallenges/" + completedChallengeId;
 
         firestore.runTransaction(transaction -> {
-            CompletedChallenge challenge = transaction.get(firestore.document(path)).toObject(CompletedChallenge.class);
+            CompletedChallenge challenge = transaction.get(firestore.document(path)).
+                    toObject(CompletedChallenge.class);
             if (challenge == null) {
                 return null;
             }
 
             challenge.toggleLove();
-
 
             transaction.update(firestore.document(path), "lovers", challenge.getLovers());
 

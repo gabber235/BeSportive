@@ -24,12 +24,11 @@ import nl.tue.besportive.repositories.GroupRepository;
 public class BarUtils {
     public static Toolbar setupPrimaryToolbar(Toolbar toolbar) {
         toolbar.setTitle("");
-
         toolbar.setNavigationIcon(R.drawable.img); // This is the default icon. Will be replaced by the profile picture.
 
         Target target = new Target() {
             @Override
-            public void onBitmapLoaded(android.graphics.Bitmap bitmap, Picasso.LoadedFrom from) {
+            public void onBitmapLoaded(Bitmap bitmap, Picasso.LoadedFrom from) {
                 Bitmap scaledBitmap = Bitmap.createScaledBitmap(bitmap, 100, 100, false);
                 toolbar.setNavigationIcon(new BitmapDrawable(toolbar.getResources(), scaledBitmap));
             }
@@ -62,11 +61,10 @@ public class BarUtils {
             }
         });
 
-        // The set navigation listener needs te be called after the toolbar is set as the support bar.
+        // The set navigation listener needs to be called after the toolbar is set as the support bar.
         new Handler().postDelayed(() -> {
             toolbar.setNavigationOnClickListener(v -> Navigator.navigateToProfileActivity(v.getContext()));
         }, 10);
-
 
         return toolbar;
     }
@@ -75,13 +73,12 @@ public class BarUtils {
         toolbar.setTitle("");
         toolbar.setNavigationIcon(R.drawable.ic_back);
 
-        // The set navigation listener needs te be called after the toolbar is set as the support bar.
+        // The set navigation listener needs to be called after the toolbar is set as the support bar.
         new Handler().postDelayed(() -> {
             toolbar.setNavigationOnClickListener(v -> {
                 Navigator.finishActivity(v.getContext());
             });
         }, 10);
-
 
         return toolbar;
     }
@@ -134,7 +131,9 @@ public class BarUtils {
                 .show();
     }
 
-    public static void setupBottomNavigation(Activity activity, BottomNavigationView bottomNavigationView, int selectedItemId) {
+    public static void setupBottomNavigation(Activity activity,
+                                             BottomNavigationView bottomNavigationView,
+                                             int selectedItemId) {
         // Set Home selected
         bottomNavigationView.setSelectedItemId(selectedItemId);
 

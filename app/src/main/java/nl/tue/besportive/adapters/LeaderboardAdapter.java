@@ -1,7 +1,6 @@
 package nl.tue.besportive.adapters;
 
 import android.content.Context;
-
 import java.util.ArrayList;
 
 import nl.tue.besportive.R;
@@ -9,6 +8,7 @@ import nl.tue.besportive.data.Group;
 import nl.tue.besportive.databinding.LeaderboardCardBinding;
 
 public class LeaderboardAdapter extends BaseAdapter<LeaderboardCardBinding, Group.Member> {
+
     private final LeaderboardAdapterListener listener;
 
     public LeaderboardAdapter(LeaderboardAdapterListener listener) {
@@ -23,7 +23,7 @@ public class LeaderboardAdapter extends BaseAdapter<LeaderboardCardBinding, Grou
         binding.setListener(listener);
     }
 
-    public static interface LeaderboardAdapterListener {
+    public interface LeaderboardAdapterListener {
         void onMemberClicked(Context context, Group.Member member);
     }
 }

@@ -16,16 +16,15 @@ import nl.tue.besportive.utils.Navigator;
 
 public class MainActivity extends AppCompatActivity {
 
-    FirebaseFirestoreSettings developSettings = new FirebaseFirestoreSettings.Builder()
+    private FirebaseFirestoreSettings developSettings = new FirebaseFirestoreSettings.Builder()
             .setPersistenceEnabled(false)
             .setHost("10.0.2.2:8080")
             .setSslEnabled(false)
             .build();
 
-    FirebaseFirestoreSettings productionSettings = new FirebaseFirestoreSettings.Builder()
+    private FirebaseFirestoreSettings productionSettings = new FirebaseFirestoreSettings.Builder()
             .setPersistenceEnabled(true)
             .build();
-
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {

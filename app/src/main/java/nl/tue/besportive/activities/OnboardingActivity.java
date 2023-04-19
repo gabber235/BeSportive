@@ -39,6 +39,9 @@ public class OnboardingActivity extends AppCompatActivity {
         binding.startButton.setOnClickListener(v -> startAuthenticationFlow());
     }
 
+    /**
+     * Starts the FirebaseUI authentication flow for email and Google sign in.
+     */
     public void startAuthenticationFlow() {
         List<AuthUI.IdpConfig> providers = Arrays.asList(
                 new AuthUI.IdpConfig.EmailBuilder().build(),
@@ -54,6 +57,11 @@ public class OnboardingActivity extends AppCompatActivity {
         signInLauncher.launch(signInIntent);
     }
 
+    /**
+     * Handles the result of the FirebaseUI authentication flow.
+     *
+     * @param result The result of the authentication flow.
+     */
     private void onSignInResult(FirebaseAuthUIAuthenticationResult result) {
         IdpResponse response = result.getIdpResponse();
         assert response != null;

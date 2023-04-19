@@ -34,7 +34,9 @@ public class ConfigureChallengesRepository {
                 return null;
             }
 
-            return new FirebaseQueryLiveData(firestore.collection("groups").document(group.getId()).collection("challenges"));
+            return new FirebaseQueryLiveData(firestore.collection("groups")
+                    .document(group.getId())
+                    .collection("challenges"));
         });
     }
 

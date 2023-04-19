@@ -21,16 +21,15 @@ import nl.tue.besportive.data.Group.Member;
 import nl.tue.besportive.utils.FirebaseQueryLiveData;
 
 public class GroupRepository {
+
     private LiveData<QuerySnapshot> groupSnapshot;
     private LiveData<Group> group;
     private LiveData<List<Member>> members;
-
     private final FirebaseFirestore firestore;
 
     public GroupRepository() {
         firestore = FirebaseFirestore.getInstance();
     }
-
 
     private Query getGroupQuery() {
         FirebaseUser user = FirebaseAuth.getInstance().getCurrentUser();
@@ -56,10 +55,8 @@ public class GroupRepository {
                 return null;
             }
             List<Group> groups = input.toObjects(Group.class);
-
             Group group = groups.get(0);
             group.setId(input.getDocuments().get(0).getId());
-
             return group;
         });
     }

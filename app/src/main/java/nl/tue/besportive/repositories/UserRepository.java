@@ -16,6 +16,7 @@ import nl.tue.besportive.data.SportiveUser;
 import nl.tue.besportive.utils.FirebaseDocumentLiveData;
 
 public class UserRepository {
+
     private LiveData<DocumentSnapshot> userSnapshot;
     private LiveData<SportiveUser> user;
 
@@ -46,7 +47,6 @@ public class UserRepository {
             return user;
         });
     }
-
 
     public void regenerateProfilePicture() {
         FirebaseUser user = FirebaseAuth.getInstance().getCurrentUser();

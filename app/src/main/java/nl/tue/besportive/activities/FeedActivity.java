@@ -1,6 +1,5 @@
 package nl.tue.besportive.activities;
 
-
 import android.os.Bundle;
 import android.view.Menu;
 import android.view.MenuItem;
@@ -21,9 +20,11 @@ public class FeedActivity extends AppCompatActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+
         ActivityFeedBinding binding = ActivityFeedBinding.inflate(getLayoutInflater());
         setContentView(binding.getRoot());
 
+        // initialize variables here
         FeedViewModel viewModel = new ViewModelProvider(this).get(FeedViewModel.class);
         binding.setViewModel(viewModel);
         binding.setLifecycleOwner(this);
@@ -45,6 +46,7 @@ public class FeedActivity extends AppCompatActivity {
 
     @Override
     public boolean onCreateOptionsMenu(Menu menu) {
+        // use curly braces after if statement to follow the standard
         if (isAdministrator) {
             getMenuInflater().inflate(R.menu.admin_settings_menu, menu);
         } else {
@@ -57,6 +59,4 @@ public class FeedActivity extends AppCompatActivity {
     public boolean onOptionsItemSelected(MenuItem item) {
         return BarUtils.selectToolbarMenuItem(this, item);
     }
-
 }
-

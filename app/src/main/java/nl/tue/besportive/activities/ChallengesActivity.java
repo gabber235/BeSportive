@@ -20,9 +20,11 @@ public class ChallengesActivity extends AppCompatActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+
         ActivityChallengesBinding binding = ActivityChallengesBinding.inflate(getLayoutInflater());
         setContentView(binding.getRoot());
 
+        // initialize variables here
         ChallengesViewModel viewModel = new ViewModelProvider(this).get(ChallengesViewModel.class);
         binding.setViewModel(viewModel);
         binding.setLifecycleOwner(this);
@@ -36,13 +38,14 @@ public class ChallengesActivity extends AppCompatActivity {
             this.isAdministrator = isAdministrator;
             invalidateOptionsMenu();
         });
+
         setSupportActionBar(BarUtils.setupPrimaryToolbar(binding.toolbarChallenges.toolbar));
         BarUtils.setupBottomNavigation(this, binding.bottomNavigation, R.id.challenges);
     }
 
-
     @Override
     public boolean onCreateOptionsMenu(Menu menu) {
+        // use curly braces after if statement to follow the standard
         if (isAdministrator) {
             getMenuInflater().inflate(R.menu.admin_settings_menu, menu);
         } else {

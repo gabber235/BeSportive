@@ -14,14 +14,17 @@ public class ProfileActivity extends AppCompatActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+
+        // Inflate layout and set it as the activity content
         ActivityProfileBinding binding = ActivityProfileBinding.inflate(getLayoutInflater());
         setContentView(binding.getRoot());
-        // Set viewModel
+
+        // Set up ViewModel and observe changes to it
         ProfileViewModel viewModel = new ViewModelProvider(this).get(ProfileViewModel.class);
         binding.setViewModel(viewModel);
         binding.setLifecycleOwner(this);
 
-        // using toolbar as ActionBar
+        // Set up toolbar as ActionBar
         setSupportActionBar(BarUtils.setupBackToolbar(binding.toolbarProfilePage.toolbar));
     }
 }

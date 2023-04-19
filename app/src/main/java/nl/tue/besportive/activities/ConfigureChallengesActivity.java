@@ -16,11 +16,16 @@ public class ConfigureChallengesActivity extends AppCompatActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+
         ActivityConfigureChallengesBinding binding = ActivityConfigureChallengesBinding.inflate(getLayoutInflater());
         setContentView(binding.getRoot());
 
         boolean inCreateGroupFlow = getIntent().getBooleanExtra("inCreateGroupFlow", false);
-        ConfigureChallengesViewModel viewModel = new ViewModelProvider(this, new ConfigureChallengesViewModel.ConfigureChallengesViewModelFactory(inCreateGroupFlow)).get(ConfigureChallengesViewModel.class);
+
+        // initialize variables here
+        ConfigureChallengesViewModel viewModel = new ViewModelProvider(this,
+                new ConfigureChallengesViewModel.
+                        ConfigureChallengesViewModelFactory(inCreateGroupFlow)).get(ConfigureChallengesViewModel.class);
         binding.setViewModel(viewModel);
         binding.setLifecycleOwner(this);
 

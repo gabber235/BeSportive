@@ -14,9 +14,11 @@ public class JoinCreateGroupActivity extends AppCompatActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+
         ActivityJoinCreateGroupBinding binding = ActivityJoinCreateGroupBinding.inflate(getLayoutInflater());
         binding.setLifecycleOwner(this);
 
+        // initialize variables here
         JoinCreateGroupViewModel viewModel = new ViewModelProvider(this).get(JoinCreateGroupViewModel.class);
         binding.setViewModel(viewModel);
 

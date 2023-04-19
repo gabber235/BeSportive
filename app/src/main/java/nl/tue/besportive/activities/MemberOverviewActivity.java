@@ -16,13 +16,16 @@ public class MemberOverviewActivity extends AppCompatActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+
         ActivityMemberOverviewBinding binding = ActivityMemberOverviewBinding.inflate(getLayoutInflater());
         setContentView(binding.getRoot());
 
         Intent intent = getIntent();
         String userId = intent.getStringExtra("userId");
 
-        MemberOverviewViewModel viewModel = new ViewModelProvider(this, new MemberOverviewViewModel.MemberOverviewViewModelFactory(userId)).get(MemberOverviewViewModel.class);
+        MemberOverviewViewModel viewModel =
+                new ViewModelProvider(this, new MemberOverviewViewModel.MemberOverviewViewModelFactory(userId)).
+                        get(MemberOverviewViewModel.class);
         binding.setViewModel(viewModel);
         binding.setLifecycleOwner(this);
 
@@ -30,7 +33,6 @@ public class MemberOverviewActivity extends AppCompatActivity {
         binding.completedChallenges.setAdapter(adapter);
 
         viewModel.getFeedItems().observe(this, adapter::setItems);
-
 
         setSupportActionBar(BarUtils.setupBackToolbar(binding.toolbarMemberOverview.toolbar));
     }

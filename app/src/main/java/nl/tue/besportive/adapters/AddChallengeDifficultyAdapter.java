@@ -14,6 +14,7 @@ import nl.tue.besportive.data.Difficulty;
 import nl.tue.besportive.databinding.AddChallengeDifficultyItemBinding;
 
 public class AddChallengeDifficultyAdapter extends ArrayAdapter<Difficulty> {
+
     public AddChallengeDifficultyAdapter(@NonNull Context context) {
         super(context, R.layout.add_challenge_difficulty_item, Difficulty.values());
     }
@@ -21,19 +22,21 @@ public class AddChallengeDifficultyAdapter extends ArrayAdapter<Difficulty> {
     @NonNull
     @Override
     public View getView(int position, @Nullable View convertView, @NonNull ViewGroup parent) {
+        // Inflating layout if not already inflated
         View row = convertView;
-
         BaseViewHolder<AddChallengeDifficultyItemBinding> holder;
         if (row == null) {
-            holder = new BaseViewHolder<>(AddChallengeDifficultyItemBinding.inflate(LayoutInflater.from(getContext()), parent, false));
+            holder = new BaseViewHolder<>(AddChallengeDifficultyItemBinding.inflate
+                    (LayoutInflater.from(getContext()), parent, false));
             row = holder.getBinding().getRoot();
             row.setTag(holder);
         } else {
             holder = (BaseViewHolder<AddChallengeDifficultyItemBinding>) row.getTag();
         }
 
+        // Setting the data to the layout
         holder.getBinding().setDifficulty(getItem(position));
-        
+
         return row;
     }
 }

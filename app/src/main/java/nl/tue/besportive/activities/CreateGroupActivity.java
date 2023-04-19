@@ -14,9 +14,11 @@ public class CreateGroupActivity extends AppCompatActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+
         ActivityCreateGroupBinding binding = ActivityCreateGroupBinding.inflate(getLayoutInflater());
         binding.setLifecycleOwner(this);
 
+        // initialize variables here
         CreateGroupViewModel viewModel = new ViewModelProvider(this).get(CreateGroupViewModel.class);
         binding.setViewModel(viewModel);
 
