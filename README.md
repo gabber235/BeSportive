@@ -14,6 +14,8 @@ By opening a Command Prompt in the Terminal and filling in the commands below in
 - Sometimes an error is shown in which it is indicated that "the port is already taken". 
 In this case the user can follow the trouble shooting section indicated underneath the "How to start the firebase emulator" section.
 - When the emulator is started up a test email and password can be used to make an account and get access to the app. This data is indicated below.
+- Another error which can occur is when the cloud functions are not working. 
+The steps which can be taken when this error happens are shown in the last comment below. 
 
 
 ## How to start the firebase emulator
@@ -32,13 +34,16 @@ Method 1:
 2. Run the command: `netstat -ano | findstr :<PORT>` (Replace "<PORT>" with the port number that is taken (common 8080), but keep the colon)
 3. Find the PID and copy this PID
 4. Run the command: `taskkill /PID <PID> /F` (Replace "<PID>" with the PID number copied in step 3)
+
 Method 2:
 Requirement: npm@5.2.0 or higher
 1. npx kill-port <PORT> (Replace "<PORT>" with the port number that is taken (common 8080))
+
 #### When the emulator is started the user will be able to log in with the following email and password: 
 - email: john.do@gmail.com
 - password: Test1234
 Note: This user will be an admin that is currently in a group with other users.
+
 ##### Troubleshooting when the cloud functions are not working
 1. Open the terminal in the root of the project
 2. Run the command: `npm ci`
