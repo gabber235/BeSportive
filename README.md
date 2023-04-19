@@ -66,7 +66,7 @@ Here he fills in the name Awesome group and presses on "Create group".
 Thereafter, he presses on "Done". Now John gets redirected to the Configure challenges page. Here he sees a few default challenges for inspiration. 
 He decides to add the challenge 100 Pushups by pressing on the green plus next to it. 
 He now has one challenges, but he wants to start off with two. 
-So he presses on "Add custom challenge" and types run 10 km in the textbox and changes the difficulty to Medium with the slider. 
+So he presses on "Add custom challenge" and types run 10 km in the textbox and changes the difficulty to Medium with the menu. 
 Now he presses "Done" and the challenge is added. He is content with his final challenges list and goes to the next page. 
 Now on the Invite members page he sees a generated code. 
 He sends the code to a few friends right away and presses on "Done" after which he ends up on the Feed page. 
