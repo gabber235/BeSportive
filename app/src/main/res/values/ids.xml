@@ -3,4 +3,5 @@
 <!-- You also need to define R.id.item_click_support using ids.xml -->
 <resources>
     <item name="item_click_support" type="id" />
+    <item name="activity_configure_challenges_layout" type="id" />
 </resources>

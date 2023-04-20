@@ -1,19 +1,41 @@
 package nl.tue.besportive.models;
 
-import androidx.lifecycle.MutableLiveData;
+import android.content.Context;
+
+import androidx.appcompat.app.AlertDialog;
+import androidx.lifecycle.LiveData;
 import androidx.lifecycle.ViewModel;
 
-import nl.tue.besportive.data.User;
+import nl.tue.besportive.R;
+import nl.tue.besportive.data.SportiveUser;
+import nl.tue.besportive.repositories.UserRepository;
+import nl.tue.besportive.utils.Navigator;
 
 public class ProfileViewModel extends ViewModel {
-    private final MutableLiveData<User> user;
+    private final UserRepository userRepository;
 
     public ProfileViewModel() {
-        user = new MutableLiveData<>();
-        user.setValue(new User("Laurens", "laurens.jonkers@gmail.com", "https://api.multiavatar.com/95aa24e1eb55052ad2.png", 69, 69));
+        userRepository = new UserRepository();
     }
 
-    public MutableLiveData<User> getUser() {
-        return user;
+    public LiveData<SportiveUser> getUser() {
+        return userRepository.getLiveUser();
+    }
+
+    public void regenerateProfilePicture() {
+        userRepository.regenerateProfilePicture();
+    }
+
+    public void logout(Context context) {
+        // Show a dialog to confirm logout then call userRepository.logout()
+        new AlertDialog.Builder(context)
+                .setTitle("Logout")
+                .setMessage("Are you sure you want to logout?")
+                .setPositiveButton(R.string.logout, (dialog, which) -> {
+                    userRepository.logout();
+                    Navigator.navigateToOnboardingActivity(context, true);
+                })
+                .setNegativeButton("Cancel", null)
+                .show();
     }
 }

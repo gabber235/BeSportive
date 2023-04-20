@@ -2,49 +2,89 @@
     <string name="app_name">BeSportive</string>
     <!-- TODO: Remove or change this placeholder text -->
     <string name="hello_blank_fragment">Hello blank fragment</string>
-    <string name="create_group_info_text">Enter a name to create a group so you can start competing with your friends and family</string>
+    <string name="create_group_info_text">Enter a name to create a group so you can start competing
+        with your friends and family</string>
     <string name="create_group_header">Create Group</string>
     <string name="challenges_info_text">Go to active challenges by pressing the challenges below</string>
     <string name="challenges_header">Challenges</string>
     <string name="active_challenge_header">Active Challenge</string>
-    <string name="active_challenge_challengename">100 Push ups</string>
+    <string name="active_challenge_challenge_name">100 Push ups</string>
     <string name="active_challenge_difficult_string">Easy</string>
     <string name="active_challenge_timer">08:36</string>
     <string name="configure_challenges_header">Challenges</string>
-    <string name="configure_challenges_info_text">Choose one of the default challenges below with the green plus or add a new challenge to your current challenge list on top.</string>
-    <string name="invite_members_info_text">Give this code to your friends and family to challenge them.</string>
+    <string name="configure_challenges_info_text">Choose one of the default challenges below with
+        the green plus or add a new challenge to your current challenge list on top.</string>
+    <string name="invite_members_info_text">Give this code to your friends and family to challenge
+        them.</string>
     <string name="invite_members_header">Invite Members</string>
     <string name="invite_members_subheader">Code</string>
-    <string name="joincreategroup_join_info_text">Write down the code you have recieved and start doing challenges!</string>
-    <string name="joincreategroup_create_info_text">Create a group to do challenges together and start your 2 week journey!</string>
+    <string name="joincreategroup_join_info_text">Write down the code you have received and start
+        doing challenges!</string>
+    <string name="joincreategroup_create_info_text">Create a group to do challenges together and
+        start your 2 week journey!</string>
     <string name="leaderboard_header">Leaderboard</string>
     <string name="memberoverview_email">john.doe@gmail.com</string>
     <string name="memberoverview_name">Emre Altan</string>
     <string name="memberoverview_completedchallenge">Completed Challenges</string>
-    <string name="profile_email">john.do@gmail.com</string>
-    <string name="profile_name">John Do</string>
+    <string name="profile_email">john.doe@gmail.com</string>
+    <string name="profile_name">Emre Altan</string>
     <string name="profile_name_header">Name</string>
     <string name="profile_statistics_header">Statistics</string>
-    <string name="profile_statistics_text">Number of challenges you have done so far:</string>
-    <string name="profile_statistics_time_spent_text">Total time spent on challenges:</string>
+    <string name="profile_statistics_text">Number of challenges you have done so far: %d</string>
+    <string name="profile_statistics_time_spent_text">Total time spent on challenges: %d</string>
     <string name="Leaderboard_placement">1.</string>
     <string name="invite_members_code">3NAB0</string>
-    <string name="done_button_text">Done</string>
     <string name="feed_header">Recent</string>
-    <string name="go_to_member_text">Go to member</string>
+    <string name="total_challenges_label">Total challenges done: %1$d</string>
+    <string name="total_time_label">Total time spent: %1$d</string>
+    <string name="total_points_label">Total points: %1$d</string>
 
-    <!--Action Bar Strings -->
+    <!--Action
+    Bar Strings -->
     <string name="item_1_actionbar">Profile icon</string>
     <string name="item_2_actionbar">Logo icon</string>
 
-    <string name="item_1_menu_settings">Create Group</string>
+    <string name="item_1_menu_settings">Invite Members</string>
     <string name="item_2_menu_settings">Configure Challenges</string>
-  <!--  <string name="item_3_menu_settings">Leave Group</string> -->
+    <!--  <string name="item_3_menu_settings">Leave Group</string> -->
 
     <string name="createGroup_inputField_placeholder">Name...</string>
     <string name="createGroup_button_text">Create Group</string>
     <string name="joinCreateGroup_code_placeholder">Code...</string>
     <string name="joinCreateGroup_buttons_join">Join</string>
     <string name="joinCreateGroup_buttons_create">Create Group</string>
-    <string name="goToProfilePage">go to Profile Page</string>
+    <string name="done_button_text">Done</string>
+    <string name="feedHeaderText">Feed</string>
+    <string name="go_to_member_text">Go to member</string>
+    <string name="complete">Complete Challenge</string>
+    <string name="start">Start Challenge</string>
+    <string name="cancel_the_challenge">Cancel the Challenge</string>
+    <string name="startChallenge_header">Start Challenge</string>
+    <string name="add_custom_challenge_button">Add Custom Challenge</string>
+    <string name="generate_image_button">Generate New Profile Picture!</string>
+    <string name="take_picture">Take Picture</string>
+    <string name="user_profile_icon">User Profile Icon</string>
+    <string name="configure_challenges_subheader_text">Choose one of the default challenges below with the green plus or add a new challenge to your current challenge list on top</string>
+    <string name="join">Join</string>
+    <string name="profile_picture">Profile picture</string>
+    <string name="logout">Logout</string>
+    <string name="next">Next</string>
+    <string name="item_3_menu_settings">Disband group</string>
+    <string name="my_challenges">My Challenges</string>
+    <string name="challenge_name">Challenge Name</string>
+    <string name="difficulty">Difficulty</string>
+    <string name="add_icon">Add icon</string>
+    <string name="trash_icon">Trash icon</string>
+    <string name="enter_challenge_name">Enter Challenge Name</string>
+    <string name="select_difficulty_level">Select difficulty level</string>
+    <string name="difficulty_level">Difficulty Level:</string>
+    <string name="challenge_name_input">Challenge Name:</string>
+    <string name="create_challenge">Create Challenge</string>
+    <string name="create_challenge_subtitle">Fill in the details of your custom challenge below. Then click the button to create your challenge.</string>
+    <string name="leave_group">Leave Group</string>
+    <string-array name="difficulty_options">
+        <item>Easy</item>
+        <item>Medium</item>
+        <item>Hard</item>
+    </string-array>
 </resources>

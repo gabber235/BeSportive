@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools">
+
+
+    <data>
+
+        <variable
+            name="difficulty"
+            type="nl.tue.besportive.data.Difficulty" />
+    </data>
+
+    <TextView
+        android:id="@+id/difficulty_name"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="@{difficulty.name}"
+        android:textColor="@{difficulty.color}"
+        android:textSize="20sp"
+        android:textStyle="bold"
+        tools:text="Easy"
+        tools:textColor="@color/easy_green" />
+</layout>

@@ -1,0 +1,29 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+
+    <style name="Widget.App.Button" parent="Widget.MaterialComponents.Button.TextButton">
+        <item name="android:backgroundTint">@color/orange_500</item>
+        <item name="android:textColor">@color/white</item>
+    </style>
+
+    <style name="Widget.App.OutlineButton" parent="Widget.MaterialComponents.Button.OutlinedButton">
+        <item name="android:backgroundTint">#00000000</item>
+        <item name="android:textColor">@color/orange_500</item>
+        <item name="strokeColor">@color/orange_500</item>
+    </style>
+
+    <style name="AlertDialogTheme" parent="ThemeOverlay.MaterialComponents.Dialog.Alert">
+        <item name="buttonBarNegativeButtonStyle">@style/NegativeButtonStyle</item>
+        <item name="buttonBarPositiveButtonStyle">@style/PositiveButtonStyle</item>
+    </style>
+
+    <style name="NegativeButtonStyle" parent="Widget.App.OutlineButton">
+        <item name="android:textColor">@color/gray</item>
+        <item name="strokeColor">@color/gray</item>
+        <item name="android:layout_marginEnd">8dp</item>
+    </style>
+
+    <style name="PositiveButtonStyle" parent="Widget.App.Button">
+        <item name="android:backgroundTint">@color/hard_red</item>
+    </style>
+</resources>

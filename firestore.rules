@@ -4,12 +4,39 @@ service cloud.firestore {
     match /{document=**} {
       allow read, write: if false;
 
+      match /defaultChallenges/{defaultChallengeId}{
+        allow read: if true;
+      }
+
       match /users/{userId} {
-        allow read: if request.auth.uid == userId;
+        allow read, write: if request.auth.uid == userId;
       }
 
       match /groups/{groupId} {
         allow read: if request.auth.uid in resource.data.members;
+
+        function isInGroup() {
+          return request.auth != null && request.auth.uid in get(/databases/$(database)/documents/groups/$(groupId)).data.members;
+        }
+
+        function isGroupAdmin() {
+          return request.auth != null && get(/databases/$(database)/documents/groups/$(groupId)).data.admin == request.auth.uid;
+        }
+
+        match /completedChallenges/{completedChallengeId} {
+          allow read: if isInGroup();
+          allow write: if ((request.resource.data.userId == request.auth.uid && isInGroup()) || isGroupAdmin());
+        }
+
+        match /activeChallenges/{completedChallengeId} {
+          allow read: if isInGroup();
+          allow write: if ((request.resource.data.userId == request.auth.uid && isInGroup()) || isGroupAdmin());
+        }
+
+        match /challenges/{challengeId} {
+          allow read: if isInGroup();
+          allow write: if isGroupAdmin();
+        }
       }
     }
   }

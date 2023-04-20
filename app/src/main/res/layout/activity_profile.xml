@@ -8,152 +8,118 @@
         <variable
             name="viewModel"
             type="nl.tue.besportive.models.ProfileViewModel" />
+
     </data>
 
-    <androidx.constraintlayout.widget.ConstraintLayout
+    <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        tools:context=".ProfileActivity">
+        android:orientation="vertical"
+        android:gravity="center_horizontal"
+        tools:context=".activities.ProfileActivity">
+
+        <include
+            android:id="@+id/toolbar_profile_page"
+            layout="@layout/toolbar"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content" />
 
         <ImageView
             android:id="@+id/profile_picture"
-            android:layout_width="164dp"
-            android:layout_height="151dp"
-            app:layout_constraintBottom_toBottomOf="parent"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintHorizontal_bias="0.498"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toTopOf="parent"
-            app:layout_constraintVertical_bias="0.203"
-            tools:srcCompat="@drawable/img" />
-
-        <ImageView
-            android:id="@+id/profile_besportive_logo"
             android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_marginTop="32dp"
-            app:layout_constraintBottom_toBottomOf="parent"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toTopOf="parent"
-            app:layout_constraintVertical_bias="0.0"
-            app:srcCompat="@drawable/logo_2" />
+            android:layout_height="0dp"
+            android:layout_weight="2"
+            android:layout_marginTop="16dp"
+            app:imageUrl="@{viewModel.user.photoUrl}"
+            tools:src="@drawable/img"
+            android:contentDescription="@string/profile_picture" />
 
         <TextView
             android:id="@+id/email"
-            android:layout_width="139dp"
-            android:layout_height="22dp"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
             android:layout_marginTop="8dp"
-            android:text="@string/profile_email"
-            android:textColor="#000000"
-            app:layout_constraintBottom_toBottomOf="parent"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/profile_picture"
-            app:layout_constraintVertical_bias="0.017" />
+            android:text="@{viewModel.user.email}"
+            tools:text="@string/profile_email" />
 
-        <TextView
-            android:id="@+id/profile_name"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:text="@{viewModel.user.name}"
-            android:textColor="#000000"
-            android:textSize="22sp"
-            android:textStyle="bold"
-            app:layout_constraintBottom_toBottomOf="parent"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintHorizontal_bias="0.335"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/email"
-            app:layout_constraintVertical_bias="0.02" />
-
-        <TextView
-            android:id="@+id/statistic"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_marginStart="120dp"
-            android:text="@string/profile_statistics_header"
-            android:textColor="#000000"
-            android:textSize="22sp"
-            android:textStyle="bold"
-            app:layout_constraintBottom_toBottomOf="parent"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/email"
-            app:layout_constraintVertical_bias="0.231" />
-
-        <TextView
-            android:id="@+id/number_of_challenges"
-            android:layout_width="209dp"
-            android:layout_height="36dp"
-            android:textSize="16dp"
-            android:text="@string/profile_statistics_text"
-            app:layout_constraintBottom_toBottomOf="parent"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintHorizontal_bias="0.594"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/statistic"
-            app:layout_constraintVertical_bias="0.044" />
-
-        <TextView
-            android:id="@+id/time_spend_on_challenges"
-            android:layout_width="209dp"
-            android:layout_height="36dp"
-            android:text="@string/profile_statistics_time_spent_text"
-            android:textSize="16dp"
-            app:layout_constraintBottom_toBottomOf="parent"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintHorizontal_bias="0.594"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/statistic" />
-
-        <TextView
-            android:id="@+id/actual_name"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_marginStart="120dp"
-            android:text="@string/profile_name"
-            android:textSize="20sp"
-            app:layout_constraintBottom_toTopOf="@+id/number_of_challenges"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/email" />
-
-        <ImageButton
-            android:id="@+id/return_button"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_marginStart="32dp"
-            android:layout_marginTop="32dp"
-            android:background="@color/white"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toTopOf="parent"
-            app:srcCompat="@drawable/arrow_back" />
-
-        <TextView
-            android:id="@+id/textView6"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_marginStart="120dp"
-            android:text="21"
-            android:textColor="#000000"
-            android:textSize="16dp"
-            android:textStyle="bold"
-            app:layout_constraintBottom_toTopOf="@+id/time_spend_on_challenges"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/statistic" />
 
         <TextView
             android:id="@+id/textView7"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_marginStart="120dp"
-            android:text="3 hours 15 minutes"
-            android:textColor="#000000"
-            android:textSize="16dp"
-            android:textStyle="bold"
-            app:layout_constraintBottom_toBottomOf="parent"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/textView6" />
+            android:layout_marginTop="16dp"
+            android:text="@string/profile_name_header"
+            android:textSize="20sp"
+            android:textStyle="bold" />
 
+        <TextView
+            android:id="@+id/name"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="8dp"
+            android:text="@{viewModel.user.name}"
+            android:textSize="20sp"
+            tools:text="Username" />
 
-    </androidx.constraintlayout.widget.ConstraintLayout>
+        <TextView
+            android:id="@+id/header"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="16dp"
+            android:text="@string/profile_statistics_header"
+            android:textSize="20sp"
+            android:textStyle="bold" />
+
+        <TextView
+            android:id="@+id/total_challenges_view"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="8dp"
+            android:text="@{@string/total_challenges_label(viewModel.user.totalChallenges)}"
+            tools:text="@string/total_challenges_label" />
+
+        <TextView
+            android:id="@+id/total_time_view"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="8dp"
+            android:text="@{@string/total_time_label(viewModel.user.totalTime)}"
+            tools:text="@string/total_time_label" />
+
+        <TextView
+            android:id="@+id/total_points_view"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="8dp"
+            android:text="@{@string/total_points_label(viewModel.user.totalPoints)}"
+            tools:text="@string/total_points_label" />
+
+        <Space
+            android:layout_width="match_parent"
+            android:layout_height="0dp"
+            android:layout_weight="1" />
+
+        <Button
+            android:id="@+id/generate_image_button"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="16dp"
+            android:text="@string/generate_image_button"
+            android:onClick="@{() -> viewModel.regenerateProfilePicture()}" />
+
+        <Button
+            android:id="@+id/logout_button"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="16dp"
+            style="@style/Widget.App.OutlineButton"
+            android:text="@string/logout"
+            android:onClick="@{() -> viewModel.logout(context)}" />
+
+        <Space
+            android:layout_width="match_parent"
+            android:layout_height="0dp"
+            android:layout_weight="1" />
+
+    </LinearLayout>
 </layout>

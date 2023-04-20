@@ -1,0 +1,9 @@
+rules_version = '2';
+service firebase.storage {
+  match /b/{bucket}/o {
+    match /{groupId}/{activeChallengeId}/image.jpg {
+      allow read: if true;
+      allow write: if firestore.get(/databases/(default)/documents/groups/$(groupId)/activeChallenges/$(activeChallengeId)).data.userId == request.auth.uid;
+    }
+  }
+}

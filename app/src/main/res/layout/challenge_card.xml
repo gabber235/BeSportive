@@ -1,0 +1,90 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools">
+
+    <data>
+
+        <variable
+            name="challenge"
+            type="nl.tue.besportive.data.Challenge" />
+
+        <variable
+            name="listener"
+            type="nl.tue.besportive.adapters.ChallengesAdapter.ChallengesAdapterListener" />
+    </data>
+
+    <androidx.cardview.widget.CardView
+        android:id="@+id/oneLineChallengeLayout"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginVertical="5dp"
+        android:layout_marginHorizontal="10dp"
+        app:cardCornerRadius="12dp">
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal"
+            android:baselineAligned="false">
+
+            <LinearLayout
+                android:layout_width="0dp"
+                android:layout_height="match_parent"
+                android:layout_weight="1"
+                android:orientation="vertical"
+                android:paddingHorizontal="20dp"
+                android:gravity="center_vertical">
+
+                <TextView
+                    android:id="@+id/challengeDifficulty"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="@{challenge.smartDifficulty.name}"
+                    android:textColor="@{challenge.smartDifficulty.color}"
+                    android:textSize="16sp"
+                    tools:text="Hard"
+                    tools:textColor="@color/easy_green" />
+
+                <TextView
+                    android:id="@+id/tv_challengeName"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="@{challenge.name}"
+                    android:textColor="#000000"
+                    android:textSize="20sp"
+                    android:textStyle="bold"
+                    tools:text="100 Push Ups" />
+
+
+            </LinearLayout>
+
+            <FrameLayout
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_margin="10dp">
+
+
+                <ImageView
+                    android:id="@+id/imageView6"
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:layout_marginBottom="1dp"
+                    app:srcCompat="@drawable/ellipse_8" />
+
+                <ImageButton
+                    android:id="@+id/ib_gotoactivechallenges"
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:layout_margin="5dp"
+                    android:layout_marginStart="6dp"
+                    android:background="#00000000"
+                    android:contextClickable="true"
+                    app:tint="#F6F1F1"
+                    android:onClick="@{() -> listener.onStart(context, challenge)}"
+                    app:srcCompat="@android:drawable/ic_media_play" />
+
+            </FrameLayout>
+        </LinearLayout>
+    </androidx.cardview.widget.CardView>
+</layout>
